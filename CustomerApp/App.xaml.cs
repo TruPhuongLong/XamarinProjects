@@ -1,6 +1,8 @@
 using System;
+using CustomerApp.src.Views.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using CustomerApp.src.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace CustomerApp
@@ -11,7 +13,9 @@ namespace CustomerApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+			MainPage = new CustomerListPage();
+			var firebase = new CustomerApp.src.Services.Firebase();
+			firebase.getFireBase();
         }
 
         protected override void OnStart()

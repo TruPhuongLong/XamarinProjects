@@ -7,4 +7,17 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="3.0.0.446417" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\" />
+    <Folder Include="src\Views\" />
+    <Folder Include="src\Models\" />
+    <Folder Include="src\ViewModels\" />
+    <Folder Include="src\Views\Pages\" />
+    <Folder Include="src\Views\Components\" />
+    <Folder Include="src\Services\" />
+    <Folder Include="src\assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="src\Services\Firebase.cs" />
+  </ItemGroup>
 </Project>
