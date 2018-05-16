@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using CustomerApp.src.Models;
+using CustomerApp.src.Services;
 using Xamarin.Forms;
 
 namespace CustomerApp.src.ViewModels
 {
 	public class CustomerListPageViewModel : BaseViewModel
 	{
-		// list items:
+		// :================================================================================Data for binding Start:================================================================================
 		ObservableCollection<Customer> customerLists;
 		public ObservableCollection<Customer> CustomerLists
 		{
@@ -23,23 +25,23 @@ namespace CustomerApp.src.ViewModels
 		public string Name
 		{
 			get => name;
-            set 
+			set
 			{
 				SetProperty(ref name, value);
 				SaveCommand.ChangeCanExecute();
 			}
 		}
-        
+
 		string age;
-        public string Age
-        {
-            get => age;
-            set
-            {
-                SetProperty(ref age, value);
-                SaveCommand.ChangeCanExecute();
-            }
-        }
+		public string Age
+		{
+			get => age;
+			set
+			{
+				SetProperty(ref age, value);
+				SaveCommand.ChangeCanExecute();
+			}
+		}
 
 		// Command:
 		Command saveCommand;
@@ -52,6 +54,8 @@ namespace CustomerApp.src.ViewModels
 		{
 			// create object get from user:
 			Debug.WriteLine("ExecuteCommand");
+			// sure Age is Int because Validator make that; so use int.Parse is save.
+			var newCustomer = new Customer { Name = Name, Age = int.Parse(Age) };
 		}
 
 		bool ValidatorCommand()
@@ -61,20 +65,25 @@ namespace CustomerApp.src.ViewModels
 			var ageIsInt = int.TryParse(Age, out NewAge);
 			return !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Age) && ageIsInt;
 		}
-        
+		//:================================================================================ Data for binding End:================================================================================
 
-		// Constructor:
-		public CustomerListPageViewModel()
+		// Implement abstrack class and  constructor:
+		public override Task Init()
+		{
+			throw new NotImplementedException();
+		}
+
+		protected CustomerListPageViewModel(ICustomerService navService) : base(navService)
 		{
 			CustomerLists = new ObservableCollection<Customer>()
 			{
-				new Customer{Name = "name1", Age = 20},
-				new Customer{Name = "name2", Age = 30},
-				new Customer{Name = "name3", Age = 40},
-				new Customer{Name = "name4", Age = 25},
-				new Customer{Name = "name5", Age = 60},
-				new Customer{Name = "name6", Age = 23},
-				new Customer{Name = "name7", Age = 29}
+				  new Customer{Name = "name1", Age = 20},
+				  new Customer{Name = "name2", Age = 30},
+				  new Customer{Name = "name3", Age = 40},
+				  new Customer{Name = "name4", Age = 25},
+				  new Customer{Name = "name5", Age = 60},
+				  new Customer{Name = "name6", Age = 23},
+				  new Customer{Name = "name7", Age = 29}
 			};
 		}
 	}
