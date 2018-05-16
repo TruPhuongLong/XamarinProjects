@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CustomerApp.src.Models;
-using CustomerApp.src.Services;
+using CustomerApp.src.Services.NavigationService;
 
 namespace CustomerApp.src.ViewModels
 {

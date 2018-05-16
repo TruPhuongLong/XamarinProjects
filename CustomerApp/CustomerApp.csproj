@@ -16,6 +16,7 @@
     <Folder Include="src\Views\Components\" />
     <Folder Include="src\Services\" />
     <Folder Include="src\assets\" />
+    <Folder Include="src\Services\NavigationService\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="src\Services\Firebase.cs" />

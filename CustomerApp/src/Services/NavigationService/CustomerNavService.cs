@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using CustomerApp.src.Services;
+using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.ViewModels;
 using Xamarin.Forms;
 
@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 // this Dependency come from Xamarin.Form, this mean you can call ICustomerService to get CustomerNavService
 [assembly: Dependency(typeof(CustomerNavService))]
-namespace CustomerApp.src.Services
+namespace CustomerApp.src.Services.NavigationService
 {
 	public class CustomerNavService : ICustomerNavService
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using CustomerApp.src.Services;
+using CustomerApp.src.Services.NavigationService;
 using System.Threading.Tasks;
 
 namespace CustomerApp.src.ViewModels

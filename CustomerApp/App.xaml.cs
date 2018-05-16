@@ -1,5 +1,5 @@
 using System;
-using CustomerApp.src.Services;
+using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.ViewModels;
 using CustomerApp.src.Views.Pages;
 using Xamarin.Forms;

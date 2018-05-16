@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using CustomerApp.src.Models;
-using CustomerApp.src.Services;
+using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.ViewModels;
 using Xamarin.Forms;
 

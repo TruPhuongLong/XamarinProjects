@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using CustomerApp.src.ViewModels;
 
-namespace CustomerApp.src.Services
+namespace CustomerApp.src.Services.NavigationService
 {
 	public interface ICustomerNavService
     {
