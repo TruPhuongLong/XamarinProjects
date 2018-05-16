@@ -1,21 +1,69 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using CustomerApp.src.Models;
+using Xamarin.Forms;
 
 namespace CustomerApp.src.ViewModels
 {
-	public class CustomerListPageViewModel: BaseViewModel
-    {
+	public class CustomerListPageViewModel : BaseViewModel
+	{
+		// list items:
 		ObservableCollection<Customer> customerLists;
 		public ObservableCollection<Customer> CustomerLists
 		{
 			get => customerLists;
-            set
+			set
 			{
 				SetProperty(ref customerLists, value);
 			}
 		}
 
+		string name;
+		public string Name
+		{
+			get => name;
+            set 
+			{
+				SetProperty(ref name, value);
+				SaveCommand.ChangeCanExecute();
+			}
+		}
+        
+		string age;
+        public string Age
+        {
+            get => age;
+            set
+            {
+                SetProperty(ref age, value);
+                SaveCommand.ChangeCanExecute();
+            }
+        }
+
+		// Command:
+		Command saveCommand;
+		public Command SaveCommand
+		{
+			get => saveCommand ?? (saveCommand = new Command(ExecuteCommand, ValidatorCommand));
+		}
+
+		void ExecuteCommand()
+		{
+			// create object get from user:
+			Debug.WriteLine("ExecuteCommand");
+		}
+
+		bool ValidatorCommand()
+		{
+			Debug.WriteLine("validation");
+			int NewAge;
+			var ageIsInt = int.TryParse(Age, out NewAge);
+			return !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Age) && ageIsInt;
+		}
+        
+
+		// Constructor:
 		public CustomerListPageViewModel()
 		{
 			CustomerLists = new ObservableCollection<Customer>()
@@ -29,5 +77,5 @@ namespace CustomerApp.src.ViewModels
 				new Customer{Name = "name7", Age = 29}
 			};
 		}
-    }
+	}
 }

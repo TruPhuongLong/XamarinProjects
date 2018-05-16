@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CustomerApp.src.Views.Pages.CustomerListPage">
-    <ContentPage.Content>
-        <ListView ItemsSource="{Binding CustomerLists}">
+    <Grid>
+        <StackLayout Grid.Row="0">
+            <Entry Text="{Binding Name, Mode=TwoWay}" />
+            <Entry Text="{Binding Age, Mode=TwoWay}" />
+            <Button Text="Add" Command="{Binding SaveCommand}" />
+        </StackLayout>
+        <ListView ItemsSource="{Binding CustomerLists}" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -13,5 +18,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </ContentPage.Content>
+    </Grid>
 </ContentPage>

@@ -22,4 +22,11 @@ namespace CustomerApp.src.ViewModels
 				handler(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
+
+
+
+
 }
+
+
+
