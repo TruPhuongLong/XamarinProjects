@@ -4,7 +4,7 @@ using CustomerApp.src.ViewModels;
 
 namespace CustomerApp.src.Services
 {
-    public interface ICustomerService
+	public interface ICustomerNavService
     {
 		Task PreviousPage();
 		Task BackToMainPage();

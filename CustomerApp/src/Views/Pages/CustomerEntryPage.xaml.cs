@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace CustomerApp.src.Views.Pages
 {
-    public partial class EntryPage : ContentPage
+    public partial class CustomerEntryPage : ContentPage
     {
-        public EntryPage()
+        public CustomerEntryPage()
         {
             InitializeComponent();
         }

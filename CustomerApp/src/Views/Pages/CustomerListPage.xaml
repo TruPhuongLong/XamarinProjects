@@ -6,7 +6,7 @@
             <Entry Text="{Binding Age, Mode=TwoWay}" />
             <Button Text="Add" Command="{Binding SaveCommand}" />
         </StackLayout>
-        <ListView ItemsSource="{Binding CustomerLists}" Grid.Row="1">
+        <ListView Grid.Row="1" ItemsSource="{Binding CustomerLists}" ItemTapped="Handle_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

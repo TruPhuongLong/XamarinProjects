@@ -43,7 +43,7 @@ namespace CustomerApp.src.ViewModels
 			}
 		}
 
-		// Command:
+		//Save Command:
 		Command saveCommand;
 		public Command SaveCommand
 		{
@@ -65,26 +65,45 @@ namespace CustomerApp.src.ViewModels
 			var ageIsInt = int.TryParse(Age, out NewAge);
 			return !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Age) && ageIsInt;
 		}
+
+		//Detail Command:
+		Command<Customer> detailCommand;
+		public Command<Customer> DetailCommand
+		{
+			get => detailCommand ?? (detailCommand = new Command<Customer>
+									 (
+										 async (customerDetail) =>
+										 await NavService.NavigateToViewModel<CustomerDetailPageViewModel, Customer>(customerDetail))
+									);
+		}
 		//:================================================================================ Data for binding End:================================================================================
 
 		// Implement abstrack class and  constructor:
-		public override Task Init()
+		public override async Task Init()
 		{
-			throw new NotImplementedException();
+			await LoadCustomerListDetail();
 		}
 
-		protected CustomerListPageViewModel(ICustomerService navService) : base(navService)
+		public CustomerListPageViewModel(ICustomerNavService navService) : base(navService)
 		{
-			CustomerLists = new ObservableCollection<Customer>()
+			CustomerLists = new ObservableCollection<Customer>();
+		}
+
+		public async Task LoadCustomerListDetail()
+		{
+			await Task.Run(() =>
 			{
-				  new Customer{Name = "name1", Age = 20},
-				  new Customer{Name = "name2", Age = 30},
-				  new Customer{Name = "name3", Age = 40},
-				  new Customer{Name = "name4", Age = 25},
-				  new Customer{Name = "name5", Age = 60},
-				  new Customer{Name = "name6", Age = 23},
-				  new Customer{Name = "name7", Age = 29}
-			};
+				CustomerLists = new ObservableCollection<Customer>()
+				{
+					new Customer { Name = "name1", Age = 20 },
+					new Customer { Name = "name2", Age = 30 },
+					new Customer { Name = "name3", Age = 40 },
+					new Customer { Name = "name4", Age = 25 },
+					new Customer { Name = "name5", Age = 60 },
+					new Customer { Name = "name6", Age = 23 },
+					new Customer { Name = "name7", Age = 29 }
+				};
+			});
 		}
 	}
 }

@@ -8,7 +8,7 @@ namespace CustomerApp.src.ViewModels
 {
 	public abstract class BaseViewModel : INotifyPropertyChanged
 	{
-		// Implement INotifyPropertyChanged:
+		// :===========================================Implement INotifyPropertyChanged for binding:  Start===========================================
 		public event PropertyChangedEventHandler PropertyChanged;
 		protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
 		{
@@ -24,12 +24,13 @@ namespace CustomerApp.src.ViewModels
 			if (handler != null)
 				handler(this, new PropertyChangedEventArgs(propertyName));
 		}
+		// :===========================================Implement INotifyPropertyChanged for binding:  End===========================================
 
 		// Get reference to NavService:
-		protected ICustomerService NavService { get; private set; }
+		protected ICustomerNavService NavService { get; private set; }
 
         //Constructor 
-		protected BaseViewModel(ICustomerService navService)
+		protected BaseViewModel(ICustomerNavService navService)
 		{
 			NavService = navService;
 		}
@@ -42,7 +43,7 @@ namespace CustomerApp.src.ViewModels
 	// generic BaseViewModel:
 	public abstract class BaseViewModel<TParameter> : BaseViewModel
 	{
-		protected BaseViewModel(ICustomerService navService) : base(navService)
+		protected BaseViewModel(ICustomerNavService navService) : base(navService)
 		{
 		}
 
