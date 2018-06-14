@@ -4,12 +4,15 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using CustomerApp.src.Models;
 using CustomerApp.src.Services.NavigationService;
+using CustomerApp.src.Services.signalRService;
 using Xamarin.Forms;
 
 namespace CustomerApp.src.ViewModels
 {
 	public class CustomerListPageViewModel : BaseViewModel
 	{
+
+
 		// :================================================================================Data for binding Start:================================================================================
 		ObservableCollection<Customer> customerLists;
 		public ObservableCollection<Customer> CustomerLists
@@ -43,6 +46,17 @@ namespace CustomerApp.src.ViewModels
 			}
 		}
 
+		string message;
+		public string Message
+        {
+			get => message;
+            set
+            {
+				SetProperty(ref message, value);
+				SaveCommand.ChangeCanExecute();
+            }
+        }
+
 		//Save Command:
 		Command saveCommand;
 		public Command SaveCommand
@@ -55,9 +69,11 @@ namespace CustomerApp.src.ViewModels
 			// create object get from user:
 			Debug.WriteLine("ExecuteCommand");
 			// sure Age is Int because Validator make that; so use int.Parse is save.
-			var newCustomer = new Customer { Name = Name, Age = int.Parse(Age) };
+			//var newCustomer = new Customer { Name = Name, Age = int.Parse(Age) };
+			signalRService.hubProxy.Invoke("messageAll", name, message);
+            
 		}
-
+        
 		bool ValidatorCommand()
 		{
 			Debug.WriteLine("validation");
@@ -76,6 +92,9 @@ namespace CustomerApp.src.ViewModels
 										 await NavService.NavigateToViewModel<CustomerDetailPageViewModel, Customer>(customerDetail))
 									);
 		}
+		// signalr:
+        SignalRService signalRService = new SignalRService();
+
 		//:================================================================================ Data for binding End:================================================================================
 
 		// Implement abstrack class and  constructor:
@@ -87,6 +106,12 @@ namespace CustomerApp.src.ViewModels
 		public CustomerListPageViewModel(ICustomerNavService navService) : base(navService)
 		{
 			CustomerLists = new ObservableCollection<Customer>();
+
+            
+			signalRService.OnMessage((user, mes) => 
+			{
+				CustomerLists.Add(new Customer { Name = user, Message = mes });
+			});
 		}
 
 		public async Task LoadCustomerListDetail()
@@ -95,15 +120,18 @@ namespace CustomerApp.src.ViewModels
 			{
 				CustomerLists = new ObservableCollection<Customer>()
 				{
-					new Customer { Name = "name1", Age = 20 },
-					new Customer { Name = "name2", Age = 30 },
-					new Customer { Name = "name3", Age = 40 },
-					new Customer { Name = "name4", Age = 25 },
-					new Customer { Name = "name5", Age = 60 },
-					new Customer { Name = "name6", Age = 23 },
-					new Customer { Name = "name7", Age = 29 }
+					new Customer { Name = "name1" , Message = "hi"}
+
 				};
 			});
 		}
+
+
+
+
+
+        
+
+        
 	}
 }

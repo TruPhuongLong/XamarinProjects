@@ -4,6 +4,7 @@
         <StackLayout Grid.Row="0">
             <Entry Text="{Binding Name, Mode=TwoWay}" />
             <Entry Text="{Binding Age, Mode=TwoWay}" />
+            <Entry Text="{Binding Message, Mode=TwoWay}" />
             <Button Text="Add" Command="{Binding SaveCommand}" />
         </StackLayout>
         <ListView Grid.Row="1" ItemsSource="{Binding CustomerLists}" ItemTapped="Handle_ItemTapped">
@@ -12,7 +13,7 @@
                     <ViewCell>
                         <StackLayout>
                             <Label Text="{Binding Name}" />
-                            <Label Text="{Binding Age}" />
+                            <Label Text="{Binding Message}" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

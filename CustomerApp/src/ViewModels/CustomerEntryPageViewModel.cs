@@ -31,7 +31,7 @@ namespace CustomerApp.src.ViewModels
 		{
 			var loginCustomer = await Task.Run<Customer>(() =>
                  // request service login:                              
-				new Customer { Name = "", Age = 20 }
+                 new Customer { Name = "", Message = "" }
 			);
 			if (loginCustomer != null)
 			{
