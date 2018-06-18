@@ -5,22 +5,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.0.0.446417" />
     <PackageReference Include="Microsoft.AspNet.SignalR.Client" Version="2.2.3" />
+    <PackageReference Include="Xamarin.Forms" Version="3.0.0.561731" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
     <Folder Include="src\Views\" />
     <Folder Include="src\Models\" />
     <Folder Include="src\ViewModels\" />
-    <Folder Include="src\Views\Pages\" />
     <Folder Include="src\Views\Components\" />
     <Folder Include="src\Services\" />
     <Folder Include="src\assets\" />
     <Folder Include="src\Services\NavigationService\" />
     <Folder Include="src\Services\signalRService\" />
+    <Folder Include="src\Views\CustomerPages\" />
+    <Folder Include="src\Views\PosPages\" />
+    <Folder Include="src\Views\SharePages\" />
+    <Folder Include="redux\" />
+    <Folder Include="redux\reducers\" />
+    <Folder Include="redux\store\" />
+    <Folder Include="redux\middlewares\" />
+    <Folder Include="redux\actions\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="src\Services\Firebase.cs" />
+    <Compile Remove="src\Views\SharePages\CustomerInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="src\Views\Pages\CustomerListPage.xaml" />
   </ItemGroup>
 </Project>

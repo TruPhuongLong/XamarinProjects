@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace CustomerApp.src.Views.Pages
+namespace CustomerApp.src.Views.CustomerPages
 {
-    public partial class CustomerSignupPage : ContentPage
+	public partial class CustomerEntryPage : ContentPage
     {
-        public CustomerSignupPage()
+		public CustomerEntryPage()
         {
             InitializeComponent();
         }

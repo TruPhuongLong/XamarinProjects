@@ -4,12 +4,12 @@ using CustomerApp.src.Services.NavigationService;
 
 namespace CustomerApp.src.ViewModels
 {
-	public class CustomerSignupPageViewModel : BaseViewModel
-	{
+	public class CustomerSignupPageViewModel: BaseViewModel
+    {
 		// Implement BaseViewModel:
-		protected CustomerSignupPageViewModel(ICustomerNavService navService) : base(navService)
-		{
-		}
+		public CustomerSignupPageViewModel(ICustomerNavService navService) : base(navService)
+        {
+        }
 
 		public override Task Init()
 		{

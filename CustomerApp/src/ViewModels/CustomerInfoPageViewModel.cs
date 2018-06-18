@@ -5,10 +5,10 @@ using CustomerApp.src.Services.NavigationService;
 
 namespace CustomerApp.src.ViewModels
 {
-	public class CustomerDetailPageViewModel : BaseViewModel<Customer>
+	public class CustomerInfoPageViewModel : BaseViewModel<Customer>
 	{
 		// Implement BaseViewModel<Customer>
-		public CustomerDetailPageViewModel(ICustomerNavService navService) : base(navService)
+		public CustomerInfoPageViewModel(ICustomerNavService navService) : base(navService)
 		{
 		}
 

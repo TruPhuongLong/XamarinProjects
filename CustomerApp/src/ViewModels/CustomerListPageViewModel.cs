@@ -42,7 +42,7 @@ namespace CustomerApp.src.ViewModels
 			set
 			{
 				SetProperty(ref age, value);
-				SaveCommand.ChangeCanExecute();
+				//SaveCommand.ChangeCanExecute();
 			}
 		}
 
@@ -64,22 +64,39 @@ namespace CustomerApp.src.ViewModels
 			get => saveCommand ?? (saveCommand = new Command(ExecuteCommand, ValidatorCommand));
 		}
 
-		void ExecuteCommand()
+		async void ExecuteCommand()
 		{
 			// create object get from user:
 			Debug.WriteLine("ExecuteCommand");
 			// sure Age is Int because Validator make that; so use int.Parse is save.
 			//var newCustomer = new Customer { Name = Name, Age = int.Parse(Age) };
-			signalRService.hubProxy.Invoke("messageAll", name, message);
+
+
+			// this is for aspnet.signalr;
+			//var result = await signalRService.Connection();
+			//         if(result)
+			//{
+			//	signalRService.OnMessage((mes) => 
+			//             {
+			//               CustomerLists.Add(new Customer { Name = "long", Message = mes });
+			//             });
+			//	await signalRService.hubProxy.Invoke("messageAll", Message);
+			//}
+
+
+            
+            
+
+			await signalRService.hubProxy.Invoke("MessageAll", null, new[] {Name, Message});
             
 		}
         
 		bool ValidatorCommand()
 		{
-			Debug.WriteLine("validation");
-			int NewAge;
-			var ageIsInt = int.TryParse(Age, out NewAge);
-			return !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Age) && ageIsInt;
+			//Debug.WriteLine("validation");
+			//int NewAge;
+			//var ageIsInt = int.TryParse(Age, out NewAge);
+			return !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Message) ;
 		}
 
 		//Detail Command:
@@ -89,11 +106,11 @@ namespace CustomerApp.src.ViewModels
 			get => detailCommand ?? (detailCommand = new Command<Customer>
 									 (
 										 async (customerDetail) =>
-										 await NavService.NavigateToViewModel<CustomerDetailPageViewModel, Customer>(customerDetail))
+				                         await NavService.NavigateToViewModel<CustomerInfoPageViewModel, Customer>(customerDetail))
 									);
 		}
 		// signalr:
-        SignalRService signalRService = new SignalRService();
+		SignalRService signalRService = new SignalRService();
 
 		//:================================================================================ Data for binding End:================================================================================
 
@@ -108,10 +125,16 @@ namespace CustomerApp.src.ViewModels
 			CustomerLists = new ObservableCollection<Customer>();
 
             
-			signalRService.OnMessage((user, mes) => 
-			{
-				CustomerLists.Add(new Customer { Name = user, Message = mes });
-			});
+			//signalRService.OnMessage((mes) => 
+			//{
+			//	CustomerLists.Add(new Customer { Name = "fsfsfs", Message = mes });
+			//});
+
+			// this is for aspnetcore.signalr:
+            //signalRService.OnMessage((user, mes) =>
+            //{
+            //    CustomerLists.Add(new Customer { Name = user, Message = mes });
+            //});
 		}
 
 		public async Task LoadCustomerListDetail()

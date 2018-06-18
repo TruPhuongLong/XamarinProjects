@@ -35,7 +35,7 @@ namespace CustomerApp.src.ViewModels
 			);
 			if (loginCustomer != null)
 			{
-				await NavService.NavigateToViewModel<CustomerDetailPageViewModel, Customer>(loginCustomer);
+				await NavService.NavigateToViewModel<CustomerInfoPageViewModel, Customer>(loginCustomer);
 			}
 			else
 			{

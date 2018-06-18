@@ -1,7 +1,9 @@
 using System;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.ViewModels;
-using CustomerApp.src.Views.Pages;
+using CustomerApp.src.Views.CustomerPages;
+using CustomerApp.src.Views.PosPages;
+using CustomerApp.src.Views.SharePages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,9 +24,8 @@ namespace CustomerApp
 
 			// Mapping 
 			navService.RegisterViewMapping(typeof(CustomerListPageViewModel), typeof(CustomerListPage));
-			navService.RegisterViewMapping(typeof(CustomerDetailPageViewModel), typeof(CustomerDetailPage));
 			navService.RegisterViewMapping(typeof(CustomerEntryPageViewModel), typeof(CustomerEntryPage));
-			navService.RegisterViewMapping(typeof(CustomerSignupPageViewModel), typeof(CustomerSignupPage));
+			navService.RegisterViewMapping(typeof(CustomerInfoPageViewModel), typeof(CustomerInfoPage));
 
 			//set mainPage:
 			MainPage = rootPage;
