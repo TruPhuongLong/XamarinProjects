@@ -1,4 +1,6 @@
 using System;
+using CustomerApp.src.Models;
+using CustomerApp.src.redux.store;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.ViewModels;
 using CustomerApp.src.Views.CustomerPages;
@@ -16,19 +18,7 @@ namespace CustomerApp
         {
             InitializeComponent();
 
-			var rootPage = new NavigationPage(new CustomerListPage(){Title = "Customer List"});
-			var navService = DependencyService.Get<ICustomerNavService>() as CustomerNavService;
-
-            // this point reference navService.navigation to Navigtion -> it importance.
-			navService.navigation = rootPage.Navigation;
-
-			// Mapping 
-			navService.RegisterViewMapping(typeof(CustomerListPageViewModel), typeof(CustomerListPage));
-			navService.RegisterViewMapping(typeof(CustomerEntryPageViewModel), typeof(CustomerEntryPage));
-			navService.RegisterViewMapping(typeof(CustomerInfoPageViewModel), typeof(CustomerInfoPage));
-
-			//set mainPage:
-			MainPage = rootPage;
+			Init();
         }
 
         protected override void OnStart()
@@ -45,5 +35,34 @@ namespace CustomerApp
         {
             // Handle when your app resumes
         }
+
+		private void Init()
+		{
+			InitNav(InitCustomerStore());
+		}
+
+		private void InitNav(IStore<CustomerState, Customer> CustomerStore)
+		{
+			var rootPage = new NavigationPage(new CustomerListPage() { Title = "Customer List" });
+            var navService = DependencyService.Get<ICustomerNavService>() as CustomerNavService;
+
+            // this point reference navService.navigation to Navigtion -> it importance.
+            navService.navigation = rootPage.Navigation;
+			navService.CustomerStore = CustomerStore;
+
+            // Mapping 
+            navService.RegisterViewMapping(typeof(CustomerListPageViewModel), typeof(CustomerListPage));
+            navService.RegisterViewMapping(typeof(CustomerEntryPageViewModel), typeof(CustomerEntryPage));
+            navService.RegisterViewMapping(typeof(CustomerInfoPageViewModel), typeof(CustomerInfoPage));
+
+            //set mainPage:
+            MainPage = rootPage;
+		}
+
+		private IStore<CustomerState, Customer> InitCustomerStore()
+		{
+			var CustomerStore = DependencyService.Get<IStore<CustomerState, Customer>>() as CustomerStore;
+			return CustomerStore;
+		}
     }
 }

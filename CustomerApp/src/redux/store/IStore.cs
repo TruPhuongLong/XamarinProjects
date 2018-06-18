@@ -12,18 +12,3 @@ namespace CustomerApp.src.redux.store
 		void Dispath(IAction<M> action);
     }
 }
-
-
-/*
-        private _state: T;
-constructor(
-private reducer: Reducer<T>, initialState: T
-){
-this._state = initialState;
-}
-    getState() : T { return this._state;
-}
-    dispatch(action: Action) : void {
-this._state = this.reducer(this._state, action);
-}
-*/

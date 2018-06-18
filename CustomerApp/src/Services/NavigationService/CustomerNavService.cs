@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using CustomerApp.src.Models;
+using CustomerApp.src.redux.store;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.ViewModels;
 using Xamarin.Forms;
@@ -19,6 +21,9 @@ namespace CustomerApp.src.Services.NavigationService
 		// pass Xamarin.Form Navigation to this variable, and use this variable to handle app.
 		public INavigation navigation { get; set; }
 		readonly IDictionary<Type, Type> viewMapping = new Dictionary<Type, Type>();
+
+		// store:
+		public IStore<CustomerState, Customer> CustomerStore { get; set; }
 
 		// add paired (viewModel - view) for map push to view.
 		public void RegisterViewMapping(Type viewModel, Type view)
