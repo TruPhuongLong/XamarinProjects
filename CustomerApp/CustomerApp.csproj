@@ -21,11 +21,7 @@
     <Folder Include="src\Views\CustomerPages\" />
     <Folder Include="src\Views\PosPages\" />
     <Folder Include="src\Views\SharePages\" />
-    <Folder Include="redux\" />
-    <Folder Include="redux\reducers\" />
-    <Folder Include="redux\store\" />
-    <Folder Include="redux\middlewares\" />
-    <Folder Include="redux\actions\" />
+    <Folder Include="src\redux\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="src\Services\Firebase.cs" />

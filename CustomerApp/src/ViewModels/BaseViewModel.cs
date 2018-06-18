@@ -6,25 +6,27 @@ using System.Threading.Tasks;
 
 namespace CustomerApp.src.ViewModels
 {
-	public abstract class BaseViewModel : INotifyPropertyChanged
+	public abstract class CoreBaseViewModel: INotifyPropertyChanged
 	{
-		// :===========================================Implement INotifyPropertyChanged for binding:  Start===========================================
 		public event PropertyChangedEventHandler PropertyChanged;
-		protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
-		{
-			if (Object.Equals(storage, value))
-				return false;
-			storage = value;
-			OnPropertyChanged(propertyName);
-			return true;
-		}
-		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-		{
-			var handler = PropertyChanged;
-			if (handler != null)
-				handler(this, new PropertyChangedEventArgs(propertyName));
-		}
-		// :===========================================Implement INotifyPropertyChanged for binding:  End===========================================
+        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (Object.Equals(storage, value))
+                return false;
+            storage = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+	}
+
+	public abstract class BaseViewModel : CoreBaseViewModel
+	{
 
 		// Get reference to NavService:
 		protected ICustomerNavService NavService { get; private set; }

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using CustomerApp.src.Models;
 using Microsoft.AspNet.SignalR.Client;
 using Newtonsoft.Json;
-
+using CustomerApp.src.redux.actions;
 
 namespace CustomerApp.src.Services.signalRService
 {
@@ -34,15 +33,15 @@ namespace CustomerApp.src.Services.signalRService
             }
 		}
         
-		public void OnPayload(Action<_Action> cb)
+		public void OnPayload<T>(Action<IAction<T>> cb)
 		{
-			hubProxy.On("payload", (string action) =>
+			hubProxy.On("Payload", (string action_json) =>
             {
-				_Action _action = JsonConvert.DeserializeObject<_Action>(action);
-				cb(_action);
+				IAction<T> action = JsonConvert.DeserializeObject<IAction<T>>(action_json);
+				cb(action);
             });
 		}
-
+        
 
 
     }
