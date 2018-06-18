@@ -3,6 +3,9 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using CustomerApp.src.Services.NavigationService;
 using System.Threading.Tasks;
+using CustomerApp.src.redux.store;
+using CustomerApp.src.Models;
+using Xamarin.Forms;
 
 namespace CustomerApp.src.ViewModels
 {
@@ -35,9 +38,19 @@ namespace CustomerApp.src.ViewModels
 		protected BaseViewModel(ICustomerNavService navService)
 		{
 			NavService = navService;
+			CustomerStore = InitCustomerStore();
 		}
 
 		public abstract Task Init();
+
+		// store:
+        public IStore<CustomerState, Customer> CustomerStore { get; set; }
+
+		private IStore<CustomerState, Customer> InitCustomerStore()
+        {
+            var _CustomerStore = DependencyService.Get<IStore<CustomerState, Customer>>() as CustomerStore;
+            return _CustomerStore;
+        }
 	}
 
 

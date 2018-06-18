@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using CustomerApp.src.Models;
 using CustomerApp.src.redux.actions;
 using CustomerApp.src.redux.reducers;
@@ -31,7 +32,7 @@ namespace CustomerApp.src.redux.store
 		public CustomerStore()
 		{
 			var CustomerReducer = DependencyService.Get<IReducer<CustomerState, Customer>>() as CustomerReducer;
-			var CustomerState = new CustomerState();
+			var CustomerState = new CustomerState(){ CustomerHistory = new ObservableCollection<Customer>()};
 			Constructor(CustomerReducer, CustomerState);
 		}
 

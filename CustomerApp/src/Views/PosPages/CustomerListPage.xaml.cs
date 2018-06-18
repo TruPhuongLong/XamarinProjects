@@ -19,6 +19,7 @@ namespace CustomerApp.src.Views.PosPages
         {
             InitializeComponent();
             BindingContext = new CustomerListPageViewModel(DependencyService.Get<ICustomerNavService>());
+            
         }
 
         protected async override void OnAppearing()

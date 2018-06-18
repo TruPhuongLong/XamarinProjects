@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using CustomerApp.src.Models;
@@ -6,8 +7,8 @@ using CustomerApp.src.Models;
 namespace CustomerApp.src.redux.store
 {
 	public struct CustomerState
-    {
-		Customer Customer { get; set; }
-		Customer[] CustomerHistory { get; set; }
+	{
+		public Customer Customer { get; set; }
+		public ObservableCollection<Customer> CustomerHistory { get; set; }
 	}
 }

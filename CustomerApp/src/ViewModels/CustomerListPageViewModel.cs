@@ -6,23 +6,22 @@ using CustomerApp.src.Models;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.Services.signalRService;
 using Xamarin.Forms;
+using CustomerApp.src.redux.actions;
 
 namespace CustomerApp.src.ViewModels
 {
 	public class CustomerListPageViewModel : BaseViewModel
-	{
-
-
+	{      
 		// :================================================================================Data for binding Start:================================================================================
-		ObservableCollection<Customer> customerLists;
-		public ObservableCollection<Customer> CustomerLists
-		{
-			get => customerLists;
-			set
-			{
-				SetProperty(ref customerLists, value);
-			}
-		}
+		//ObservableCollection<Customer> customerLists;
+		//public ObservableCollection<Customer> CustomerLists
+		//{
+		//	get => customerLists;
+		//	set
+		//	{
+		//		SetProperty(ref customerLists, value);
+		//	}
+		//}
 
 		string name;
 		public string Name
@@ -64,7 +63,7 @@ namespace CustomerApp.src.ViewModels
 			get => saveCommand ?? (saveCommand = new Command(ExecuteCommand, ValidatorCommand));
 		}
 
-		async void ExecuteCommand()
+		void ExecuteCommand()
 		{
 			// create object get from user:
 			Debug.WriteLine("ExecuteCommand");
@@ -84,11 +83,15 @@ namespace CustomerApp.src.ViewModels
 			//}
 
 
-            
-            
 
-			await signalRService.hubProxy.Invoke("MessageAll", null, new[] {Name, Message});
-            
+
+
+			//await signalRService.hubProxy.Invoke("MessageAll", null, new[] {Name, Message});
+
+
+			// store dispatch:
+			CustomerStore.Dispath(new TestAction(new Customer() { Name = Name, Message = Message }));
+
 		}
         
 		bool ValidatorCommand()
@@ -110,11 +113,11 @@ namespace CustomerApp.src.ViewModels
 									);
 		}
 		// signalr:
-		SignalRService signalRService = new SignalRService();
+		//SignalRService signalRService = new SignalRService();
 
 		//:================================================================================ Data for binding End:================================================================================
 
-		// Implement abstrack class and  constructor:
+		 //Implement abstrack class and  constructor:
 		public override async Task Init()
 		{
 			await LoadCustomerListDetail();
@@ -122,7 +125,7 @@ namespace CustomerApp.src.ViewModels
 
 		public CustomerListPageViewModel(ICustomerNavService navService) : base(navService)
 		{
-			CustomerLists = new ObservableCollection<Customer>();
+			//CustomerLists = new ObservableCollection<Customer>();
 
             
 			//signalRService.OnMessage((mes) => 
@@ -139,14 +142,14 @@ namespace CustomerApp.src.ViewModels
 
 		public async Task LoadCustomerListDetail()
 		{
-			await Task.Run(() =>
-			{
-				CustomerLists = new ObservableCollection<Customer>()
-				{
-					new Customer { Name = "name1" , Message = "hi"}
+			//await Task.Run(() =>
+			//{
+			//	CustomerLists = new ObservableCollection<Customer>()
+			//	{
+			//		new Customer { Name = "name1" , Message = "hi"}
 
-				};
-			});
+			//	};
+			//});
 		}
 
 

@@ -38,17 +38,17 @@ namespace CustomerApp
 
 		private void Init()
 		{
-			InitNav(InitCustomerStore());
+			InitNav();
 		}
 
-		private void InitNav(IStore<CustomerState, Customer> CustomerStore)
+		private void InitNav()
 		{
 			var rootPage = new NavigationPage(new CustomerListPage() { Title = "Customer List" });
             var navService = DependencyService.Get<ICustomerNavService>() as CustomerNavService;
 
             // this point reference navService.navigation to Navigtion -> it importance.
             navService.navigation = rootPage.Navigation;
-			navService.CustomerStore = CustomerStore;
+
 
             // Mapping 
             navService.RegisterViewMapping(typeof(CustomerListPageViewModel), typeof(CustomerListPage));
@@ -59,10 +59,6 @@ namespace CustomerApp
             MainPage = rootPage;
 		}
 
-		private IStore<CustomerState, Customer> InitCustomerStore()
-		{
-			var CustomerStore = DependencyService.Get<IStore<CustomerState, Customer>>() as CustomerStore;
-			return CustomerStore;
-		}
+
     }
 }

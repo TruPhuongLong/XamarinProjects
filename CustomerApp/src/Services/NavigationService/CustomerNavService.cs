@@ -22,8 +22,7 @@ namespace CustomerApp.src.Services.NavigationService
 		public INavigation navigation { get; set; }
 		readonly IDictionary<Type, Type> viewMapping = new Dictionary<Type, Type>();
 
-		// store:
-		public IStore<CustomerState, Customer> CustomerStore { get; set; }
+
 
 		// add paired (viewModel - view) for map push to view.
 		public void RegisterViewMapping(Type viewModel, Type view)

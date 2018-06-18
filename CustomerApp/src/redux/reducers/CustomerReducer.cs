@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using CustomerApp.src.Models;
 using CustomerApp.src.redux.actions;
 using CustomerApp.src.redux.reducers;
@@ -16,7 +17,8 @@ namespace CustomerApp.src.redux.reducers
 			switch (action._Type)
 			{
 				case _Type.TestAddCustomer:
-					return state;
+					var newState = TestAddCustomer(state, action);
+						return newState;
 				case _Type.RequestLogin:
 					return state;
 				case _Type.ResponseLogin:
@@ -28,6 +30,19 @@ namespace CustomerApp.src.redux.reducers
 				default:
 					return state;
 			}
+		}
+
+		private CustomerState TestAddCustomer(CustomerState state, IAction<Customer> action)
+		{
+			var newState = new CustomerState();
+			// get Customer:
+			newState.Customer = action.Payload;
+
+			// get Array CustomerHistory:
+			newState.CustomerHistory = new ObservableCollection<Customer>(state.CustomerHistory);
+			newState.CustomerHistory.Add(action.Payload);
+
+			return newState;
 		}
 
 
