@@ -5,6 +5,7 @@ namespace CustomerApp.src.Models
 {
 	public class Customer
 	{
+		public string Id { get; set; }
 		public string Name { get; set; }
 		//public int Age { get; set; }
 		public string Message { get; set; }

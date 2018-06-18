@@ -32,7 +32,12 @@ namespace CustomerApp.src.redux.store
 		public CustomerStore()
 		{
 			var CustomerReducer = DependencyService.Get<IReducer<CustomerState, Customer>>() as CustomerReducer;
-			var CustomerState = new CustomerState(){ CustomerHistory = new ObservableCollection<Customer>()};
+
+			// user observerbalCollecction:
+			//var CustomerState = new CustomerState(){ CustomerHistory = new ObservableCollection<Customer>()};
+
+			//user array:
+			var CustomerState = new CustomerState() { CustomerHistory = new Customer[]{} };
 			Constructor(CustomerReducer, CustomerState);
 		}
 

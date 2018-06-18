@@ -3,12 +3,12 @@ using CustomerApp.src.Models;
 
 namespace CustomerApp.src.redux.actions
 {
-	public class TestAction : IAction<Customer>
+	public class UpdateCustomerAction : IAction<Customer>
 	{
-		public _Type _Type { get => _Type.TestAddCustomer; }
+		public _Type _Type { get => _Type.UpdateCustomer; }
 		public Customer Payload { get; set; }
 
-		public TestAction(Customer payload)
+		public UpdateCustomerAction(Customer payload)
         {
             Payload = payload;
         }

@@ -9,10 +9,8 @@ namespace CustomerApp.src.redux.actions
 
 	public enum _Type
 	{
-		RequestLogin,
-        ResponseLogin,
-        RequestSignup,
-        ResponseSignup,
-        TestAddCustomer,
+		AddCustomer,
+        RemoveCustomer,
+        UpdateCustomer,
 	}
 }

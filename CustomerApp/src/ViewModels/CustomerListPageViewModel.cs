@@ -13,15 +13,6 @@ namespace CustomerApp.src.ViewModels
 	public class CustomerListPageViewModel : BaseViewModel
 	{      
 		// :================================================================================Data for binding Start:================================================================================
-		//ObservableCollection<Customer> customerLists;
-		//public ObservableCollection<Customer> CustomerLists
-		//{
-		//	get => customerLists;
-		//	set
-		//	{
-		//		SetProperty(ref customerLists, value);
-		//	}
-		//}
 
 		string name;
 		public string Name
@@ -90,7 +81,7 @@ namespace CustomerApp.src.ViewModels
 
 
 			// store dispatch:
-			CustomerStore.Dispath(new TestAction(new Customer() { Name = Name, Message = Message }));
+			CustomerStore.Dispath(new AddCustomerAction(new Customer() { Name = Name, Message = Message }));
 
 		}
         
@@ -125,7 +116,6 @@ namespace CustomerApp.src.ViewModels
 
 		public CustomerListPageViewModel(ICustomerNavService navService) : base(navService)
 		{
-			//CustomerLists = new ObservableCollection<Customer>();
 
             
 			//signalRService.OnMessage((mes) => 

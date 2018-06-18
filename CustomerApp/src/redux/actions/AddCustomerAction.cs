@@ -3,12 +3,12 @@ using CustomerApp.src.Models;
 
 namespace CustomerApp.src.redux.actions
 {
-	public class RequestLoginAction : IAction<Customer>
+	public class AddCustomerAction : IAction<Customer>
 	{
-		public _Type _Type { get => _Type.RequestLogin; }
+		public _Type _Type { get => _Type.AddCustomer; }
 		public Customer Payload { get; set; }
 
-		public RequestLoginAction(Customer payload)
+		public AddCustomerAction(Customer payload)
 		{
 			Payload = payload;
 		}
