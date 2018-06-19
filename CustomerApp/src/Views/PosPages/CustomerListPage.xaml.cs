@@ -10,7 +10,7 @@ namespace CustomerApp.src.Views.PosPages
 {
     public partial class CustomerListPage : ContentPage
     {
-		CustomerListPageViewModel viewModel
+        CustomerListPageViewModel viewModel
         {
             get => BindingContext as CustomerListPageViewModel;
         }
@@ -19,7 +19,7 @@ namespace CustomerApp.src.Views.PosPages
         {
             InitializeComponent();
             BindingContext = new CustomerListPageViewModel(DependencyService.Get<ICustomerNavService>());
-            
+
         }
 
         protected async override void OnAppearing()
@@ -39,7 +39,7 @@ namespace CustomerApp.src.Views.PosPages
 
         void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var customer = (Customer)e.Item;
+            Customer? customer = (Customer)e.Item;
             // don't understand why check customer:
             if (customer == null) return;
             viewModel.DetailCommand.Execute(customer);

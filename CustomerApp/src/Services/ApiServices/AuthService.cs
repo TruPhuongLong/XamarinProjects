@@ -37,3 +37,15 @@ namespace CustomerApp.src.Services.ApiServices
 		}
     }
 }
+
+/*
+ let user: LoggedInUser = response.json();
+      if (user && user.access_token) {
+        localStorage.removeItem(SystemConstants.CURRENT_USER);
+        localStorage.setItem(SystemConstants.CURRENT_USER, JSON.stringify(user));
+
+        // set userId save:
+        this.userId = user.id;
+        // console.log('set userId when login: ', this.userId)
+      }
+*/

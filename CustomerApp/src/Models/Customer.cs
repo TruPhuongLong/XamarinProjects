@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CustomerApp.src.Models
 {
-	public class Customer
+	public struct Customer
 	{
 		public string Id { get; set; }
 		public string Name { get; set; }

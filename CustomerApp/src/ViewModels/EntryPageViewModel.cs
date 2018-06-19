@@ -29,18 +29,18 @@ namespace CustomerApp.src.ViewModels
 
 		async Task ExecuteLoginCommand()
 		{
-			var loginCustomer = await Task.Run<Customer>(() =>
+			Customer? loginCustomer = await Task.Run<Customer>(() =>
                  // request service login:                              
                  new Customer { Name = "", Message = "" }
 			);
 			if (loginCustomer != null)
 			{
-				await NavService.NavigateToViewModel<CustomerInfoPageViewModel, Customer>(loginCustomer);
+				await NavService.NavigateToViewModel<CustomerInfoPageViewModel, Customer>((Customer)loginCustomer);
 			}
-			else
-			{
-				await NavService.NavigateToViewModel<CustomerSignupPageViewModel, Customer>(null);
-			}
+			//else
+			//{
+			//	await NavService.NavigateToViewModel<CustomerSignupPageViewModel, Customer>(null);
+			//}
 		}
 
 		bool ValidateFormLogin()
