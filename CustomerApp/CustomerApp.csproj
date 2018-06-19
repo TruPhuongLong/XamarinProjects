@@ -22,6 +22,8 @@
     <Folder Include="src\Views\PosPages\" />
     <Folder Include="src\Views\SharePages\" />
     <Folder Include="src\redux\" />
+    <Folder Include="src\Services\ApiServices\" />
+    <Folder Include="src\libs\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="src\Services\Firebase.cs" />

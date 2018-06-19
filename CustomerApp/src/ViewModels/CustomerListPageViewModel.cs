@@ -104,7 +104,7 @@ namespace CustomerApp.src.ViewModels
 									);
 		}
 		// signalr:
-		//SignalRService signalRService = new SignalRService();
+		SignalRService signalRService = new SignalRService();
 
 		//:================================================================================ Data for binding End:================================================================================
 

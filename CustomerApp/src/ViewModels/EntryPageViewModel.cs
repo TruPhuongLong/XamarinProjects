@@ -6,10 +6,10 @@ using Xamarin.Forms;
 
 namespace CustomerApp.src.ViewModels
 {
-	public class CustomerEntryPageViewModel : BaseViewModel
+	public class EntryPageViewModel : BaseViewModel
 	{
 		// Implement BaseViewModel:
-		protected CustomerEntryPageViewModel(ICustomerNavService navService) : base(navService)
+		protected EntryPageViewModel(ICustomerNavService navService) : base(navService)
 		{
 		}
 

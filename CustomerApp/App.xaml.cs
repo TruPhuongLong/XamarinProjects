@@ -48,17 +48,19 @@ namespace CustomerApp
 
             // this point reference navService.navigation to Navigtion -> it importance.
             navService.navigation = rootPage.Navigation;
-
+            
 
             // Mapping 
-            navService.RegisterViewMapping(typeof(CustomerListPageViewModel), typeof(CustomerListPage));
-            navService.RegisterViewMapping(typeof(CustomerEntryPageViewModel), typeof(CustomerEntryPage));
+			navService.RegisterViewMapping(typeof(PosLoginPageViewModel), typeof(PosLoginPage));
+            navService.RegisterViewMapping(typeof(EntryPageViewModel), typeof(EntryPage));
+			navService.RegisterViewMapping(typeof(CustomerListPageViewModel), typeof(CustomerListPage));
             navService.RegisterViewMapping(typeof(CustomerInfoPageViewModel), typeof(CustomerInfoPage));
+			navService.RegisterViewMapping(typeof(CustomerSignupPageViewModel), typeof(CustomerSignupPage));
 
             //set mainPage:
             MainPage = rootPage;
 		}
-
+        
 
     }
 }
