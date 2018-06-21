@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-
+using System.Diagnostics;
+using CustomerApp.src.Models;
+using CustomerApp.src.ViewModels;
 using Xamarin.Forms;
 
 namespace CustomerApp.src.Views.PosPages
@@ -10,6 +11,12 @@ namespace CustomerApp.src.Views.PosPages
         public PosLoginPage()
         {
             InitializeComponent();
+			BindingContext = new PosLoginPageViewModel();
         }
+
+		void LoginEventHandler(object sender, User user)
+		{
+		}
+        
     }
 }

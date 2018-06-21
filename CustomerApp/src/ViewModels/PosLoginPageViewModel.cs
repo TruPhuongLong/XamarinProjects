@@ -1,4 +1,6 @@
 ﻿using System;
+using Xamarin.Forms;
+
 namespace CustomerApp.src.ViewModels
 {
     public class PosLoginPageViewModel
@@ -6,5 +8,7 @@ namespace CustomerApp.src.ViewModels
         public PosLoginPageViewModel()
         {
         }
+
+
     }
 }

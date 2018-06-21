@@ -5,13 +5,14 @@
     x:Class="CustomerApp.src.Views.Components.LoginView"
     Padding="40, 60"
     WidthRequest="280"
+    HeightRequest="250"
     BackgroundColor="Lime"
     >
 
-    <StackLayout>
-        <Entry Placeholder="@email"/>
-        <Entry Placeholder="@password"/>
-        <Button>Login</Button>
+    <StackLayout Spacing="20">
+        <Entry Placeholder="@email" Text="{Binding Email, Mode=TwoWay}" />
+        <Entry Placeholder="@password" Text="{Binding Password, Mode=TwoWay}"/>
+        <Button Command="{Binding LoginCommand}" Margin="0, 40, 0, 0">Login</Button>
     </StackLayout>
         
 </ContentView>
