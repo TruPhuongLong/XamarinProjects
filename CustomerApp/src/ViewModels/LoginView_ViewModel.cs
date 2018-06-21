@@ -19,6 +19,18 @@ namespace CustomerApp.src.ViewModels
 			}
 		}
 
+		//PROP /UserName
+		string userName;
+		public string UserName
+        {
+			get => userName;
+            set
+            {
+				SetProperty(ref userName, value);
+                LoginCommand.ChangeCanExecute();
+            }
+        }
+
 		//PROP /Password
 		string password;
 		public string Password
@@ -40,12 +52,12 @@ namespace CustomerApp.src.ViewModels
 
         void ExecuteCommand()
         {
-			if (LoginEventHandler != null) LoginEventHandler(this, new User(){Email = Email, Password = Password});
+			if (LoginEventHandler != null) LoginEventHandler(this, new User(){Email = Email, UserName = UserName, Password = Password});
         }
 
         bool ValidatorCommand()
         {
-			return !string.IsNullOrEmpty(Email) && !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrEmpty(Password) && !string.IsNullOrWhiteSpace(Password);
+			return !string.IsNullOrEmpty(UserName) && !string.IsNullOrWhiteSpace(UserName) && !string.IsNullOrEmpty(Password) && !string.IsNullOrWhiteSpace(Password);
         }
 
         //CONSTRUCTOR

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using CustomerApp.src.libs;
 using CustomerApp.src.Services.ApiServices;
 using Xamarin.Forms;
@@ -31,12 +32,12 @@ static class HttpClientExtensions
 {
 	public static void SetDefaultHeaders(this HttpClient client)
     {
-        client.DefaultRequestHeaders.Add("Content-Type", "application/json");
-		client.DefaultRequestHeaders.Add("Authorization", "Bearer " + LocalStorage.GetAccessToken());
+		//client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+		//client.DefaultRequestHeaders.Add("Authorization", "Bearer " + LocalStorage.GetAccessToken());
     }
 
 	public static void SetHeadersEncode(this HttpClient client)
     {
-		client.DefaultRequestHeaders.Add("Content-Type", "application / x - www - form - urlencoded");
+		//client.DefaultRequestHeaders..Add(new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));
     }
 }

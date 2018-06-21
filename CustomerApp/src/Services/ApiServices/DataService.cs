@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,8 @@ namespace CustomerApp.src.Services.ApiServices
 {
     public class DataService
     {
-		private HttpClient Client;
+		public HttpClient Client;
+		public bool IsLoading = false;
 
 		public DataService()
 		{
@@ -20,42 +22,52 @@ namespace CustomerApp.src.Services.ApiServices
 		}
 
         //GET
-		public async Task<HttpResponseMessage> Get()
+		public async Task<HttpResponseMessage> Get(Uri uri)
 		{
-			return await Client.GetAsync(GetUri());
+			IsLoading = true;
+			var result = await Client.GetAsync(uri);
+			IsLoading = false;
+			return result;
 		}
 
         //POST
-		public async Task<HttpResponseMessage> Post<T>(T model)
+		public async Task<HttpResponseMessage> Post(Uri uri, StringContent content)
         {
-			return await Client.PostAsync(GetUri(), GetEncodeModel(model));
+			IsLoading = true;
+			var result = await Client.PostAsync(uri, content);
+            IsLoading = false;
+            return result;
         }
 
         //PUT
-		public async Task<HttpResponseMessage> Put<T>(T model)
+		public async Task<HttpResponseMessage> Put(Uri uri, StringContent content)
 		{
-			return await Client.PutAsync(GetUri(), GetEncodeModel(model));
+			IsLoading = true;
+			var result = await Client.PutAsync(uri, content);
+            IsLoading = false;
+            return result;
 		}
 
         //DELETE
-		public async Task<HttpResponseMessage> Delete(string id)
+		public async Task<HttpResponseMessage> Delete(Uri uri)
 		{
-			var uri = new Uri(string.Format(Constants.RestUrl, id));
-			return await Client.DeleteAsync(uri);
+			IsLoading = true;
+			var result = await Client.DeleteAsync(uri);
+            IsLoading = false;
+            return result;
 		}
 
 
-        //PRIVATE func
-		private StringContent GetEncodeModel<T>(T model)
-		{
-			var json = JsonConvert.SerializeObject(model);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-			return content;
-		}
-
-		private Uri GetUri()
-		{
-			return new Uri(string.Format(Constants.RestUrl, string.Empty));
-		}
     }
 }
+
+/*
+var response = await DataService.Get(GetUri("https://jsonplaceholder.typicode.com/users"));
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var Items = JsonConvert.DeserializeObject(content);
+                Debug.WriteLine(Items);
+            }
+*/
