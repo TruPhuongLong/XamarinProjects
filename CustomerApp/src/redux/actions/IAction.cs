@@ -12,5 +12,6 @@ namespace CustomerApp.src.redux.actions
 		AddCustomer,
         RemoveCustomer,
         UpdateCustomer,
+        ListCustomerChanged,
 	}
 }

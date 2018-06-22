@@ -9,7 +9,7 @@ namespace CustomerApp.src.ViewModels
 	public class EntryPageViewModel : BaseViewModel
 	{
 		// Implement BaseViewModel:
-		protected EntryPageViewModel(ICustomerNavService navService) : base(navService)
+		public EntryPageViewModel(ICustomerNavService navService) : base(navService)
 		{
 		}
 
@@ -18,34 +18,27 @@ namespace CustomerApp.src.ViewModels
 			throw new NotImplementedException();
 		}
 
-
-		//=============================Business for CustomerEntryPage:=============================
-		// login command:
-		Command loginCommand;
-		public Command LoginCommand
+        //COMMAND //push CustomerListPage
+		Command pushCustomerListPage;
+		public Command PushCustomerListPage
 		{
-			get => loginCommand ?? (loginCommand = new Command(async () => await ExecuteLoginCommand(), ValidateFormLogin));
+			get => pushCustomerListPage ?? (pushCustomerListPage = new Command(ExecuteCommand_PushCustomerListPage));
 		}
-
-		async Task ExecuteLoginCommand()
+		async void ExecuteCommand_PushCustomerListPage()
 		{
-			Customer? loginCustomer = await Task.Run<Customer>(() =>
-                 // request service login:                              
-                 new Customer { Name = "", Message = "" }
-			);
-			if (loginCustomer != null)
-			{
-				await NavService.NavigateToViewModel<CustomerInfoPageViewModel, Customer>((Customer)loginCustomer);
-			}
-			//else
-			//{
-			//	await NavService.NavigateToViewModel<CustomerSignupPageViewModel, Customer>(null);
-			//}
+			await NavService.NavigateToViewModel<CustomerListPageViewModel>();
 		}
+        
+        //COMMAND /push CustomerLoginPage
+		Command pushCustomerLoginPage;
+		public Command PushCustomerLoginPage
+        {
+			get => pushCustomerLoginPage ?? (pushCustomerLoginPage = new Command(ExecuteCommand_PushCustomerLoginPage));
+        }
+		async void ExecuteCommand_PushCustomerLoginPage()
+        {
+            await NavService.NavigateToViewModel<CustomerLoginPageViewModel>();
+        }
 
-		bool ValidateFormLogin()
-		{
-			return true;
-		}
 	}
 }

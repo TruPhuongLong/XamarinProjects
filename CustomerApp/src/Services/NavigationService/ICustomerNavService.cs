@@ -8,6 +8,7 @@ namespace CustomerApp.src.Services.NavigationService
     {
 		Task PreviousPage();
 		Task BackToMainPage();
-		Task NavigateToViewModel<ViewModel, TParameter>(TParameter parameter) where ViewModel : BaseViewModel;
+		Task NavigateToViewModel<ViewModel>() where ViewModel : BaseViewModel;
+		Task NavigateToViewModel<ViewModel, TParameter>(TParameter parameter) where ViewModel : BaseViewModel<TParameter>;
     }
 }

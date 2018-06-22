@@ -3,76 +3,105 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR.Client;
 using Newtonsoft.Json;
+using CustomerApp.src.Models;
+using CustomerApp.src.Services.ApiServices;
+using Xamarin.Forms;
+using CustomerApp.src.Services.signalRService;
 using CustomerApp.src.redux.actions;
 
+[assembly: Dependency(typeof(SignalRService))]
 namespace CustomerApp.src.Services.signalRService
 {
     public class SignalRService
     {
-		public IHubProxy hubProxy;
-		public HubConnection hubConnection;
+		private IHubProxy hubProxy;
+		private AuthService AuthService;
 
 		public SignalRService()
         {
-			var result = Connection();            
+			AuthService = DependencyService.Get<AuthService>();
+			Connection();           
         }
 
-		public async Task<bool> Connection()
+		//CONNECT
+		public async void Connection()
 		{
-			hubConnection = new HubConnection("http://192.168.0.12/RewardSever");
+			HubConnection hubConnection = new HubConnection("http://192.168.0.12/RewardSever");
 			hubProxy = hubConnection.CreateHubProxy("ClientHub");
             try
             {
                 await hubConnection.Start();
-				return true;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-				return false;
             }
 		}
         
-		//func only for Pos 
-		// need swicth: action.type
-		// type: AddCustomer -> add action.payload
-		// type: RemoveCustomer -> remove action.payload
-		public void OnAction<T>(Action<IAction<T>> cb)
-		{
-			hubProxy.On("OnAction", (string action_json) =>
-            {
-				IAction<T> action = JsonConvert.DeserializeObject<IAction<T>>(action_json);
-				cb(action);
-            });
-		}
-        
-		// func only for Pos:
-		public async Task<bool> PosJoinGroup(string group)
-		{
+        //LISTEN /for Pos
+		public void OnListCustomersChanged(Action<IAction<Customer[]>> cb)
+        {
+			hubProxy.On("OnListCustomersChanged",  _listCustomers => {
+				Customer[] listCustomers = JsonConvert.DeserializeObject(_listCustomers);
+				cb(new ListCustomerChangedAction(listCustomers));
+			});
+        }
+
+		//INVOKE /Pos join group:
+		public async Task<bool> PosJoinGroup()
+        {
 			try
 			{
-				await hubProxy.Invoke("PosJoinGroup", group);
+				await hubProxy.Invoke("PosJoinGroup", AuthService.User.Id);
 				return true;
 			}
 			catch
 			{
 				return false;
 			}
-		}
+        }
 
-		// func only for Customer:
-		public async Task<bool> CustomerMessageToPosGroup(string group, string payload)
+		//INVOKE /Pos leave group:
+		public async Task<bool> PosLeaveGroup()
         {
             try
-			{
-				await hubProxy.Invoke("CustomerMessageToPosGroup", group, payload);
-				return true;
-			}
-			catch 
-			{
-				return false;
-			}
-		}
+            {
+				await hubProxy.Invoke("PosLeaveGroup", AuthService.User.Id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+		//INVOKE /Customer join group:
+		public async Task<bool> CustomerJoinGroup()
+        {
+            try
+            {
+				await hubProxy.Invoke("CustomerJoinGroup", AuthService.User.Id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+		//INVOKE /Customer leave group:
+		public async Task<bool> CustomerLeaveGroup()
+        {
+            try
+            {
+				await hubProxy.Invoke("CustomerLeaveGroup", AuthService.User.Id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
 	}
 }

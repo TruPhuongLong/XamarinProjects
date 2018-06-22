@@ -1,6 +1,3 @@
-using System;
-using CustomerApp.src.Models;
-using CustomerApp.src.redux.store;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.ViewModels;
 using CustomerApp.src.Views.CustomerPages;
@@ -39,6 +36,7 @@ namespace CustomerApp
 		private void Init()
 		{
 			InitNav();
+
 		}
 
 		private void InitNav()
@@ -54,6 +52,7 @@ namespace CustomerApp
 			navService.RegisterViewMapping(typeof(PosLoginPageViewModel), typeof(PosLoginPage));
             navService.RegisterViewMapping(typeof(EntryPageViewModel), typeof(EntryPage));
 			navService.RegisterViewMapping(typeof(CustomerListPageViewModel), typeof(CustomerListPage));
+			navService.RegisterViewMapping(typeof(CustomerLoginPageViewModel), typeof(CustomerLoginPage));
             navService.RegisterViewMapping(typeof(CustomerInfoPageViewModel), typeof(CustomerInfoPage));
 			navService.RegisterViewMapping(typeof(CustomerSignupPageViewModel), typeof(CustomerSignupPage));
 

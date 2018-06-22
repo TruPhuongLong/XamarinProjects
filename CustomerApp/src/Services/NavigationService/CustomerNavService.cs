@@ -31,19 +31,24 @@ namespace CustomerApp.src.Services.NavigationService
 		}
 
 		// Implement Interface:
-		public async Task NavigateToViewModel<ViewModel, TParameter>(TParameter parameter) where ViewModel : BaseViewModel
-		{
 
+		public async Task NavigateToViewModel<ViewModel>() where ViewModel : BaseViewModel
+        {
 			Type viewType;
-			if (viewMapping.TryGetValue(typeof(ViewModel), out viewType))
-			{
-				// get constructor with parameterLess from Type.
-				var constructor = viewType.GetTypeInfo()
-										  .DeclaredConstructors
-										  .FirstOrDefault(declareConstructor => declareConstructor.GetParameters().Count() <= 0);
-				var view = constructor.Invoke(null) as Page;
-				await navigation.PushAsync(view, true);
-			}         
+            if (viewMapping.TryGetValue(typeof(ViewModel), out viewType))
+            {
+                // get constructor with parameterLess from Type.
+                var constructor = viewType.GetTypeInfo()
+                                          .DeclaredConstructors
+                                          .FirstOrDefault(declareConstructor => declareConstructor.GetParameters().Count() <= 0);
+                var view = constructor.Invoke(null) as Page;
+                await navigation.PushAsync(view, true);
+            } 
+        }
+
+		public async Task NavigateToViewModel<ViewModel, TParameter>(TParameter parameter) where ViewModel : BaseViewModel<TParameter>
+		{
+			await NavigateToViewModel<ViewModel>();			       
 
 			// after push:
 			if (navigation.NavigationStack.Last().BindingContext is BaseViewModel<TParameter>)
@@ -65,6 +70,7 @@ namespace CustomerApp.src.Services.NavigationService
 		{
 			await navigation.PopToRootAsync(true);
 		}
+
 
 	}
 }
