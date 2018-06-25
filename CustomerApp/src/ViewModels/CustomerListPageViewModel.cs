@@ -28,11 +28,13 @@ namespace CustomerApp.src.ViewModels
 		//SIGNALR:
 		private async void InitSignalR()
 		{
-			await SignalRService.PosJoinGroup();
+			
 			SignalRService.OnListCustomersChanged(action =>
 			{
 				CustomerStore.Dispath(action);
 			});
+
+			await SignalRService.PosJoinGroup();
 		}
         
 		//Detail Command:

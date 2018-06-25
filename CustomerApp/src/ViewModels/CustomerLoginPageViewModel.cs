@@ -51,15 +51,20 @@ namespace CustomerApp.src.ViewModels
                 var content = await response.Content.ReadAsStringAsync();
                 
                 // save info of user login:
-				var Customer = JsonConvert.DeserializeObject<Customer>(content);
+				//var Customer = JsonConvert.DeserializeObject<Customer>(content);
 
-				Debug.WriteLine(JsonConvert.SerializeObject(Customer));
+				//Debug.WriteLine(JsonConvert.SerializeObject(Customer));
 
 				//Navigate to CustomerInfoPage:
-
+                
 				//invoke SignalR
-				await SignalRService.CustomerJoinGroup();
+
+				var result = await SignalRService.CustomerJoinGroup(content);
+				Debug.WriteLine(result);
             }
+
+			//var result = await SignalRService.CustomerJoinGroup(JsonConvert.SerializeObject(new Person(){Name = "long"}));
 		}
 	}
 }
+class Person{ public string Name { get; set; }}

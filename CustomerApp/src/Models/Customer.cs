@@ -29,9 +29,9 @@ namespace CustomerApp.src.Models
 
         public string Address { get; set; }
 
-        public DateTime LastVisited { get; set; }
+        //public DateTime LastVisited { get; set; }
 
-        public DateTime RegisterDate { get; set; }
+        //public DateTime RegisterDate { get; set; }
 
 
         public string MemberType { get; set; }// 1 2 3 4

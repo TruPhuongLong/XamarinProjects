@@ -42,8 +42,19 @@ namespace CustomerApp.src.Services.signalRService
 		public void OnListCustomersChanged(Action<IAction<Customer[]>> cb)
         {
 			hubProxy.On("OnListCustomersChanged",  _listCustomers => {
-				Customer[] listCustomers = JsonConvert.DeserializeObject(_listCustomers);
-				cb(new ListCustomerChangedAction(listCustomers));
+                try
+				{
+					Customer[] listCustomers = JsonConvert.DeserializeObject<Customer[]>(_listCustomers);
+
+                    Debug.Write(listCustomers);
+
+					cb(new ListCustomerChangedAction(listCustomers));
+				}
+				catch (Exception ex)
+				{
+					Debug.WriteLine(ex);
+				}
+
 			});
         }
 
@@ -74,13 +85,18 @@ namespace CustomerApp.src.Services.signalRService
                 return false;
             }
         }
-
+        
 		//INVOKE /Customer join group:
-		public async Task<bool> CustomerJoinGroup()
+		public async Task<bool> CustomerJoinGroup<T>(T customer)
         {
             try
             {
-				await hubProxy.Invoke("CustomerJoinGroup", AuthService.User.Id);
+				if(customer is string)
+				{
+					await hubProxy.Invoke("CustomerJoinGroup", AuthService.User.Id, customer);
+				}else{
+					await hubProxy.Invoke("CustomerJoinGroup", AuthService.User.Id, JsonConvert.SerializeObject(customer));
+				}
                 return true;
             }
             catch
