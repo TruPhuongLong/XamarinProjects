@@ -12,7 +12,7 @@
     <StackLayout Spacing="20">
         <Entry Placeholder="@email" Text="{Binding UserName, Mode=TwoWay}" />
         <Entry Placeholder="@password" Text="{Binding Password, Mode=TwoWay}"/>
-        <Button Command="{Binding LoginCommand}" Margin="0, 40, 0, 0" >Login</Button>
+        <Button Command="{Binding LoginCommand}" Margin="0, 40, 0, 0" Text="Login"></Button>
     </StackLayout>
         
 </ContentView>

@@ -106,11 +106,11 @@ namespace CustomerApp.src.Services.signalRService
         }
 
 		//INVOKE /Customer leave group:
-		public async Task<bool> CustomerLeaveGroup()
+		public async Task<bool> CustomerLeaveGroup(string customerId)
         {
             try
             {
-				await hubProxy.Invoke("CustomerLeaveGroup", AuthService.User.Id);
+				await hubProxy.Invoke("CustomerLeaveGroup", AuthService.User.Id, customerId);
                 return true;
             }
             catch

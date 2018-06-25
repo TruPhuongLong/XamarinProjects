@@ -2,6 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CustomerApp.src.Views.CustomerPages.CustomerLoginPage">
     <StackLayout>
         <Entry Placeholder="@Enter your phone number" Text="{Binding PhoneNumer, Mode=TwoWay}"/>
-        <Button Command="{Binding CustomerLoginCommand}">Login</Button>
+        <Button Command="{Binding CustomerLoginCommand}" Text="Login"></Button>
     </StackLayout>
 </ContentPage>

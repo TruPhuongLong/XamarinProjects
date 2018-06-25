@@ -37,7 +37,7 @@ namespace CustomerApp.src.ViewModels
 			await SignalRService.PosJoinGroup();
 		}
         
-		//Detail Command:
+		//COMMAND /Detail Command:
 		Command<Customer> detailCommand;
 		public Command<Customer> DetailCommand
 		{
@@ -46,6 +46,21 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteCommand(Customer customer)
         {
 			await NavService.NavigateToViewModel<CustomerInfoPageViewModel, Customer>(customer);
+        }
+
+		//COMMAND /exit command:
+		Command exitCommand;
+        public Command ExitCommand
+        {
+            get => exitCommand ?? (exitCommand = new Command(ExecuteCommand));
+        }
+        async void ExecuteCommand()
+        {
+            // disconnect to signalR:
+			await SignalRService.PosLeaveGroup();
+
+            // pop to login customer page:
+            await NavService.PreviousPage();
         }
 
 	}

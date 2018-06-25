@@ -46,25 +46,22 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteCommand_CustomerLoginCommand()
 		{
 			var response = await DataService.Get(Constants.URL_LOGIN_CUSTOMER + PhoneNumer);
+
+			// response.IsSuccessStatusCode : it mean this customer exist on database and we get customer info from his phoneNumber.
+            // from customer info, we send to signalR to Pos update his infomation.
 			if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                
-                // save info of user login:
-				//var Customer = JsonConvert.DeserializeObject<Customer>(content);
 
-				//Debug.WriteLine(JsonConvert.SerializeObject(Customer));
-
-				//Navigate to CustomerInfoPage:
-                
 				//invoke SignalR
-
-				var result = await SignalRService.CustomerJoinGroup(content);
-				Debug.WriteLine(result);
-            }
-
-			//var result = await SignalRService.CustomerJoinGroup(JsonConvert.SerializeObject(new Person(){Name = "long"}));
+				await SignalRService.CustomerJoinGroup(content);
+                
+				//Navigate to CustomerInfoPage:
+				var customer = JsonConvert.DeserializeObject<Customer>(content);
+				await NavService.NavigateToViewModel<CustomerInfoPageViewModel, Customer>(customer);
+			}else{
+				await NavService.NavigateToViewModel<CustomerSignupPageViewModel>();
+			}
 		}
 	}
 }
-class Person{ public string Name { get; set; }}
