@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CustomerApp.src.Views.CustomRenderer"
+    x:Class="CustomerApp.src.Views.Components.EntryPhoneNumber">
+    <Grid RowSpacing="5" ColumnSpacing="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <local:CustomButton Grid.Row="0" Grid.Column="0" Text="1" StyleId="1" Clicked="OnPickNumber"/>
+        <local:CustomButton Grid.Row="0" Grid.Column="1" Text="2" StyleId="2" Clicked="OnPickNumber"/>
+        <local:CustomButton Grid.Row="0" Grid.Column="2" Text="3" StyleId="3" Clicked="OnPickNumber"/>
+        <local:CustomButton Grid.Row="1" Grid.Column="0" Text="4" StyleId="4" Clicked="OnPickNumber"/>
+        <local:CustomButton Grid.Row="1" Grid.Column="1" Text="5" StyleId="5" Clicked="OnPickNumber"/>
+        <local:CustomButton Grid.Row="1" Grid.Column="2" Text="6" StyleId="6" Clicked="OnPickNumber"/>
+        <local:CustomButton Grid.Row="2" Grid.Column="0" Text="7" StyleId="7" Clicked="OnPickNumber"/>
+        <local:CustomButton Grid.Row="2" Grid.Column="1" Text="8" StyleId="8" Clicked="OnPickNumber"/>
+        <local:CustomButton Grid.Row="2" Grid.Column="2" Text="9" StyleId="9" Clicked="OnPickNumber"/>
+        <local:CustomButton Grid.Row="3" Grid.Column="0" Text="Clear" StyleId="Clear" Clicked="OnPickNumber"/>
+        <local:CustomButton Grid.Row="3" Grid.Column="1" Text="0" StyleId="0" Clicked="OnPickNumber"/>
+        <local:CustomButton Grid.Row="3" Grid.Column="2" Text="Delete" StyleId="Delete" Clicked="OnPickNumber"/>
+    </Grid>
+</ContentView>

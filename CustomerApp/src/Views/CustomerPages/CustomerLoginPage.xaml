@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CustomerApp.src.Views.CustomerPages.CustomerLoginPage">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
+    x:Class="CustomerApp.src.Views.CustomerPages.CustomerLoginPage">
     <StackLayout>
-        <Entry Placeholder="@Enter your phone number" Text="{Binding PhoneNumer, Mode=TwoWay}"/>
-        <Button Command="{Binding CustomerLoginCommand}" Text="Login"></Button>
+        <!--<Entry Placeholder="@Enter your phone number" Text="{Binding PhoneNumer, Mode=TwoWay}"/>
+        <Button Command="{Binding CustomerLoginCommand}" Text="Login"></Button>-->
+        <local:ReviewPhoneNumber PhoneNumber="{Binding PhoneNumer, Mode=TwoWay}" Command="{Binding CustomerLoginCommand}"/>
+        <local:EntryPhoneNumber PhoneNumber="{Binding PhoneNumer, Mode=OneWayToSource}"/>
     </StackLayout>
 </ContentPage>

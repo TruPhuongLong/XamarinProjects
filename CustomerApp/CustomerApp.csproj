@@ -24,6 +24,7 @@
     <Folder Include="src\redux\" />
     <Folder Include="src\Services\ApiServices\" />
     <Folder Include="src\libs\" />
+    <Folder Include="src\Views\CustomRenderer\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="src\Services\Firebase.cs" />
