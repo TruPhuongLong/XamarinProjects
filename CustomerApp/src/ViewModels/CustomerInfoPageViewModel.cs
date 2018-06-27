@@ -20,7 +20,7 @@ namespace CustomerApp.src.ViewModels
 		public override async Task Init(Customer customerInput)
 		{
 			await Task.Run(() =>
-			    Customer = customerInput
+               Customer = customerInput
 		    );
 		}
 

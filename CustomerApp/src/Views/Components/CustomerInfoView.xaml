@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="CustomerApp.src.Views.Components.CustomerInfoView">
+    
+    <StackLayout Spacing="60" VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+        <Label Text="{Binding Name, StringFormat='Welcome back {0}'}" FontSize="25"/>
+        <Label Text="{Binding CurrentPoints, StringFormat='{0} points'}" TextColor="Maroon" FontSize="Large"/>
+    </StackLayout>
+    
+</ContentView>

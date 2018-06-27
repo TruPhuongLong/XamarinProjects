@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CustomerApp.src.Views.SharePages.CustomerInfoPage">
-    <StackLayout>
-        <Button Command="{Binding ExitCommand}" Text="Exit"></Button>
-        <Label Text="{Binding Customer.Name}"/>
-        
-    </StackLayout>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
+    xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
+    x:Class="CustomerApp.src.Views.SharePages.CustomerInfoPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <local:CustomerInfoView Grid.Row="0" BindingContext="{Binding Customer}" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <localRenderer:CustomButton 
+            Grid.Row="1" 
+            Command="{Binding ExitCommand}" 
+            Text="Done" 
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+
+        />
+    </Grid>
+    
 </ContentPage>
