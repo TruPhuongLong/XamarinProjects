@@ -14,44 +14,25 @@ namespace CustomerApp.src.Views.Components
         public LoginView()
         {
             InitializeComponent();
-			//BindingContext = new LoginView_ViewModel();
+			BindingContext = new LoginView_ViewModel();
 
-			//ViewModel.LoginEventHandler += _LoginEventHandler;
+			ViewModel.LoginEventHandler += _LoginEventHandler;
         }
 
         //VIEWMODEL
-		//LoginView_ViewModel ViewModel
-		//{
-		//	get => BindingContext as LoginView_ViewModel;
-		//}
+		LoginView_ViewModel ViewModel
+		{
+			get => BindingContext as LoginView_ViewModel;
+		}
         
 
-		//void _LoginEventHandler(object sender, User user)
-		//{
-		//	Execute(LoginCommand);
-		//}
-
-		void OnLoginClicked(object sender, EventArgs args)
+		void _LoginEventHandler(object sender, User user)
 		{
-			Execute(LoginCommand);
+			if (LoginEventHandler != null) LoginEventHandler(this, user);
 		}
 
-		public static readonly BindableProperty LoginCommandProperty = BindableProperty.Create(nameof(LoginCommand), typeof(ICommand), typeof(LoginView), null);
+		//EVENT
+        public event EventHandler<User> LoginEventHandler;
 
-        public ICommand LoginCommand
-        {
-			get { return (ICommand)GetValue(LoginCommandProperty); }
-			set { SetValue(LoginCommandProperty, value); }
-        }
-
-        // Helper method for invoking commands savely
-        public void Execute(ICommand command)
-        {
-            if (command == null) return;
-            if (command.CanExecute(null))
-            {
-                command.Execute(null);
-            }
-        }
     }
 }

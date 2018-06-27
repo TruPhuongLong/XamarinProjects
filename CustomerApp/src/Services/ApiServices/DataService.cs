@@ -24,19 +24,34 @@ namespace CustomerApp.src.Services.ApiServices
         //GET
 		public async Task<HttpResponseMessage> Get(string url)
 		{
-			IsLoading = true;
-			var result = await Client.GetAsync(GetUri(url));
-			IsLoading = false;
-			return result;
+            try
+			{
+				IsLoading = true;
+                var result = await Client.GetAsync(GetUri(url));
+                IsLoading = false;
+                return result;
+			}
+			catch
+			{
+				return null;
+			}
+
 		}
 
-        //POST
+		//POST
 		public async Task<HttpResponseMessage> Post(Uri uri, StringContent content)
-        {
-			IsLoading = true;
-			var result = await Client.PostAsync(uri, content);
-            IsLoading = false;
-            return result;
+        {         
+			try
+            {
+				IsLoading = true;
+                var result = await Client.PostAsync(uri, content);
+                IsLoading = false;
+                return result;
+            }
+            catch 
+            {
+				return null;
+            }
         }
 
         //PUT

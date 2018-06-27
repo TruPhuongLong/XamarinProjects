@@ -28,6 +28,6 @@
         <local:CustomButton Grid.Row="2" Grid.Column="2" Text="9" StyleId="9" Clicked="OnPickNumber"/>
         <local:CustomButton Grid.Row="3" Grid.Column="0" Text="Clear" StyleId="Clear" Clicked="OnPickNumber"/>
         <local:CustomButton Grid.Row="3" Grid.Column="1" Text="0" StyleId="0" Clicked="OnPickNumber"/>
-        <local:CustomButton Grid.Row="3" Grid.Column="2" Text="Delete" StyleId="Delete" Clicked="OnPickNumber"/>
+        <local:CustomButton Grid.Row="3" Grid.Column="2" Image="clear.png" StyleId="Delete" Clicked="OnPickNumber"/>
     </Grid>
 </ContentView>

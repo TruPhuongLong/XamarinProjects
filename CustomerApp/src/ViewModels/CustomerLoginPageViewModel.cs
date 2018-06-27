@@ -49,7 +49,7 @@ namespace CustomerApp.src.ViewModels
 
 			// response.IsSuccessStatusCode : it mean this customer exist on database and we get customer info from his phoneNumber.
             // from customer info, we send to signalR to Pos update his infomation.
-			if (response.IsSuccessStatusCode)
+			if (response != null && response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
 

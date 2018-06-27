@@ -28,7 +28,7 @@ namespace CustomerApp.src.Services.ApiServices
             var body = "userName=" + user.UserName + "&password=" + user.Password + "&grant_type=password";
 			var response = await DataService.Post(GetUri(Constants.URL_LOGIN) ,Encode(body));
 
-            if (response.IsSuccessStatusCode)
+			if (response != null && response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
 

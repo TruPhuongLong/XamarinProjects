@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:ViewCell 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="clr-namespace:Xamarin.Forms"
+    xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
+    x:Class="CustomerApp.src.Views.Components.CustomerCellView">
+
+    <Grid ColumnSpacing="50" Padding="20" VerticalOptions="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackLayout Grid.Column="0" Spacing="10">
+            <Label Text="{Binding Name}" TextColor="Teal" FontSize="Large"/>
+            <Label Text="{Binding MainPhone}"/>
+        </StackLayout>
+
+        <StackLayout Grid.Column="1" Spacing="10">
+            <Label Text="{Binding CurrentPoints, StringFormat='{0} points'}" TextColor="Maroon" FontSize="Large"/>
+            <Label Text="20 mins ago"/>
+        </StackLayout>
+        
+        <localRenderer:CustomButton Grid.Column="2" Image="gift.png" HorizontalOptions="End" BackgroundColor="Transparent"/>
+    </Grid>
+    
+</d:ViewCell>

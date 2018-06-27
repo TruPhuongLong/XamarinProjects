@@ -20,7 +20,7 @@ namespace CustomerApp.src.Views.PosPages
         {
             InitializeComponent();
 			BindingContext = new CustomerListPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<SignalRService>());
-
+			Title = "Check In List";
         }
 
         void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

@@ -22,10 +22,10 @@ namespace CustomerApp.src.Views.PosPages
 			get => BindingContext as PosLoginPageViewModel;
 		}
 
-		//void LoginEventHandler(object sender, User user)
-		//{
-		//	ViewModel.Login(user);
-		//}
+		void LoginEventHandler(object sender, User user)
+		{
+			ViewModel.Login(user);
+		}
         
     }
 }

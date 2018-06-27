@@ -165,4 +165,8 @@
   <ItemGroup>
     <Folder Include="Views\" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\gift.png" />
+    <BundleResource Include="Resources\clear.png" />
+  </ItemGroup>
 </Project>
