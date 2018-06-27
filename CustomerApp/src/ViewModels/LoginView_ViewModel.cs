@@ -15,7 +15,7 @@ namespace CustomerApp.src.ViewModels
 			set
 			{
 				SetProperty(ref email, value);
-				LoginCommand.ChangeCanExecute();
+				_LoginCommand.ChangeCanExecute();
 			}
 		}
 
@@ -27,7 +27,7 @@ namespace CustomerApp.src.ViewModels
             set
             {
 				SetProperty(ref userName, value);
-                LoginCommand.ChangeCanExecute();
+                _LoginCommand.ChangeCanExecute();
             }
         }
 
@@ -39,13 +39,13 @@ namespace CustomerApp.src.ViewModels
 			set
 			{
 				SetProperty(ref password, value);
-				LoginCommand.ChangeCanExecute();
+				_LoginCommand.ChangeCanExecute();
 			}
 		}
 
         //COMMAND /login
 		Command loginCommand;
-        public Command LoginCommand
+        public Command _LoginCommand
         {
             get => loginCommand ?? (loginCommand = new Command(ExecuteCommand, ValidatorCommand));
         }

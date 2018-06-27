@@ -41,7 +41,7 @@ namespace CustomerApp
 
 		private void InitNav()
 		{
-			var rootPage = new NavigationPage(new CustomerLoginPage() { Title = "Customer Login" });
+			var rootPage = new NavigationPage(new PosLoginPage() { Title = "Pos Login" });
 			//var rootPage = new NavigationPage(new PosLoginPage() { Title = "Login Pos" });
             var navService = DependencyService.Get<ICustomerNavService>() as CustomerNavService;
 

@@ -14,16 +14,6 @@ namespace CustomerApp.src.Views.CustomerPages
             InitializeComponent();
 			BindingContext = new CustomerLoginPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<DataService>(), DependencyService.Get<SignalRService>());
         }
-
-		//void PhoneNumberChangedEventHandler(object sender, string phoneNumber)
-		//{
-		//	Debug.WriteLine(phoneNumber);
-		//	ReviewPhoneNumber.PhoneNumer = phoneNumber;
-		//}
-
-		//void CustomerLogin(object sender, string phoneNumber)
-		//{
-		//	Debug.WriteLine(phoneNumber);
-		//}
+        
     }
 }

@@ -24,19 +24,56 @@ namespace CustomerApp.src.ViewModels
 		}
 
 		//REQUEST /login
-		public async void Login(User user)
-		{
-			var result = await AuthService.Login(user);
-			if(result){
-				// login success:
-				await NavService.NavigateToViewModel<EntryPageViewModel>();
+		//public async void Login(User user)
+		//{
+		//	var result = await AuthService.Login(user);
+		//	if(result){
+		//		// login success:
+		//		await NavService.NavigateToViewModel<EntryPageViewModel>();
 
-				// connect signalR:
-				InitSignalR();
-			}else{
-				//login fail:
-			}
-		}
+		//		// connect signalR:
+		//		InitSignalR();
+		//	}else{
+		//		//login fail:
+		//	}
+		//}
+        
+		////COMMAND /Login Command:
+   //     Command<User> loginCommand;
+   //     public Command<User> LoginCommand
+   //     {
+			//get => loginCommand ?? (loginCommand = new Command<User>(user => ExecuteCommand(user)));
+   //     }
+   //     async void ExecuteCommand(User user)
+   //     {
+			//var result = await AuthService.Login(user);
+        //    if (result)
+        //    {
+        //        // login success:
+        //        await NavService.NavigateToViewModel<EntryPageViewModel>();
+
+        //        // connect signalR:
+        //        InitSignalR();
+        //    }
+        //    else
+        //    {
+        //        //login fail:
+        //    }
+        //}
+
+
+		//COMMAND /Login Command:
+        Command loginCommand;
+        public Command ALoginCommand
+        {
+			get => loginCommand ?? (loginCommand = new Command(ExecuteCommand));
+        }
+        async void ExecuteCommand()
+        {
+            
+        }
+
+
 
 		private void InitSignalR()
         {

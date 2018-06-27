@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:CustomerApp.src.Views.Components" x:Class="CustomerApp.src.Views.PosPages.PosLoginPage">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:CustomerApp.src.Views.Components" 
+    x:Class="CustomerApp.src.Views.PosPages.PosLoginPage">
+    
     <ContentPage.Content>
-        <local:LoginView LoginEventHandler="LoginEventHandler" HorizontalOptions="Center" VerticalOptions="Center"/>
+        <local:LoginView LoginCommand="{Binding ALoginCommand}" HorizontalOptions="Center" VerticalOptions="Center"/>
     </ContentPage.Content>
+    
 </ContentPage>

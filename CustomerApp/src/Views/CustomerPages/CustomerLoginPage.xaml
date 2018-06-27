@@ -4,10 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
     x:Class="CustomerApp.src.Views.CustomerPages.CustomerLoginPage">
-    <StackLayout>
-        <!--<Entry Placeholder="@Enter your phone number" Text="{Binding PhoneNumer, Mode=TwoWay}"/>
-        <Button Command="{Binding CustomerLoginCommand}" Text="Login"></Button>-->
+    
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
         <local:ReviewPhoneNumber PhoneNumber="{Binding PhoneNumer, Mode=TwoWay}" Command="{Binding CustomerLoginCommand}"/>
         <local:EntryPhoneNumber PhoneNumber="{Binding PhoneNumer, Mode=OneWayToSource}"/>
     </StackLayout>
+    
 </ContentPage>
