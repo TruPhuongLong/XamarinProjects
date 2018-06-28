@@ -4,9 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="CustomerApp.src.Views.Components.CustomerInfoView">
     
-    <StackLayout Spacing="60" VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
-        <Label Text="{Binding Name, StringFormat='Welcome back {0}'}" FontSize="25"/>
-        <Label Text="{Binding CurrentPoints, StringFormat='{0} points'}" TextColor="Maroon" FontSize="Large"/>
+    <StackLayout Spacing="60">
+        <Label Text="{Binding Name, StringFormat='Welcome back {0}'}" FontSize="25" HorizontalOptions="CenterAndExpand"/>
+        <Label Text="{Binding CurrentPoints, StringFormat='{0} points'}" TextColor="Maroon" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
     </StackLayout>
     
 </ContentView>
