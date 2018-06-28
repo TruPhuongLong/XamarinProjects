@@ -3,12 +3,70 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
+    xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
     x:Class="CustomerApp.src.Views.CustomerPages.CustomerSignupPage">
-    
 
-    <StackLayout>
-        <Label Text="Phone"/>
-        <local:Field Placeholder="something" Require="true" Minlength="6"/>
-    </StackLayout>
+    <Grid ColumnSpacing="50" Padding="20" HorizontalOptions="Fill" VerticalOptions="Fill">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Text="Phone"/>
+        <local:Field Grid.Row="0" Grid.Column="1" Text="{Binding MainPhone}" Placeholder="@MainPhone" IsNumber="true"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Text="Email"/>
+        <local:Field Grid.Row="1" Grid.Column="1" Text="{Binding Email}" Placeholder="@Email" IsEmail="true"/>
+
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="FirstName"/>
+            <local:Field Grid.Row="1" Grid.Column="0" Text="{Binding FirstName}" Placeholder="@FirstName"/>
+
+            <Label Grid.Row="0" Grid.Column="1" Text="LastName"/>
+            <local:Field Grid.Row="1" Grid.Column="1" Text="{Binding LastName}" Placeholder="@LastName"/>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Date of Birth"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Text="Month"/>
+            <local:Field Grid.Row="2" Grid.Column="0" Text="{Binding Month}" Placeholder="@Month" IsNumber="true"/>
+
+            <Label Grid.Row="1" Grid.Column="1" Text="Date"/>
+            <local:Field Grid.Row="2" Grid.Column="1" Text="{Binding Date}" Placeholder="@Date" IsNumber="true"/>
+
+            <Label Grid.Row="1" Grid.Column="2" Text="Year"/>
+            <local:Field Grid.Row="2" Grid.Column="2" Text="{Binding Year}" Placeholder="@Year" IsNumber="true"/>
+        </Grid>
+
+        <localRenderer:CustomButton Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="Next" Command="{Binding SignupCommand}"></localRenderer:CustomButton>
+    </Grid>
     
 </ContentPage>

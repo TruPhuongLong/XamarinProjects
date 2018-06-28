@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentView 
     xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
     x:Class="CustomerApp.src.Views.Components.LoginView"
     Padding="40, 60"
     WidthRequest="280"
@@ -12,7 +13,7 @@
     <StackLayout Spacing="20">
         <Entry Placeholder="@email" Text="{Binding UserName, Mode=TwoWay}" />
         <Entry Placeholder="@password" Text="{Binding Password, Mode=TwoWay}"/>
-        <Button Command="{Binding _LoginCommand}" Margin="0, 40, 0, 0" Text="Login"></Button>
+        <localRenderer:CustomButton Command="{Binding _LoginCommand}" Margin="0, 40, 0, 0" Text="Login"></localRenderer:CustomButton>
     </StackLayout>
         
 </ContentView>

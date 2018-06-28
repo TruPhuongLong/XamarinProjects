@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.ViewModels;
 using Xamarin.Forms;
@@ -14,5 +15,6 @@ namespace CustomerApp.src.Views.CustomerPages
 			BindingContext = new CustomerSignupPageViewModel(DependencyService.Get<ICustomerNavService>());
 			Title = "Customer Signup";
         }
+
     }
 }

@@ -13,25 +13,96 @@ namespace CustomerApp.src.ViewModels
 		// Implement BaseViewModel:
 		public CustomerSignupPageViewModel(ICustomerNavService navService) : base(navService)
         {
-			Customer = new Customer();
         }
 
 		public override Task Init()
 		{
 			throw new NotImplementedException();
 		}
+        
+		//PROP /MainPhone
+		private string mainPhone;
+		public string MainPhone
+        {
+			get => mainPhone;
+            set
+            {
+				SetProperty(ref mainPhone, value);
+                SignupCommand.ChangeCanExecute();
+            }
+        }
+        
+		//PROP /Email
+		private string email;
+		public string Email
+        {
+			get => email;
+            set
+            {
+				SetProperty(ref email, value);
+                SignupCommand.ChangeCanExecute();
+            }
+        }
 
-        //PROP
-		private Customer customer;
-		public Customer Customer
-		{
-			get => customer;
-            set 
-			{
-				SetProperty(ref customer, value);
-				SignupCommand.ChangeCanExecute();
-			}
-		}
+		//PROP /Email
+		private string firstName;
+		public string FirstName
+        {
+			get => firstName;
+            set
+            {
+				SetProperty(ref firstName, value);
+                SignupCommand.ChangeCanExecute();
+            }
+        }
+
+		//PROP /Email
+		private string lastName;
+		public string LastName
+        {
+			get => lastName;
+            set
+            {
+				SetProperty(ref lastName, value);
+                SignupCommand.ChangeCanExecute();
+            }
+        }
+
+		//PROP /Email
+		private string month;
+		public string Month
+        {
+			get => month;
+            set
+            {
+				SetProperty(ref month, value);
+                SignupCommand.ChangeCanExecute();
+            }
+        }
+
+		//PROP /Email
+        private string date;
+        public string Date
+        {
+			get => date;
+            set
+            {
+				SetProperty(ref date, value);
+                SignupCommand.ChangeCanExecute();
+            }
+        }
+
+		//PROP /Email
+        private string year;
+        public string Year
+        {
+			get => year;
+            set
+            {
+				SetProperty(ref year, value);
+                SignupCommand.ChangeCanExecute();
+            }
+        }
 
         //COMMAND
 		private Command signupCommand;
@@ -42,7 +113,7 @@ namespace CustomerApp.src.ViewModels
 
 		void ExecuteCommand()
 		{
-			Debug.WriteLine("signup command");
+			Debug.WriteLine(FirstName + LastName);
 		}
 
 		bool ValidateCommand()

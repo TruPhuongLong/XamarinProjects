@@ -5,8 +5,8 @@
     x:Class="CustomerApp.src.Views.Components.Field">
 
     <StackLayout>
-        <Entry Placeholder="{Binding Placeholder}" Text="{Binding Text, Mode=TwoWay}"/>
-        <Label FormattedText="{Binding Errors}" TextColor="Maroon"/>
+        <Entry x:Name="entry" />
+        <Label x:Name="lableErrors" TextColor="Maroon"/>
     </StackLayout>
 
 </ContentView>

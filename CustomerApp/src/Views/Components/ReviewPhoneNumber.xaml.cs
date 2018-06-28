@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -58,5 +59,7 @@ namespace CustomerApp.src.Views.Components
 			set { SetValue(PhoneNumberProperty, value); }
 			get { return (string)GetValue(PhoneNumberProperty); }
 		}
+
+
 	}
 }
