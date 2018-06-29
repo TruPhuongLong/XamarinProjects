@@ -60,7 +60,7 @@
             <local:Field Grid.Row="2" Grid.Column="0" Text="{Binding Month}" Placeholder="@Month" IsNumber="true"/>
 
             <Label Grid.Row="1" Grid.Column="1" Text="Date"/>
-            <local:Field Grid.Row="2" Grid.Column="1" Text="{Binding Date}" Placeholder="@Date" IsNumber="true"/>
+            <local:Field Grid.Row="2" Grid.Column="1" Text="{Binding Day}" Placeholder="@Date" IsNumber="true"/>
 
             <Label Grid.Row="1" Grid.Column="2" Text="Year"/>
             <local:Field Grid.Row="2" Grid.Column="2" Text="{Binding Year}" Placeholder="@Year" IsNumber="true"/>

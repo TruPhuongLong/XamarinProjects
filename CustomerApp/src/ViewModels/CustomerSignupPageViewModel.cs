@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CustomerApp.src.Models;
 using CustomerApp.src.Services.NavigationService;
 using Xamarin.Forms;
+using CustomerApp.src.libs;
+using CustomerApp.src.Services.ApiServices;
 
 namespace CustomerApp.src.ViewModels
 {
 	public class CustomerSignupPageViewModel: BaseViewModel
     {
+		private CustomerService CustomerService;
 		// Implement BaseViewModel:
-		public CustomerSignupPageViewModel(ICustomerNavService navService) : base(navService)
+		public CustomerSignupPageViewModel(ICustomerNavService navService, CustomerService customerService) : base(navService)
         {
+			CustomerService = customerService;
         }
 
 		public override Task Init()
@@ -81,13 +84,13 @@ namespace CustomerApp.src.ViewModels
         }
 
 		//PROP /Email
-        private string date;
-        public string Date
+        private string day;
+        public string Day
         {
-			get => date;
+			get => day;
             set
             {
-				SetProperty(ref date, value);
+				SetProperty(ref day, value);
                 SignupCommand.ChangeCanExecute();
             }
         }
@@ -104,6 +107,18 @@ namespace CustomerApp.src.ViewModels
             }
         }
 
+        //PROP /errorDateTime
+		private string dayOfBirth;
+		public string DayOfBirth
+        {
+			get => dayOfBirth;
+            set
+            {
+				SetProperty(ref dayOfBirth, value);
+                SignupCommand.ChangeCanExecute();
+            }
+        }
+
         //COMMAND
 		private Command signupCommand;
 		public Command SignupCommand
@@ -111,13 +126,36 @@ namespace CustomerApp.src.ViewModels
 			get => signupCommand ?? (signupCommand = new Command(ExecuteCommand, ValidateCommand));	
 		}
 
-		void ExecuteCommand()
+		async void ExecuteCommand()
 		{
-			Debug.WriteLine(FirstName + LastName);
+			var newCustomer = new Customer();
+			newCustomer.MainPhone = MainPhone;
+			newCustomer.Email = Email;
+			newCustomer.Name = FirstName + " " + LastName;
+			//newCustomer.DateOfBirth = (DateTime)FuncHelp.ValidateDateTime(Year, Month, Day).Item2;
+
+			var isSuccess = await CustomerService.Post(newCustomer);
+			if(isSuccess)
+			{
+				// pop customerLoginPage
+				await NavService.PreviousPage();
+			}
+			else
+			{
+				//notification signup fail
+			}
 		}
 
 		bool ValidateCommand()
 		{
+			//var (success, data) = FuncHelp.ValidateDateTime(Year, Month, Day);
+			//if(success)
+			//{
+			//	return true;
+			//}
+			//return false;
+
+
 			return true;
 		}
 	}

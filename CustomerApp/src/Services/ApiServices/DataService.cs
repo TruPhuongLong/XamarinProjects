@@ -35,7 +35,6 @@ namespace CustomerApp.src.Services.ApiServices
 			{
 				return null;
 			}
-
 		}
 
 		//POST

@@ -44,6 +44,8 @@ namespace CustomerApp.src.Models
 
         public decimal LifeTimePoint { get; set; }
 
+		public DateTime DateOfBirth { get; set; }
+
 	}
 
 }
