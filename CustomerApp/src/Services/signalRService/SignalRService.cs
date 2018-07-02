@@ -8,6 +8,7 @@ using CustomerApp.src.Services.ApiServices;
 using Xamarin.Forms;
 using CustomerApp.src.Services.signalRService;
 using CustomerApp.src.redux.actions;
+using CustomerApp.src.libs;
 
 [assembly: Dependency(typeof(SignalRService))]
 namespace CustomerApp.src.Services.signalRService
@@ -26,8 +27,8 @@ namespace CustomerApp.src.Services.signalRService
 		//CONNECT
 		public async void Connection()
 		{
-			HubConnection hubConnection = new HubConnection("http://192.168.0.12/RewardSever");
-			hubProxy = hubConnection.CreateHubProxy("ClientHub");
+			HubConnection hubConnection = new HubConnection(Constants.BASE_URL);
+			hubProxy = hubConnection.CreateHubProxy(Constants.HUB_NAME);
             try
             {
                 await hubConnection.Start();
@@ -41,7 +42,7 @@ namespace CustomerApp.src.Services.signalRService
         //LISTEN /for Pos
 		public void OnListCustomersChanged(Action<IAction<Customer[]>> cb)
         {
-			hubProxy.On("OnListCustomersChanged",  _listCustomers => {
+			hubProxy.On(Constants.OnListCustomersChanged,  _listCustomers => {
                 try
 				{
 					Customer[] listCustomers = JsonConvert.DeserializeObject<Customer[]>(_listCustomers);
@@ -63,7 +64,7 @@ namespace CustomerApp.src.Services.signalRService
         {
 			try
 			{
-				await hubProxy.Invoke("PosJoinGroup", AuthService.User.Id);
+				await hubProxy.Invoke(Constants.PosJoinGroup, AuthService.User.Id);
 				return true;
 			}
 			catch
@@ -77,7 +78,7 @@ namespace CustomerApp.src.Services.signalRService
         {
             try
             {
-				await hubProxy.Invoke("PosLeaveGroup", AuthService.User.Id);
+				await hubProxy.Invoke(Constants.PosLeaveGroup, AuthService.User.Id);
                 return true;
             }
             catch
@@ -93,9 +94,9 @@ namespace CustomerApp.src.Services.signalRService
             {
 				if(customer is string)
 				{
-					await hubProxy.Invoke("CustomerJoinGroup", AuthService.User.Id, customer);
+					await hubProxy.Invoke(Constants.CustomerJoinGroup, AuthService.User.Id, customer);
 				}else{
-					await hubProxy.Invoke("CustomerJoinGroup", AuthService.User.Id, JsonConvert.SerializeObject(customer));
+					await hubProxy.Invoke(Constants.CustomerJoinGroup, AuthService.User.Id, JsonConvert.SerializeObject(customer));
 				}
                 return true;
             }
@@ -110,7 +111,7 @@ namespace CustomerApp.src.Services.signalRService
         {
             try
             {
-				await hubProxy.Invoke("CustomerLeaveGroup", AuthService.User.Id, customerId);
+				await hubProxy.Invoke(Constants.CustomerLeaveGroup, AuthService.User.Id, customerId);
                 return true;
             }
             catch

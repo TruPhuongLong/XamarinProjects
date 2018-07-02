@@ -15,17 +15,6 @@ namespace CustomerApp.src.Views.PosPages
             InitializeComponent();
 			BindingContext = new PosLoginPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<AuthService>());
         }
-
-        //VIEWMODEL
-		PosLoginPageViewModel ViewModel
-		{
-			get => BindingContext as PosLoginPageViewModel;
-		}
-
-		void LoginEventHandler(object sender, User user)
-		{
-			ViewModel.Login(user);
-		}
         
     }
 }

@@ -6,7 +6,7 @@
     x:Class="CustomerApp.src.Views.PosPages.PosLoginPage">
     
     <ContentPage.Content>
-        <local:LoginView LoginEventHandler="LoginEventHandler" HorizontalOptions="Center" VerticalOptions="Center"/>
+        <local:LoginView Command="{Binding LoginCommand}" HorizontalOptions="Center" VerticalOptions="Center"/>
     </ContentPage.Content>
     
 </ContentPage>

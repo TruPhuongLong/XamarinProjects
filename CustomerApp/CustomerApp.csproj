@@ -29,6 +29,7 @@
   <ItemGroup>
     <Compile Remove="src\Services\Firebase.cs" />
     <Compile Remove="src\Views\SharePages\CustomerInfo.cs" />
+    <Compile Remove="src\ViewModels\LoginView_ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="src\Views\Pages\CustomerListPage.xaml" />

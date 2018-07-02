@@ -2,18 +2,32 @@
 <ContentView 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
     xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
     x:Class="CustomerApp.src.Views.Components.LoginView"
     Padding="40, 60"
     WidthRequest="280"
     HeightRequest="250"
-    BackgroundColor="Lime"
+    x:Name="LoginView"
     >
 
-    <StackLayout Spacing="20">
-        <Entry Placeholder="@email" Text="{Binding UserName, Mode=TwoWay}" />
-        <Entry Placeholder="@password" Text="{Binding Password, Mode=TwoWay}"/>
-        <localRenderer:CustomButton Command="{Binding _LoginCommand}" Margin="0, 40, 0, 0" Text="Login"></localRenderer:CustomButton>
+    <StackLayout Spacing="20" BindingContext="{Binding Source={x:Reference LoginView}}">
+        <local:Field x:Name="email" Placeholder="@email" Require="true" Text="{Binding Email}"></local:Field>
+        <local:Field x:Name="password" Placeholder="@password" Require="true" Text="{Binding Password}"></local:Field>
+        <localRenderer:CustomButton Clicked="OnLoginClicked" Margin="0, 40, 0, 0" Text="Login" IsEnabled="false" >
+            <localRenderer:CustomButton.Triggers>
+                <MultiTrigger TargetType="localRenderer:CustomButton">
+                    
+                    <MultiTrigger.Conditions>
+                        <BindingCondition Binding="{Binding Source={x:Reference email}, Path=ErrorDic.Keys.Count}" Value="0"/>
+                        <BindingCondition Binding="{Binding Source={x:Reference password}, Path=ErrorDic.Keys.Count}" Value="0"/>
+                    </MultiTrigger.Conditions>
+
+                    <Setter Property="IsEnabled" Value="true"/>
+                    
+                </MultiTrigger>
+            </localRenderer:CustomButton.Triggers>
+        </localRenderer:CustomButton>
     </StackLayout>
         
 </ContentView>

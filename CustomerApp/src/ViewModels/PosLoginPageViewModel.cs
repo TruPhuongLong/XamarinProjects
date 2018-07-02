@@ -22,25 +22,33 @@ namespace CustomerApp.src.ViewModels
 		{
  			throw new NotImplementedException();
 		}
-
-		//REQUEST /login
-		public async void Login(User user)
-		{
-			var result = await AuthService.Login(user);
-			if(result){
-				// login success:
-				await NavService.NavigateToViewModel<EntryPageViewModel>();
-
-				// connect signalR:
-				InitSignalR();
-			}else{
-				//login fail:
-			}
-		}
-            
+                    
 		private void InitSignalR()
         {
             DependencyService.Get<SignalRService>();
         }
+        
+        //COMMAND /request login
+		private Command<User> loginCommand;
+		public Command<User> LoginCommand
+		{
+			get => loginCommand ?? (loginCommand = new Command<User>(ExecuteCommand));
+		}
+		async void ExecuteCommand(User user)
+		{
+			var result = await AuthService.Login(user);
+            if (result)
+            {
+                // login success:
+                await NavService.NavigateToViewModel<EntryPageViewModel>();
+
+                // connect signalR:
+                InitSignalR();
+            }
+            else
+            {
+                //login fail:
+            }
+		}
     }
 }

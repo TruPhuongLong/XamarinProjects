@@ -26,19 +26,22 @@ namespace CustomerApp.src.Views.Components
                 entry.Text = Text;
 
                 //validate require
-				RequireValidate();
+				ErrorDic = RequireValidate(ErrorDic);
 
 				//validate minlength
-				MinlengthValidate();
+				ErrorDic = MinlengthValidate(ErrorDic);
 
 				//validate isEmail
-				IsEmailValidate();
+				ErrorDic = IsEmailValidate(ErrorDic);
 
 				//validate isNumber
-				IsNumberValidate();
+				ErrorDic = IsNumberValidate(ErrorDic);
+
+				//finaly we set errors string to show uesr:
+				SetErrors();
             }
         }
-
+              
 		//PROP /Placeholder
 		private string placeholder;
 		public string Placeholder
@@ -64,10 +67,18 @@ namespace CustomerApp.src.Views.Components
         }
 
 		//ERRORS /private /dictionary
-		private Dictionary<string, string> ErrorDic = new Dictionary<string, string>();
+		//public Dictionary<string, string> ErrorDic = new Dictionary<string, string>();
+		public static readonly BindableProperty ErrorDicProperty = 
+			BindableProperty.Create(nameof(ErrorDic), typeof(Dictionary<string, string>), typeof(Field), new Dictionary<string, string>(), BindingMode.OneWayToSource);
+		public Dictionary<string, string> ErrorDic
+        {
+			get => (Dictionary<string, string>)GetValue(ErrorDicProperty);
+			set { SetValue(ErrorDicProperty, value); }
+        }
+        
 
 		//Errors 
-        public FormattedString Errors
+		private FormattedString Errors
         {
 			set 
 			{
@@ -95,30 +106,38 @@ namespace CustomerApp.src.Views.Components
         public bool Require
         {
 			get => require;
-			set { require = value; }
+			set 
+			{ 
+				require = value;
+				ErrorDic = RequireValidate(ErrorDic);
+			}
         }
 
 		//FUNC /call when Text change value;
-        void RequireValidate()
+		Dictionary<string, string> RequireValidate(Dictionary<string, string> errorDic)
         {
-            if (!Require) return;
+			if (!Require) return errorDic;
+            
+            //copy 
+			var newErrorDic = new Dictionary<string, string>(errorDic);
+
             if (string.IsNullOrEmpty(Text) || string.IsNullOrWhiteSpace(Text))
             {
-                if (!ErrorDic.ContainsKey("require"))
+				if (!newErrorDic.ContainsKey("require"))
                 {
-                    ErrorDic.Add("require", "* " + Placeholder + " is required");
+					newErrorDic.Add("require", "* " + Placeholder + " is required");
                 }
             }
             else
             {
-                if (ErrorDic.ContainsKey("require"))
+				if (newErrorDic.ContainsKey("require"))
                 {
-                    ErrorDic.Remove("require");
+					newErrorDic.Remove("require");
                 }
             }
 
-            // set errorDic to Errors
-            SetErrors();
+            //return new ErrorDic
+            return newErrorDic;
         }
 
 		//VALIDATOR /minlength
@@ -126,66 +145,79 @@ namespace CustomerApp.src.Views.Components
         public string Minlength
         {
             get => minlength;
-			set { minlength = value; }
+			set 
+			{ 
+				minlength = value; 
+				ErrorDic = RequireValidate(ErrorDic);
+			}
         }
 
         //FUNC /call when Text changed
-        void MinlengthValidate()
+		Dictionary<string, string> MinlengthValidate(Dictionary<string, string> errorDic)
         {
             int min;
-            if (!int.TryParse(Minlength, out min)) return;
+			if (!int.TryParse(Minlength, out min)) return errorDic;
+
+			//copy 
+            var newErrorDic = new Dictionary<string, string>(errorDic);
+
             if (Text.Length < (min))
             {
-                if (!ErrorDic.ContainsKey("minlength"))
+				if (!newErrorDic.ContainsKey("minlength"))
                 {
-                    ErrorDic.Add("minlength", "* " + Placeholder + " must be at least " + Minlength + " characters");
+					newErrorDic.Add("minlength", "* " + Placeholder + " must be at least " + Minlength + " characters");
                 }
             }
             else
             {
-                if (ErrorDic.ContainsKey("minlength"))
+				if (newErrorDic.ContainsKey("minlength"))
                 {
-                    ErrorDic.Remove("minlength");
+					newErrorDic.Remove("minlength");
                 }
             }
-
-            // set errorDic to Errors
-            SetErrors();
+         
+			return newErrorDic;
         }
-
+        
 		//VALIDATOR /isEmail
         private bool isEmail;
         public bool IsEmail
         {
             get => isEmail;
-			set { isEmail = value; }
+			set 
+			{ 
+				isEmail = value; 
+				ErrorDic = RequireValidate(ErrorDic);
+			}
         }
 
         //FUNC /call when Text changed
-        void IsEmailValidate()
+		Dictionary<string, string> IsEmailValidate(Dictionary<string, string> errorDic)
         {
-            if (!IsEmail) return;
+			if (!IsEmail) return errorDic;
+
+			//copy 
+            var newErrorDic = new Dictionary<string, string>(errorDic);
 
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             Match match = regex.Match(Text);
 
             if (!match.Success)
             {
-                if (!ErrorDic.ContainsKey("isEmail"))
+				if (!newErrorDic.ContainsKey("isEmail"))
                 {
-                    ErrorDic.Add("isEmail", "* Email invalid");
+					newErrorDic.Add("isEmail", "* Email invalid");
                 }
             }
             else
             {
-                if (ErrorDic.ContainsKey("isEmail"))
+				if (newErrorDic.ContainsKey("isEmail"))
                 {
-                    ErrorDic.Remove("isEmail");
+					newErrorDic.Remove("isEmail");
                 }
             }
-
-            // set errorDic to Errors
-            SetErrors();
+         
+			return newErrorDic;
         }
 
 		//VALIDATOR /isNumber
@@ -193,31 +225,38 @@ namespace CustomerApp.src.Views.Components
 		public bool IsNumber
         {
 			get => isNumber;
-			set { isNumber = value; }
+			set 
+			{ 
+				isNumber = value;
+				ErrorDic = RequireValidate(ErrorDic);
+			}
         }
         
         //FUNC /call when Text changed
-		void IsNumberValidate()
+		Dictionary<string, string> IsNumberValidate(Dictionary<string, string> errorDic)
         {
-			if (!IsNumber) return;
+			if (!IsNumber) return errorDic;
+
+			//copy 
+            var newErrorDic = new Dictionary<string, string>(errorDic);
+
 			int n;
 			if (!int.TryParse(Text, out n))
             {
-				if (!ErrorDic.ContainsKey("isNumber"))
+				if (!newErrorDic.ContainsKey("isNumber"))
                 {
-					ErrorDic.Add("isNumber", "* not a number");
+					newErrorDic.Add("isNumber", "* not a number");
                 }
             }
             else
             {
-				if (ErrorDic.ContainsKey("isNumber"))
+				if (newErrorDic.ContainsKey("isNumber"))
                 {
-					ErrorDic.Remove("isNumber");
+					newErrorDic.Remove("isNumber");
                 }
             }
-
-            // set errorDic to Errors
-            SetErrors();
+         
+			return newErrorDic;
         }
 
 	}
