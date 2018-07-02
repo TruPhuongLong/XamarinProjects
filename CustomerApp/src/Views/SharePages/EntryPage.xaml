@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CustomerApp.src.Views.SharePages.EntryPage">
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="40" Padding="40, 40" BackgroundColor="Olive">
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" WidthRequest="280" HeightRequest="280" Spacing="100">
         <Button Command="{Binding PushCustomerListPage}" Text="Pos"></Button>
         <Button Command="{Binding PushCustomerLoginPage}" Text="Customer"></Button>
     </StackLayout>
