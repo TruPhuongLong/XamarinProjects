@@ -60,8 +60,11 @@ namespace CustomerApp.src.ViewModels
 				var customer = JsonConvert.DeserializeObject<Customer>(content);
 				await NavService.NavigateToViewModel<CustomerInfoPageViewModel, Customer>(customer);
 			}else{
-				await NavService.NavigateToViewModel<CustomerSignupPageViewModel>();
+				await NavService.NavigateToViewModel<CustomerSignupPageViewModel, string>(PhoneNumer);
 			}
+
+			//clear phoneNumber:
+			PhoneNumer = "";
 		}
 	}
 }

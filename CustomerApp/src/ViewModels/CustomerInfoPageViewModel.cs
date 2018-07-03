@@ -22,6 +22,12 @@ namespace CustomerApp.src.ViewModels
 			await Task.Run(() =>
                Customer = customerInput
 		    );
+
+			Device.StartTimer(TimeSpan.FromSeconds(5), () =>
+            {
+				ExitCommand.Execute(null);
+                return false; // not repeat
+            });
 		}
 
 
@@ -44,7 +50,7 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteCommand()
         {
 			// disconnect to signalR:
-			await SignalRService.CustomerLeaveGroup(Customer.ID.ToString());
+			//await SignalRService.CustomerLeaveGroup(Customer.ID.ToString());
 
 			// pop to login customer page:
 			await NavService.PreviousPage();

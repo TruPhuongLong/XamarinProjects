@@ -3,18 +3,20 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
-    x:Class="CustomerApp.src.Views.Components.EntryPhoneNumber">
-    <Grid RowSpacing="5" ColumnSpacing="5">
+    x:Class="CustomerApp.src.Views.Components.EntryPhoneNumber"
+    x:Name="EntryPhoneNumber"
+    >
+    <Grid RowSpacing="5" ColumnSpacing="5" BindingContext="{Binding Source={x:Reference EntryPhoneNumber}}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="{Binding SizeButton}" />
+            <RowDefinition Height="{Binding SizeButton}" />
+            <RowDefinition Height="{Binding SizeButton}" />
+            <RowDefinition Height="{Binding SizeButton}" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{Binding SizeButton}" />
+            <ColumnDefinition Width="{Binding SizeButton}" />
+            <ColumnDefinition Width="{Binding SizeButton}" />
         </Grid.ColumnDefinitions>
 
         <localRenderer:CustomButton Grid.Row="0" Grid.Column="0" Text="1" StyleId="1" Clicked="OnPickNumber"/>

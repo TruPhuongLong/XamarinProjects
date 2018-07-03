@@ -17,5 +17,6 @@ namespace CustomerApp.src.Views.CustomerPages
 			Title = "Customer Signup";
         }
 
+
     }
 }

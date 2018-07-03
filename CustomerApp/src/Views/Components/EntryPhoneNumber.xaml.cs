@@ -23,6 +23,9 @@ namespace CustomerApp.src.Views.Components
             set { SetValue(PhoneNumberProperty, value); }
         }
 
+		//PROP
+		public int SizeButton { get; set; } = 100;
+
         //CONSTRUCTOR
 		public EntryPhoneNumber()
         {
