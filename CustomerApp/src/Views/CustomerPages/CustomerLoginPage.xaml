@@ -6,8 +6,8 @@
     x:Class="CustomerApp.src.Views.CustomerPages.CustomerLoginPage">
     
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <local:ReviewPhoneNumber PhoneNumber="{Binding PhoneNumer, Mode=TwoWay}" Command="{Binding CustomerLoginCommand}"/>
-        <local:EntryPhoneNumber PhoneNumber="{Binding PhoneNumer, Mode=OneWayToSource}"/>
+        <local:ReviewPhoneNumber PhoneNumber="{Binding PhoneNumer, Mode=TwoWay}" Command="{Binding CustomerLoginCommand}" HorizontalOptions="Center"/>
+        <local:EntryPhoneNumber PhoneNumber="{Binding PhoneNumer, Mode=OneWayToSource}" HorizontalOptions="Center"/>
     </StackLayout>
     
 </ContentPage>
