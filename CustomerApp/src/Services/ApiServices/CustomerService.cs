@@ -27,13 +27,22 @@ namespace CustomerApp.src.Services.ApiServices
 
             if (response != null && response.IsSuccessStatusCode)
             {
-    //            var content = await response.Content.ReadAsStringAsync();
-                
-				//// save info of user login:
-				//var _customer = JsonConvert.DeserializeObject<Customer>(content);
-
 				//return:
 				return true;
+            }
+            return false;
+        }
+
+		//PUT customer
+        public async Task<bool> Put(Customer customer)
+        {
+			var uri = Constants.GetUri(Constants.URL_PATCH_CUSTOMER);
+            var stringContent = Constants.EncodeModel(customer);
+			var response = await DataService.Put(uri, stringContent);
+
+            if (response != null && response.IsSuccessStatusCode)
+            {
+                return true;
             }
             return false;
         }

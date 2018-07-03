@@ -19,6 +19,7 @@ namespace CustomerApp.src.libs
 		//CUSTOMER URL
 		public static string URL_LOGIN_CUSTOMER = BASE_URL + "/api/customer/GetByPhoneNumber?phoneNumber=";
 		public static string URL_POST_CUSTOMER = BASE_URL + "/api/customer/postNewCustomerForXamarin";
+		public static string URL_PATCH_CUSTOMER = BASE_URL + "/api/customer/editCurrentCustomer";
 
 		//FUNC /get Uri:
 		public static Uri GetUri(string url)

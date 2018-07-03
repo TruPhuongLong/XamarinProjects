@@ -18,5 +18,17 @@ namespace CustomerApp.src.Views.Components
 			get { return (float)GetValue(CurrentPointsProperty); }
 			set { SetValue(CurrentPointsProperty, value); }
 		}
+
+        //FUCN /down
+		void down(object sender, EventArgs args)
+		{
+			CurrentPoints = CurrentPoints - 1;
+		}
+
+        //FUNC /up
+		void up(object sender, EventArgs args)
+		{
+			CurrentPoints = CurrentPoints + 1;
+		}
     }
 }

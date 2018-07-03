@@ -52,7 +52,7 @@ namespace CustomerApp.src.Services.ApiServices
 				return null;
             }
         }
-
+        
         //PUT
 		public async Task<HttpResponseMessage> Put(Uri uri, StringContent content)
 		{

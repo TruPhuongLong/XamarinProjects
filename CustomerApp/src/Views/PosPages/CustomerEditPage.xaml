@@ -4,10 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
     x:Class="CustomerApp.src.Views.PosPages.CustomerEditPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
+    </ContentPage.ToolbarItems>
     
-    <StackLayout Spacing="100" VerticalOptions="Center" HorizontalOptions="Center" BindingContext="{Binding Customer}">
-        <local:CustomerInfoView />
-        <local:PointForm CurrentPoints="{Binding CurrentPoints}" HorizontalOptions="Center"/>
+    <StackLayout Spacing="100" VerticalOptions="Center" HorizontalOptions="Center" >
+        <local:CustomerInfoView BindingContext="{Binding Customer}"/>
+        <local:PointForm CurrentPoints="{Binding CurrentPoints, Mode=TwoWay}" HorizontalOptions="Center"/>
     </StackLayout>
     
 </ContentPage>
