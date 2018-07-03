@@ -26,7 +26,7 @@
             <Label Text="20 mins ago"/>
         </StackLayout>
         
-        <localRenderer:CustomButton Grid.Column="2" Image="gift.png" HorizontalOptions="End" BackgroundColor="Transparent"/>
+        <localRenderer:CustomButton Grid.Column="2" Image="gift.png" HorizontalOptions="End" BackgroundColor="Transparent" Clicked="OnGiftClicked"/>
     </Grid>
     
 </d:ViewCell>

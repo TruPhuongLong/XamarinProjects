@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CustomerApp.src.Models;
 using Xamarin.Forms;
 
 namespace CustomerApp.src.Views.Components
@@ -10,5 +11,20 @@ namespace CustomerApp.src.Views.Components
         {
             InitializeComponent();
         }
+
+		Customer? ViewModel
+		{
+			get => BindingContext as Customer?;
+		}
+
+		void OnGiftClicked(object sender, EventArgs args)
+		{
+			if (GiftEventHandler != null) 
+				GiftEventHandler(this, (Customer)ViewModel);
+		}
+
+		//EVENT
+		public event EventHandler<Customer> GiftEventHandler;
+
     }
 }

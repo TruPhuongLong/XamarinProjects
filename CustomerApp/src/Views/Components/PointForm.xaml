@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="CustomerApp.src.Views.Components.PointForm"
+    x:Name="PointForm"
+    >
+    
+    <Grid HeightRequest="70" WidthRequest="300" BindingContext="{Binding Source={x:Reference PointForm}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0" Image="down.png"></Button>
+        <Entry Grid.Column="1" Text="{Binding CurrentPoints}"  HorizontalTextAlignment="Center"/>
+        <Button Grid.Column="2" Image="up.png"></Button>
+    </Grid>
+    
+</ContentView>

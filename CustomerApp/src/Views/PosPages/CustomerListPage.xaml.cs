@@ -10,8 +10,8 @@ using Xamarin.Forms;
 namespace CustomerApp.src.Views.PosPages
 {
     public partial class CustomerListPage : ContentPage
-    {
-        CustomerListPageViewModel viewModel
+    {      
+        CustomerListPageViewModel ViewModel
         {
             get => BindingContext as CustomerListPageViewModel;
         }
@@ -27,7 +27,12 @@ namespace CustomerApp.src.Views.PosPages
         {
             Customer? customer = (Customer)e.Item;
             if (customer == null) return;
-            viewModel.DetailCommand.Execute(customer);
+            ViewModel.DetailCommand.Execute(customer);
+        }
+
+		void Handle_GiftEventHandler(object sender, Customer customer)
+        {
+			ViewModel.GiftCommand.Execute(customer);
         }
     }
 }

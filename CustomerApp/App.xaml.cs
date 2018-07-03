@@ -49,10 +49,13 @@ namespace CustomerApp
             navService.navigation = rootPage.Navigation;
             
 
-            // Mapping 
+            // Mapping /Pos
 			navService.RegisterViewMapping(typeof(PosLoginPageViewModel), typeof(PosLoginPage));
             navService.RegisterViewMapping(typeof(EntryPageViewModel), typeof(EntryPage));
 			navService.RegisterViewMapping(typeof(CustomerListPageViewModel), typeof(CustomerListPage));
+			navService.RegisterViewMapping(typeof(CustomerEditPageViewModel), typeof(CustomerEditPage));
+
+            //Mapping /Customer
 			navService.RegisterViewMapping(typeof(CustomerLoginPageViewModel), typeof(CustomerLoginPage));
             navService.RegisterViewMapping(typeof(CustomerInfoPageViewModel), typeof(CustomerInfoPage));
 			navService.RegisterViewMapping(typeof(CustomerSignupPageViewModel), typeof(CustomerSignupPage));

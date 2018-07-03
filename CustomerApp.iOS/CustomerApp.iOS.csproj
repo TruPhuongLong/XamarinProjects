@@ -168,5 +168,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\gift.png" />
     <BundleResource Include="Resources\clear.png" />
+    <BundleResource Include="Resources\down.png" />
+    <BundleResource Include="Resources\up.png" />
   </ItemGroup>
 </Project>

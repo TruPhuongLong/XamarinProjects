@@ -63,5 +63,16 @@ namespace CustomerApp.src.ViewModels
             await NavService.PreviousPage();
         }
 
+		//COMMAND /Gift command:
+		Command<Customer> giftCommand;
+		public Command<Customer> GiftCommand
+        {
+			get => giftCommand ?? (giftCommand = new Command<Customer>(ExecuteGiftCommand));
+        }
+		async void ExecuteGiftCommand(Customer customer)
+        {
+			await NavService.NavigateToViewModel<CustomerEditPageViewModel, Customer>(customer);
+        }
+
 	}
 }
