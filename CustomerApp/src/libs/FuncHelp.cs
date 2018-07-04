@@ -24,4 +24,12 @@ namespace CustomerApp.src.libs
 			}
 		}
     }
+
+	//class ContentPageExtension
+	//{
+	//	public static void (this ContentPage contentPage)
+	//	{
+			
+	//	}
+	//}
 }

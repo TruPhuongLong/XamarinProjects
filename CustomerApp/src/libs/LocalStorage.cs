@@ -22,6 +22,11 @@ namespace CustomerApp.src.libs
 			try
 			{
 				var properties = Application.Current.Properties;
+				if(properties.ContainsKey(Constants.AccessToken))
+				{
+					properties.Remove(Constants.AccessToken);
+				}
+
 				properties.Add(Constants.AccessToken, accees_token);
                 await Application.Current.SavePropertiesAsync();
 				return true;

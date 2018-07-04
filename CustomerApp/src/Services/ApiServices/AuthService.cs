@@ -37,6 +37,10 @@ namespace CustomerApp.src.Services.ApiServices
 
 				//save access_token:
 				await LocalStorage.SetAccessToken(User.Access_Token);
+
+				//set Authorizationon request header, with access_token just get from server :
+				DataService.Client.SetDefaultHeaders();
+
 				return true;
             }
 			return false;
