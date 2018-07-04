@@ -13,9 +13,7 @@ namespace CustomerApp.src.libs
         //AUTH URL
 		public static string URL_LOGIN = BASE_URL + "/api/oauth/token";
 		public static string URL_SIGNUP = BASE_URL + "/api/appUser/add";
-
-		public static string AccessToken = "ACCESS_TOKEN";
-
+        
 		//CUSTOMER URL
 		public static string URL_LOGIN_CUSTOMER = BASE_URL + "/api/customer/GetByPhoneNumber?phoneNumber=";
 		public static string URL_POST_CUSTOMER = BASE_URL + "/api/customer/postNewCustomerForXamarin";
@@ -39,6 +37,13 @@ namespace CustomerApp.src.libs
             return new StringContent(json, Encoding.UTF8, "application/json");
         }
 
+
+		//LOCAL / for app use data local
+		public static string USER_ID_KEY = "USER_ID_KEY";
+		public static string AccessToken = "ACCESS_TOKEN";
+		public static string WHO_AM_I_KEY = "whoamiKey";
+		public static string POS_ENV = "POS_ENV";
+		public static string CUSTOMER_ENV = "CUSTOMER_ENV";
 
 
 

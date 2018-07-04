@@ -23,10 +23,7 @@ namespace CustomerApp.src.ViewModels
  			throw new NotImplementedException();
 		}
                     
-		private void InitSignalR()
-        {
-            DependencyService.Get<SignalRService>();
-        }
+
         
         //COMMAND /request login
 		private Command<User> loginCommand;
@@ -42,8 +39,6 @@ namespace CustomerApp.src.ViewModels
                 // login success:
                 await NavService.NavigateToViewModel<EntryPageViewModel>();
 
-                // connect signalR:
-                InitSignalR();
             }
             else
             {

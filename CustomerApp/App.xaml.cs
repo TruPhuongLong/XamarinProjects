@@ -1,4 +1,6 @@
+using CustomerApp.src.libs;
 using CustomerApp.src.Services.NavigationService;
+using CustomerApp.src.Services.signalRService;
 using CustomerApp.src.ViewModels;
 using CustomerApp.src.Views.CustomerPages;
 using CustomerApp.src.Views.PosPages;
@@ -35,14 +37,14 @@ namespace CustomerApp
 
 		private void Init()
 		{
-			InitNav();
+			InitSignalR();
 
+			InitNav();
 		}
 
 		private void InitNav()
 		{
-			//var rootPage = new NavigationPage(new CustomerSignupPage());
-			var rootPage = new NavigationPage(new PosLoginPage());
+			var rootPage = GetRootPage();         
             var navService = DependencyService.Get<ICustomerNavService>() as CustomerNavService;
 
             // this point reference navService.navigation to Navigtion -> it importance.
@@ -63,7 +65,37 @@ namespace CustomerApp
             //set mainPage:
             MainPage = rootPage;
 		}
-        
+
+		//set root page: along with ENV: Pos or Customer
+		private Page GetRootPage()
+		{
+			Page rootPage;
+			if (string.IsNullOrEmpty(LocalStorage.GetAccessToken()))
+            {
+                // first use app, no access_token -> login at first
+                rootPage = new NavigationPage(new PosLoginPage());
+            }
+            else
+            {
+                // have access_token: not need to login
+                //ENV = Pos
+                if (LocalStorage.GetEnviroment() == Constants.POS_ENV)
+                {
+                    rootPage = new NavigationPage(new CustomerListPage());
+                }
+                else // ENV = customer
+                {
+                    rootPage = new NavigationPage(new CustomerLoginPage());
+                }
+            }
+			return rootPage;
+		}
+
+        // init Signalr
+		private void InitSignalR()
+        {
+            DependencyService.Get<SignalRService>();
+        }
 
     }
 }

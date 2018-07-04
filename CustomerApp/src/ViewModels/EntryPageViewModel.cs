@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CustomerApp.src.Models;
 using CustomerApp.src.Services.NavigationService;
 using Xamarin.Forms;
+using CustomerApp.src.libs;
 
 namespace CustomerApp.src.ViewModels
 {
@@ -27,6 +28,9 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteCommand_PushCustomerListPage()
 		{
 			await NavService.NavigateToViewModel<CustomerListPageViewModel>();
+
+			// set Enviroment:
+            await LocalStorage.SetEnviroment(Constants.POS_ENV);
 		}
         
         //COMMAND /push CustomerLoginPage
@@ -38,6 +42,9 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteCommand_PushCustomerLoginPage()
         {
             await NavService.NavigateToViewModel<CustomerLoginPageViewModel>();
+
+			// set Enviroment:
+			await LocalStorage.SetEnviroment(Constants.CUSTOMER_ENV);
         }
 
 	}

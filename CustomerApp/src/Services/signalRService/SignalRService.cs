@@ -16,11 +16,11 @@ namespace CustomerApp.src.Services.signalRService
     public class SignalRService
     {
 		private IHubProxy hubProxy;
-		private AuthService AuthService;
+		//private AuthService AuthService;
 
 		public SignalRService()
         {
-			AuthService = DependencyService.Get<AuthService>();
+			//AuthService = DependencyService.Get<AuthService>();
 			Connection();           
         }
 
@@ -64,7 +64,7 @@ namespace CustomerApp.src.Services.signalRService
         {
 			try
 			{
-				await hubProxy.Invoke(Constants.PosJoinGroup, AuthService.User.Id);
+				await hubProxy.Invoke(Constants.PosJoinGroup, LocalStorage.GetUserId());
 				return true;
 			}
 			catch
@@ -78,7 +78,7 @@ namespace CustomerApp.src.Services.signalRService
         {
             try
             {
-				await hubProxy.Invoke(Constants.PosLeaveGroup, AuthService.User.Id);
+				await hubProxy.Invoke(Constants.PosLeaveGroup, LocalStorage.GetUserId());
                 return true;
             }
             catch
@@ -94,9 +94,9 @@ namespace CustomerApp.src.Services.signalRService
             {
 				if(customer is string)
 				{
-					await hubProxy.Invoke(Constants.CustomerJoinGroup, AuthService.User.Id, customer);
+					await hubProxy.Invoke(Constants.CustomerJoinGroup, LocalStorage.GetUserId(), customer);
 				}else{
-					await hubProxy.Invoke(Constants.CustomerJoinGroup, AuthService.User.Id, JsonConvert.SerializeObject(customer));
+					await hubProxy.Invoke(Constants.CustomerJoinGroup, LocalStorage.GetUserId(), JsonConvert.SerializeObject(customer));
 				}
                 return true;
             }
@@ -111,7 +111,7 @@ namespace CustomerApp.src.Services.signalRService
         {
             try
             {
-				await hubProxy.Invoke(Constants.CustomerLeaveGroup, AuthService.User.Id, customerId);
+				await hubProxy.Invoke(Constants.CustomerLeaveGroup, LocalStorage.GetUserId(), customerId);
                 return true;
             }
             catch
