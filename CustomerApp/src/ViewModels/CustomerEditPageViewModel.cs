@@ -54,12 +54,16 @@ namespace CustomerApp.src.ViewModels
 			Debug.WriteLine(CurrentPoints);
 			var newCustomer = Customer;
 			newCustomer.CurrentPoints = CurrentPoints;
-			var isSuccess = await CustomerService.Put(newCustomer);
-			if(isSuccess)
+			var CustomerEdited = await CustomerService.Put(newCustomer);
+
+			if(CustomerEdited != null)
 			{
 				await NavService.PreviousPage();
 				await SignalRService.CustomerLeaveGroup(newCustomer.ID.ToString());
-				await SignalRService.CustomerJoinGroup(newCustomer);
+			}
+			else
+			{
+				// fail to save edit:
 			}
 		}
 	}

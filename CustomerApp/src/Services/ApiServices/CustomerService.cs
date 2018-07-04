@@ -34,17 +34,26 @@ namespace CustomerApp.src.Services.ApiServices
         }
 
 		//PUT customer
-        public async Task<bool> Put(Customer customer)
+        public async Task<Customer?> Put(Customer customer)
         {
 			var uri = Constants.GetUri(Constants.URL_PATCH_CUSTOMER);
-            var stringContent = Constants.EncodeModel(customer);
+			var stringContent = Constants.EncodeModel(new {customer = customer, sourceRequest = "SunClient"});
 			var response = await DataService.Put(uri, stringContent);
 
             if (response != null && response.IsSuccessStatusCode)
             {
-                return true;
+				var content = await response.Content.ReadAsStringAsync();
+
+				if(content != null)
+				{
+					//get customer already edited from server:
+                    var _customer = JsonConvert.DeserializeObject<Customer>(content);
+
+                    return _customer;
+				}
             }
-            return false;
+            return null;
         }
     }
 }
+//{customer: this.customer, sourceRequest: "SunClient"}

@@ -56,10 +56,17 @@ namespace CustomerApp.src.Services.ApiServices
         //PUT
 		public async Task<HttpResponseMessage> Put(Uri uri, StringContent content)
 		{
-			IsLoading = true;
-			var result = await Client.PutAsync(uri, content);
-            IsLoading = false;
-            return result;
+			try
+            {
+				IsLoading = true;
+                var result = await Client.PutAsync(uri, content);
+                IsLoading = false;
+                return result;
+            }
+            catch
+            {
+                return null;
+            }
 		}
 
         //DELETE
@@ -79,14 +86,3 @@ namespace CustomerApp.src.Services.ApiServices
 
     }
 }
-
-/*
-var response = await DataService.Get(GetUri("https://jsonplaceholder.typicode.com/users"));
-
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                var Items = JsonConvert.DeserializeObject(content);
-                Debug.WriteLine(Items);
-            }
-*/
