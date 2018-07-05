@@ -170,5 +170,7 @@
     <BundleResource Include="Resources\clear.png" />
     <BundleResource Include="Resources\down.png" />
     <BundleResource Include="Resources\up.png" />
+    <BundleResource Include="Resources\delete.png" />
+    <BundleResource Include="Resources\setting.png" />
   </ItemGroup>
 </Project>

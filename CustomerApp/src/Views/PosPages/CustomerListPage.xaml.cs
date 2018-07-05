@@ -23,16 +23,19 @@ namespace CustomerApp.src.Views.PosPages
 			Title = "Check In List";
         }
 
-        void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+		void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             Customer? customer = (Customer)e.Item;
             if (customer == null) return;
             ViewModel.DetailCommand.Execute(customer);
+
         }
 
 		void Handle_GiftEventHandler(object sender, Customer customer)
         {
 			ViewModel.GiftCommand.Execute(customer);
+
         }
+
     }
 }

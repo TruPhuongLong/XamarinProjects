@@ -26,7 +26,7 @@ namespace CustomerApp.src.Services.ApiServices
 		public async Task<bool> Login(User user) 
 		{
             var body = "userName=" + user.UserName + "&password=" + user.Password + "&grant_type=password";
-			var response = await DataService.Post(Constants.GetUri(Constants.URL_LOGIN) ,Constants.EncodeString(body));
+			var response = await DataService.Post(FuncHelp.GetUri(Constants.URL_LOGIN) ,FuncHelp.EncodeString(body));
 
 			if (response != null && response.IsSuccessStatusCode)
             {
@@ -59,7 +59,7 @@ namespace CustomerApp.src.Services.ApiServices
 		public async Task<bool> Signup(User user)
 		{
 			var body = "userName=" + user.UserName + "&email=" + user.Email +  "&password=" + user.Password + "&grant_type=password";
-			var result = await DataService.Post(Constants.GetUri(Constants.URL_SIGNUP) ,Constants.EncodeString(body));
+			var result = await DataService.Post(FuncHelp.GetUri(Constants.URL_SIGNUP) ,FuncHelp.EncodeString(body));
 			Debug.WriteLine(result);
 			return true;
 		}

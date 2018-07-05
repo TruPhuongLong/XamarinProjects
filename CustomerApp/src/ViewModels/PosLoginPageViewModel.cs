@@ -42,7 +42,8 @@ namespace CustomerApp.src.ViewModels
             }
             else
             {
-                //login fail:
+				//login fail:
+				((CustomerNavService)NavService).Notification();
             }
 		}
     }

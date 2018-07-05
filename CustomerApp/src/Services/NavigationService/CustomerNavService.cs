@@ -7,6 +7,7 @@ using CustomerApp.src.Models;
 using CustomerApp.src.redux.store;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.ViewModels;
+using CustomerApp.src.Views.Components;
 using Xamarin.Forms;
 
 // this class is capsulate
@@ -70,7 +71,12 @@ namespace CustomerApp.src.Services.NavigationService
 		{
 			await navigation.PopToRootAsync(true);
 		}
-
-
+        
+		public void Notification()
+		{
+			var Nav = Application.Current.MainPage as NavigationPage;
+			var basePage = Nav.CurrentPage as BasePage;
+			basePage.NotificationView.Notification(400);
+		}
 	}
 }

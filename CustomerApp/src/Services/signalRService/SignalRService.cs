@@ -120,5 +120,19 @@ namespace CustomerApp.src.Services.signalRService
             }
         }
 
+		//INVOKE /Clear customers:
+		public async Task<bool> ClearCustomers()
+        {
+            try
+            {
+				await hubProxy.Invoke(Constants.ClearCustomers, LocalStorage.GetUserId());
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 	}
 }

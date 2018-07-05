@@ -17,26 +17,7 @@ namespace CustomerApp.src.libs
 		//CUSTOMER URL
 		public static string URL_LOGIN_CUSTOMER = BASE_URL + "/api/customer/GetByPhoneNumber?phoneNumber=";
 		public static string URL_POST_CUSTOMER = BASE_URL + "/api/customer/postNewCustomerForXamarin";
-		public static string URL_PATCH_CUSTOMER = BASE_URL + "/api/customer/editCurrentCustomer";
-
-		//FUNC /get Uri:
-		public static Uri GetUri(string url)
-        {
-            return new Uri(string.Format(url, string.Empty));
-        }
-
-		//FUNC /encode
-		public static StringContent EncodeString(string data)
-        {
-            return new StringContent(data, Encoding.UTF8, "application/json");
-        }
-
-		public static StringContent EncodeModel<T>(T data)
-        {
-			var json = JsonConvert.SerializeObject(data);
-            return new StringContent(json, Encoding.UTF8, "application/json");
-        }
-
+		public static string URL_PATCH_CUSTOMER = BASE_URL + "/api/customer/editCurrentCustomer";      
 
 		//LOCAL / for app use data local
 		public static string USER_ID_KEY = "USER_ID_KEY";
@@ -60,6 +41,6 @@ namespace CustomerApp.src.libs
 		public static string PosLeaveGroup = "PosLeaveGroup";
 		public static string CustomerJoinGroup = "CustomerJoinGroup";
 		public static string CustomerLeaveGroup = "CustomerLeaveGroup";
-
+		public static string ClearCustomers = "ClearCustomers";
     }
 }

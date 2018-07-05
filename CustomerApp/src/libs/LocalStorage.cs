@@ -60,12 +60,7 @@ namespace CustomerApp.src.libs
             try
             {
                 var properties = Application.Current.Properties;
-                if (properties.ContainsKey(key))
-                {
-                    properties.Remove(key);
-                }
-
-                properties.Add(key, value);
+				properties[key] = value;
                 await Application.Current.SavePropertiesAsync();
                 return true;
             }

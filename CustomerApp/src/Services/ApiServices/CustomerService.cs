@@ -21,8 +21,8 @@ namespace CustomerApp.src.Services.ApiServices
 		//POST customer
 		public async Task<bool> Post(Customer customer)
         {
-			var uri = Constants.GetUri(Constants.URL_POST_CUSTOMER);
-			var stringContent = Constants.EncodeModel(customer);
+			var uri = FuncHelp.GetUri(Constants.URL_POST_CUSTOMER);
+			var stringContent = FuncHelp.EncodeModel(customer);
 			var response = await DataService.Post(uri, stringContent);
 
             if (response != null && response.IsSuccessStatusCode)
@@ -36,8 +36,8 @@ namespace CustomerApp.src.Services.ApiServices
 		//PUT customer
         public async Task<Customer?> Put(Customer customer)
         {
-			var uri = Constants.GetUri(Constants.URL_PATCH_CUSTOMER);
-			var stringContent = Constants.EncodeModel(new {customer = customer, sourceRequest = "SunClient"});
+			var uri = FuncHelp.GetUri(Constants.URL_PATCH_CUSTOMER);
+			var stringContent = FuncHelp.EncodeModel(new {customer = customer, sourceRequest = "SunClient"});
 			var response = await DataService.Put(uri, stringContent);
 
             if (response != null && response.IsSuccessStatusCode)

@@ -102,6 +102,8 @@
     <AndroidResource Include="Resources\drawable\clear.png" />
     <AndroidResource Include="Resources\drawable\down.png" />
     <AndroidResource Include="Resources\drawable\up.png" />
+    <AndroidResource Include="Resources\drawable\delete.png" />
+    <AndroidResource Include="Resources\drawable\setting.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

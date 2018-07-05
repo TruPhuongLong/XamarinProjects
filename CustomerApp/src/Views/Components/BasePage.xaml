@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="CustomerApp.src.Views.Components.BasePage"
+    x:Name="this"
+    >
+    
+    <AbsoluteLayout>
+        <Frame x:Name="notiView" AbsoluteLayout.LayoutBounds="1.5,0.2,200,80"  AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Label Text="fsfsfsfsfsfsfsfsfs"/>
+        </Frame>
+        <ContentPresenter Content="{Binding BaseContent, Source={x:Reference this}}" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+    </AbsoluteLayout>
+    
+</ContentPage>

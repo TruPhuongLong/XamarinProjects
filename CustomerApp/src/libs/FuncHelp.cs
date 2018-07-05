@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Net.Http;
+using System.Text;
+using Newtonsoft.Json;
+
 namespace CustomerApp.src.libs
 {
     public class FuncHelp
@@ -23,13 +27,23 @@ namespace CustomerApp.src.libs
 				return Tuple.Create<bool, DateTime?>(false, null);	
 			}
 		}
-    }
 
-	//class ContentPageExtension
-	//{
-	//	public static void (this ContentPage contentPage)
-	//	{
-			
-	//	}
-	//}
+		//FUNC /get Uri:
+        public static Uri GetUri(string url)
+        {
+            return new Uri(string.Format(url, string.Empty));
+        }
+
+        //FUNC /encode
+        public static StringContent EncodeString(string data)
+        {
+            return new StringContent(data, Encoding.UTF8, "application/json");
+        }
+
+        public static StringContent EncodeModel<T>(T data)
+        {
+            var json = JsonConvert.SerializeObject(data);
+            return new StringContent(json, Encoding.UTF8, "application/json");
+        }
+    }   
 }

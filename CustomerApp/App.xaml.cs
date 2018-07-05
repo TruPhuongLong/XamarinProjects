@@ -72,8 +72,8 @@ namespace CustomerApp
 			Page rootPage;
 			if (string.IsNullOrEmpty(LocalStorage.GetAccessToken()))
             {
-                // first use app, no access_token -> login at first
-                rootPage = new NavigationPage(new PosLoginPage());
+				// first use app, no access_token -> login at first
+				rootPage = new PosLoginPage();
             }
             else
             {
@@ -81,14 +81,14 @@ namespace CustomerApp
                 //ENV = Pos
                 if (LocalStorage.GetEnviroment() == Constants.POS_ENV)
                 {
-                    rootPage = new NavigationPage(new CustomerListPage());
+					rootPage = new CustomerListPage();
                 }
                 else // ENV = customer
                 {
-                    rootPage = new NavigationPage(new CustomerLoginPage());
+					rootPage = new CustomerLoginPage();
                 }
             }
-			return rootPage;
+			return new NavigationPage(rootPage);
 		}
 
         // init Signalr

@@ -27,7 +27,7 @@ namespace CustomerApp.src.Services.ApiServices
             try
 			{
 				IsLoading = true;
-                var result = await Client.GetAsync(GetUri(url));
+                var result = await Client.GetAsync(FuncHelp.GetUri(url));
                 IsLoading = false;
                 return result;
 			}
@@ -77,12 +77,6 @@ namespace CustomerApp.src.Services.ApiServices
             IsLoading = false;
             return result;
 		}
-
-		private Uri GetUri(string url)
-        {
-            return new Uri(string.Format(url, string.Empty));
-        }
-
 
     }
 }

@@ -28,7 +28,6 @@ namespace CustomerApp.src.ViewModels
 		//SIGNALR:
 		private async void InitSignalR()
 		{
-			
 			SignalRService.OnListCustomersChanged(action =>
 			{
 				CustomerStore.Dispath(action);
@@ -48,21 +47,6 @@ namespace CustomerApp.src.ViewModels
 			await NavService.NavigateToViewModel<CustomerInfoPageViewModel, Customer>(customer);
         }
 
-		//COMMAND /exit command:
-		Command exitCommand;
-        public Command ExitCommand
-        {
-            get => exitCommand ?? (exitCommand = new Command(ExecuteCommand));
-        }
-        async void ExecuteCommand()
-        {
-            // disconnect to signalR:
-			await SignalRService.PosLeaveGroup();
-
-            // pop to login customer page:
-            await NavService.PreviousPage();
-        }
-
 		//COMMAND /Gift command:
 		Command<Customer> giftCommand;
 		public Command<Customer> GiftCommand
@@ -72,6 +56,28 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteGiftCommand(Customer customer)
         {
 			await NavService.NavigateToViewModel<CustomerEditPageViewModel, Customer>(customer);
+        }
+
+		//COMMAND /delete list
+		Command clearCommand;
+		public Command ClearCommand
+		{
+			get => clearCommand ?? (clearCommand = new Command(ExecuteClearCommand));
+		}
+		async void ExecuteClearCommand()
+		{
+			await SignalRService.ClearCustomers();
+		}
+
+		//COMMAND /SettingCommand
+		Command settingCommand;
+		public Command SettingCommand
+        {
+			get => settingCommand ?? (settingCommand = new Command(ExecuteSettingCommand));
+        }
+		void ExecuteSettingCommand()
+        {
+
         }
 
 	}

@@ -13,7 +13,8 @@ namespace CustomerApp.src.Views.CustomerPages
         {
             InitializeComponent();
 			BindingContext = new CustomerLoginPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<DataService>(), DependencyService.Get<SignalRService>());
-        }
+			Title = "Customer Entry";
+		}
         
     }
 }
