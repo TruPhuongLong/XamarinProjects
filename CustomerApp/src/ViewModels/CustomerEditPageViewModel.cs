@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using CustomerApp.src.Models;
+using CustomerApp.src.redux.actions;
 using CustomerApp.src.Services.ApiServices;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.Services.signalRService;
@@ -51,6 +52,9 @@ namespace CustomerApp.src.ViewModels
 		}
 		async void ExecuteCommand()
 		{
+			// trigger up indicator
+            CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, true)));
+
 			Debug.WriteLine(CurrentPoints);
 			var newCustomer = Customer;
 			newCustomer.CurrentPoints = CurrentPoints;
@@ -65,6 +69,9 @@ namespace CustomerApp.src.ViewModels
 			{
 				// fail to save edit:
 			}
+
+			// trigger off indicator
+			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, false)));
 		}
 	}
 }

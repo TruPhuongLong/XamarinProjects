@@ -3,8 +3,8 @@ using CustomerApp.src.redux.actions;
 
 namespace CustomerApp.src.redux.reducers
 {
-    public interface IReducer<T, M>
+    public interface IReducer<T>
     {
-		T Exec(T state, IAction<M> action);
+		T Exec(T state, IAction action);
     }
 }

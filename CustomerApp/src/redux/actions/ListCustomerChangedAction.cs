@@ -1,14 +1,15 @@
 ﻿using System;
 using CustomerApp.src.Models;
+using CustomerApp.src.redux.store;
 
 namespace CustomerApp.src.redux.actions
 {
-	public class ListCustomerChangedAction: IAction<Customer[]>
+	public class ListCustomerChangedAction: IAction
     {
 		public _Type _Type { get => _Type.ListCustomerChanged; }
-        public Customer[] Payload { get; set; }
+		public CustomerState Payload { get; set; }
 
-		public ListCustomerChangedAction(Customer[] payload)
+		public ListCustomerChangedAction(CustomerState payload)
         {
 			Payload = payload;
         }

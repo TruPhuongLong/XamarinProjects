@@ -3,7 +3,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
-    x:Class="CustomerApp.src.Views.CustomerPages.CustomerLoginPage">
+    x:Class="CustomerApp.src.Views.CustomerPages.CustomerLoginPage"
+    ControlTemplate="{StaticResource MainPageTemplate}"
+    >
     
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
         <local:ReviewPhoneNumber PhoneNumber="{Binding PhoneNumer, Mode=OneWay}" Command="{Binding CustomerLoginCommand}" HorizontalOptions="Center"/>

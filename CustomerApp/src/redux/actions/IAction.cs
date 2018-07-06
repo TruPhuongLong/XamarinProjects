@@ -1,10 +1,12 @@
 ﻿using System;
+using CustomerApp.src.redux.store;
+
 namespace CustomerApp.src.redux.actions
 {
-	public interface IAction<T>
-    {
-		_Type _Type { get;}
-		T Payload  { get;}
+	public interface IAction
+	{
+		_Type _Type { get; }
+		CustomerState Payload  { get;}
     }
 
 	public enum _Type
@@ -13,5 +15,6 @@ namespace CustomerApp.src.redux.actions
         RemoveCustomer,
         UpdateCustomer,
         ListCustomerChanged,
+        Indicator,
 	}
 }

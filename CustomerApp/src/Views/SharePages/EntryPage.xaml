@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CustomerApp.src.Views.SharePages.EntryPage">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="CustomerApp.src.Views.SharePages.EntryPage"
+    ControlTemplate="{StaticResource MainPageTemplate}"
+    >
+    
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" WidthRequest="280" HeightRequest="280" Spacing="100">
         <Button Command="{Binding PushCustomerListPage}" Text="Business Reward"></Button>
         <Button Command="{Binding PushCustomerLoginPage}" Text="Customer Reward"></Button>
     </StackLayout>
+    
 </ContentPage>

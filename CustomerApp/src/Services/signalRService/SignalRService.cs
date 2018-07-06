@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using CustomerApp.src.Services.signalRService;
 using CustomerApp.src.redux.actions;
 using CustomerApp.src.libs;
+using CustomerApp.src.redux.store;
 
 [assembly: Dependency(typeof(SignalRService))]
 namespace CustomerApp.src.Services.signalRService
@@ -40,7 +41,7 @@ namespace CustomerApp.src.Services.signalRService
 		}
         
         //LISTEN /for Pos
-		public void OnListCustomersChanged(Action<IAction<Customer[]>> cb)
+		public void OnListCustomersChanged(Action<IAction> cb)
         {
 			hubProxy.On(Constants.OnListCustomersChanged,  _listCustomers => {
                 try
@@ -49,7 +50,10 @@ namespace CustomerApp.src.Services.signalRService
 
                     Debug.Write(listCustomers);
 
-					cb(new ListCustomerChangedAction(listCustomers));
+					var newState = new CustomerState();
+					newState.CustomerHistory = listCustomers;
+
+					cb(new ListCustomerChangedAction(newState));
 				}
 				catch (Exception ex)
 				{

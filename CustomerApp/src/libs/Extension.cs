@@ -9,11 +9,12 @@ using Xamarin.Forms;
 //View extension
 static class ViewExtension
 {
-	public static async void Notification(this View view, double widthOfDevice)
+	public static async void Notification(this View view)
     {
-		await view.TranslateTo(widthOfDevice - view.Width , view.Y, 250, Easing.SinInOut);
+		var page = FuncHelp.CurrentPage();
+		await view.TranslateTo(page.Width - view.Width , view.Y, 250, Easing.SinInOut);
 		await Task.Delay(1600);
-		await view.TranslateTo(widthOfDevice + 10, view.Y, 250, Easing.SinInOut);
+		await view.TranslateTo(page.Width + 10, view.Y, 250, Easing.SinInOut);
     }
 }
 

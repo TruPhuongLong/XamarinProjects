@@ -2,6 +2,7 @@ using CustomerApp.src.libs;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.Services.signalRService;
 using CustomerApp.src.ViewModels;
+using CustomerApp.src.Views.Components;
 using CustomerApp.src.Views.CustomerPages;
 using CustomerApp.src.Views.PosPages;
 using CustomerApp.src.Views.SharePages;
@@ -49,7 +50,6 @@ namespace CustomerApp
 
             // this point reference navService.navigation to Navigtion -> it importance.
             navService.navigation = rootPage.Navigation;
-            
 
             // Mapping /Pos
 			navService.RegisterViewMapping(typeof(PosLoginPageViewModel), typeof(PosLoginPage));
@@ -89,13 +89,15 @@ namespace CustomerApp
                 }
             }
 			return new NavigationPage(rootPage);
-		}
 
+		}
+        
         // init Signalr
 		private void InitSignalR()
         {
             DependencyService.Get<SignalRService>();
         }
+
 
     }
 }

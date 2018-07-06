@@ -10,7 +10,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(CustomerStore))]
 namespace CustomerApp.src.redux.store
 {
-	public class CustomerStore : CoreBaseViewModel, IStore<CustomerState, Customer[]>
+	public class CustomerStore : CoreBaseViewModel, IStore<CustomerState>
 	{      
 		// state:
         private CustomerState state;
@@ -21,8 +21,8 @@ namespace CustomerApp.src.redux.store
         }
 
 		// reducer:
-        private IReducer<CustomerState, Customer[]> reducer;      
-        public IReducer<CustomerState, Customer[]> Reducer 
+		private IReducer<CustomerState> reducer;      
+		public IReducer<CustomerState> Reducer 
         {
           get => reducer;
           private set { reducer = value; }
@@ -31,20 +31,20 @@ namespace CustomerApp.src.redux.store
 		// main init:
         public CustomerStore()
         {
-			var CustomerReducer = DependencyService.Get<IReducer<CustomerState, Customer[]>>() as CustomerReducer;
+			var CustomerReducer = DependencyService.Get<IReducer<CustomerState>>() as CustomerReducer;
 			var CustomerState = new CustomerState() { CustomerHistory = new Customer[] { } };
 			Constructor(CustomerReducer, CustomerState);
         }
 
 		// constructor implement IStore:
-        public void Constructor(IReducer<CustomerState, Customer[]> reducer, CustomerState initialState)
+		public void Constructor(IReducer<CustomerState> reducer, CustomerState initialState)
 		{
 			State = initialState;
             Reducer = reducer;
 		}
 
 		// dispatch:
-		public void Dispath(IAction<Customer[]> action)
+		public void Dispath(IAction action)
 		{
 			State = Reducer.Exec(State, action);
 		}

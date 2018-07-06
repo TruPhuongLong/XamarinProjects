@@ -71,7 +71,9 @@ namespace CustomerApp.src.Services.NavigationService
 		{
 			await navigation.PopToRootAsync(true);
 		}
-        
 
+
+		//notification:
+		public View ViewNotification { get; set; }
 	}
 }

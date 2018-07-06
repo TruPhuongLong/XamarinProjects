@@ -4,11 +4,11 @@ using CustomerApp.src.redux.reducers;
 
 namespace CustomerApp.src.redux.store
 {
-    public interface IStore<T, M>
+    public interface IStore<T>
     {
 		T State { get; }
-		IReducer<T, M> Reducer { get; }
-		void Constructor(IReducer<T, M> reducer, T initialState);
-		void Dispath(IAction<M> action);
+		IReducer<T> Reducer { get; }
+		void Constructor(IReducer<T> reducer, T initialState);
+		void Dispath(IAction action);
     }
 }

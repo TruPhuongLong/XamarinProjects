@@ -1,14 +1,15 @@
 ﻿using System;
 using CustomerApp.src.Models;
+using CustomerApp.src.redux.store;
 
 namespace CustomerApp.src.redux.actions
 {
-	public class UpdateCustomerAction : IAction<Customer>
+	public class UpdateCustomerAction : IAction
 	{
 		public _Type _Type { get => _Type.UpdateCustomer; }
-		public Customer Payload { get; set; }
+		public CustomerState Payload { get; set; }
 
-		public UpdateCustomerAction(Customer payload)
+		public UpdateCustomerAction(CustomerState payload)
         {
             Payload = payload;
         }

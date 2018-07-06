@@ -6,6 +6,7 @@ using CustomerApp.src.Services.NavigationService;
 using Xamarin.Forms;
 using CustomerApp.src.libs;
 using CustomerApp.src.Services.ApiServices;
+using CustomerApp.src.redux.actions;
 
 namespace CustomerApp.src.ViewModels
 {
@@ -42,6 +43,9 @@ namespace CustomerApp.src.ViewModels
 
 		async void ExecuteCommand(Customer customer)
 		{
+			// trigger up indicator
+            CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, true)));
+
 			var isSuccess = await CustomerService.Post(customer);
 			if(isSuccess)
 			{
@@ -52,6 +56,9 @@ namespace CustomerApp.src.ViewModels
 			{
 				//notification signup fail
 			}
+
+			// trigger off indicator
+			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, false)));
 		}
         
 	}

@@ -44,13 +44,14 @@ namespace CustomerApp.src.ViewModels
 		public abstract Task Init();
 
 		// store: share all class implement BaseViewModel
-        public IStore<CustomerState, Customer[]> CustomerStore { get; set; }
+		public IStore<CustomerState> CustomerStore { get; set; }
 
-		private IStore<CustomerState, Customer[]> InitCustomerStore()
+		private IStore<CustomerState> InitCustomerStore()
         {
-            var _CustomerStore = DependencyService.Get<IStore<CustomerState, Customer[]>>() as CustomerStore;
+			var _CustomerStore = DependencyService.Get<IStore<CustomerState>>() as CustomerStore;
             return _CustomerStore;
         }
+
 	}
 
 

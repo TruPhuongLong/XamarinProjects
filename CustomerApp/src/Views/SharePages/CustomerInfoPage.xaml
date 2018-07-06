@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
     xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
-    x:Class="CustomerApp.src.Views.SharePages.CustomerInfoPage">
+    x:Class="CustomerApp.src.Views.SharePages.CustomerInfoPage"
+    ControlTemplate="{StaticResource MainPageTemplate}"
+    >
 
     <Grid>
         <Grid.RowDefinitions>
@@ -19,7 +21,6 @@
             Text="Done" 
             VerticalOptions="Center" 
             HorizontalOptions="Center"
-
         />
     </Grid>
     

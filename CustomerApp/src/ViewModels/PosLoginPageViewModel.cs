@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using CustomerApp.src.Services.ApiServices;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.Services.signalRService;
+using CustomerApp.src.redux.actions;
 
 namespace CustomerApp.src.ViewModels
 {
@@ -33,17 +34,22 @@ namespace CustomerApp.src.ViewModels
 		}
 		async void ExecuteCommand(User user)
 		{
+			// trigger up indicator
+			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, true)));
+            
 			var result = await AuthService.Login(user);
             if (result)
             {
                 // login success:
-                await NavService.NavigateToViewModel<EntryPageViewModel>();
-
+                await NavService.NavigateToViewModel<EntryPageViewModel>();            
             }
             else
             {
 				//login fail:
-            }
+			}
+
+			// trigger off indicator
+            CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, false)));
 		}
     }
 }

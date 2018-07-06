@@ -3,7 +3,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
-    x:Class="CustomerApp.src.Views.CustomerPages.CustomerSignupPage">
+    x:Class="CustomerApp.src.Views.CustomerPages.CustomerSignupPage"
+    ControlTemplate="{StaticResource MainPageTemplate}"
+    >
 
     <local:SignupForm x:Name="signupform" Command="{Binding SignupCommand}" MainPhone="{Binding PhoneNumber}"/>
     

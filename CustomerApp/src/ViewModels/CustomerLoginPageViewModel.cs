@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using CustomerApp.src.libs;
 using CustomerApp.src.Models;
+using CustomerApp.src.redux.actions;
 using CustomerApp.src.Services.ApiServices;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.Services.signalRService;
@@ -45,6 +46,9 @@ namespace CustomerApp.src.ViewModels
 		}
 		async void ExecuteCommand_CustomerLoginCommand()
 		{
+			// trigger up indicator
+            CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, true)));
+
 			var response = await DataService.Get(Constants.URL_LOGIN_CUSTOMER + PhoneNumer);
 
 			// response.IsSuccessStatusCode : it mean this customer exist on database and we get customer info from his phoneNumber.
@@ -65,6 +69,9 @@ namespace CustomerApp.src.ViewModels
 
 			//clear phoneNumber:
 			PhoneNumer = "";
+
+			// trigger off indicator
+			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, false)));
 		}
 	}
 }
