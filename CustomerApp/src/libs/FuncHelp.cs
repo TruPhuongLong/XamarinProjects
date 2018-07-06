@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
+using Xamarin.Forms;
 
 namespace CustomerApp.src.libs
 {
@@ -45,5 +46,11 @@ namespace CustomerApp.src.libs
             var json = JsonConvert.SerializeObject(data);
             return new StringContent(json, Encoding.UTF8, "application/json");
         }
+
+		public static Page CurrentPage()
+		{
+			var Nav = Application.Current.MainPage as NavigationPage;
+			return Nav.CurrentPage;
+		}
     }   
 }

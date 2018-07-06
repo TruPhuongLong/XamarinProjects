@@ -11,11 +11,10 @@ namespace CustomerApp.src.Views.Components
 		public ReviewPhoneNumber()
 		{
 			InitializeComponent();
-			mainGrid.TranslationX = SizeButton / 2;
 		}
 
-		//CONSTANT
-		public int SizeButton = 100;
+		//PROP
+        public int SizeButton { get; set; } = 100;
 
 		void OnNextClicked(object sender, EventArgs args)
 		{

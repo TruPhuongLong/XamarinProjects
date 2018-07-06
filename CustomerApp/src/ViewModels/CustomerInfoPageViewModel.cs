@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CustomerApp.src.libs;
 using CustomerApp.src.Models;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.Services.signalRService;
+using CustomerApp.src.Views.SharePages;
 using Xamarin.Forms;
 
 namespace CustomerApp.src.ViewModels
@@ -25,7 +27,10 @@ namespace CustomerApp.src.ViewModels
 
 			Device.StartTimer(TimeSpan.FromSeconds(5), () =>
             {
-				ExitCommand.Execute(null);
+				if (FuncHelp.CurrentPage() is CustomerInfoPage)
+				{
+					ExitCommand.Execute(null);
+				}
                 return false; // not repeat
             });
 		}
@@ -51,9 +56,13 @@ namespace CustomerApp.src.ViewModels
         {
 			// disconnect to signalR:
 			//await SignalRService.CustomerLeaveGroup(Customer.ID.ToString());
-
+            
 			// pop to login customer page:
-			await NavService.PreviousPage();
+			if(FuncHelp.CurrentPage() is CustomerInfoPage)
+			{
+				await NavService.PreviousPage();
+			}
         }
+
 	}
 }
