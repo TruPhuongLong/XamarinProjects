@@ -8,7 +8,7 @@
     >
     
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <local:ReviewPhoneNumber PhoneNumber="{Binding PhoneNumer, Mode=OneWay}" Command="{Binding CustomerLoginCommand}" HorizontalOptions="Center"/>
+        <local:ReviewPhoneNumber PhoneNumber="{Binding PhoneNumer, Mode=TwoWay}" Command="{Binding CustomerLoginCommand}" HorizontalOptions="Center"/>
         <local:EntryPhoneNumber PhoneNumber="{Binding PhoneNumer, Mode=TwoWay}" HorizontalOptions="Center"/>
     </StackLayout>
     

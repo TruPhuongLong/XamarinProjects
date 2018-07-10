@@ -2,6 +2,7 @@
 <ContentView 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
     xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
     x:Class="CustomerApp.src.Views.Components.ReviewPhoneNumber"
     x:Name="this"
@@ -16,7 +17,8 @@
             <ColumnDefinition Width="{Binding SizeButton}"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" x:Name="labelPhoneNumber" FontSize="Large" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+<!--        <Label Grid.Row="0" Grid.Column="0" x:Name="labelPhoneNumber" FontSize="Large" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>-->
+        <local:ReviewView Grid.Row="0" Grid.Column="0" Review="{Binding PhoneNumber}"/>
         <localRenderer:CustomButton Grid.Row="0" Grid.Column="1" Text="Next" Clicked="OnNextClicked"/>
     </Grid>
     

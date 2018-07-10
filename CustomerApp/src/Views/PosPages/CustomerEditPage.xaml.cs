@@ -14,6 +14,7 @@ namespace CustomerApp.src.Views.PosPages
         {
             InitializeComponent();
 			BindingContext = new CustomerEditPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<CustomerService>(), DependencyService.Get<SignalRService>());
-        }
+			Title = "Add Reward";
+		}
     }
 }

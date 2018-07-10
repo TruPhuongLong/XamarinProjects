@@ -21,7 +21,7 @@ namespace CustomerApp.src.Views.Components
             {
                 if (Trigger)
                 {
-                    ((View)ToggledNotificationView.Parent).Notification();
+					((View)ToggledNotificationView.Parent).Notification();
                 }
             }
         }

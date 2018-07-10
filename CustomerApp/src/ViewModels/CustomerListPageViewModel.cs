@@ -32,7 +32,7 @@ namespace CustomerApp.src.ViewModels
 			SignalRService.OnListCustomersChanged(action =>
 			{
 				CustomerStore.Dispath(action);
-				((CustomerStore)CustomerStore).Dispath_Notification("new Customer come in");
+				//((CustomerStore)CustomerStore).Dispath_Notification("new Customer come in");
 			});
 
 			await SignalRService.PosJoinGroup();
@@ -58,7 +58,6 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteGiftCommand(Customer customer)
         {
 			await NavService.NavigateToViewModel<CustomerEditPageViewModel, Customer>(customer);
-			((CustomerStore)CustomerStore).Dispath_Notification("save success");
         }
 
 		//COMMAND /delete list

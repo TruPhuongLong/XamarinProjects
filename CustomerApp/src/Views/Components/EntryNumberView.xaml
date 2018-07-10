@@ -3,9 +3,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
-    x:Class="CustomerApp.src.Views.Components.EntryPhoneNumber"
+    x:Class="CustomerApp.src.Views.Components.EntryNumberView"
     x:Name="this"
     >
+
     <Grid RowSpacing="5" ColumnSpacing="5" BindingContext="{Binding Source={x:Reference this}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="{Binding SizeButton}" />
@@ -30,6 +31,7 @@
         <localRenderer:CustomButton Grid.Row="2" Grid.Column="2" Text="9" StyleId="9" Clicked="OnPickNumber"/>
         <localRenderer:CustomButton Grid.Row="3" Grid.Column="0" Text="Clear" StyleId="Clear" Clicked="OnPickNumber"/>
         <localRenderer:CustomButton Grid.Row="3" Grid.Column="1" Text="0" StyleId="0" Clicked="OnPickNumber"/>
-        <localRenderer:CustomButton Grid.Row="3" Grid.Column="2" Image="clear.png" StyleId="Delete" Clicked="OnPickNumber"/>
+        <localRenderer:CustomButton Grid.Row="3" Grid.Column="2" Text="." StyleId="." Clicked="OnPickNumber"/>
     </Grid>
+    
 </ContentView>

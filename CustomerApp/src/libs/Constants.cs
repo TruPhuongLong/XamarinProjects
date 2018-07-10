@@ -8,7 +8,7 @@ namespace CustomerApp.src.libs
     public class Constants
     {
 		//BASE URL
-		public static string BASE_URL = "http://192.168.0.12/RewardSever";
+		public static string BASE_URL = "http://192.168.0.8/RewardSever";
 
         //AUTH URL
 		public static string URL_LOGIN = BASE_URL + "/api/oauth/token";

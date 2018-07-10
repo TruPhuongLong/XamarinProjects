@@ -5,7 +5,13 @@
     x:Class="CustomerApp.src.Views.Components.CustomerInfoView">
     
     <StackLayout Spacing="60">
-        <Label Text="{Binding Name, StringFormat='Welcome back {0}'}" FontSize="25" HorizontalOptions="CenterAndExpand"/>
+        <Label x:Name="layoutForCustomer" Text="{Binding Name, StringFormat='Welcome back {0}'}" FontSize="25" HorizontalOptions="CenterAndExpand" IsVisible="false"/>
+
+        <StackLayout x:Name="layoutForPos" Spacing="60" IsVisible="false">
+            <Label Text="{Binding Name}" FontSize="25" HorizontalOptions="CenterAndExpand" />
+            <Label Text="Current Reward Point" HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+
         <Label Text="{Binding CurrentPoints, StringFormat='{0} points'}" TextColor="Maroon" FontSize="Large" HorizontalOptions="CenterAndExpand"/>
     </StackLayout>
     

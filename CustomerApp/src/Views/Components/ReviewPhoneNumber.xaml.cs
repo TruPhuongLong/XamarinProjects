@@ -43,20 +43,8 @@ namespace CustomerApp.src.Views.Components
 
 
 		//BINDABLE /PhoneNumberfor binding:
-		public static readonly BindableProperty PhoneNumberProperty =
-			BindableProperty.Create(
-				"PhoneNumber",
-			    typeof(string),
-				typeof(ReviewPhoneNumber),
-			    "",
-    			propertyChanged: (bindable, oldValue, newValue) =>
-    		   {
-    			   // Set the label.
-    			   ReviewPhoneNumber reviewPhoneNumber = (ReviewPhoneNumber)bindable;
-    			   reviewPhoneNumber.labelPhoneNumber.Text = (string)newValue; 
-    		   }
-		    );
-
+		public static readonly BindableProperty PhoneNumberProperty = 
+			BindableProperty.Create(nameof(PhoneNumber), typeof(string), typeof(ReviewPhoneNumber), default(string), BindingMode.TwoWay);
 		public string PhoneNumber
 		{
 			set { SetValue(PhoneNumberProperty, value); }

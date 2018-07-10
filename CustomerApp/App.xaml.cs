@@ -19,6 +19,7 @@ namespace CustomerApp
             InitializeComponent();
 
 			Init();
+			//MainPage = new NavigationPage(new CustomerEditPage());
         }
 
         protected override void OnStart()

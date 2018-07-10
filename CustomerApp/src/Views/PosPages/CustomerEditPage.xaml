@@ -4,16 +4,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
     x:Class="CustomerApp.src.Views.PosPages.CustomerEditPage"
+    xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
     ControlTemplate="{StaticResource MainPageTemplate}"
     >
 
-    <ContentPage.ToolbarItems>
+   <!-- <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
-    </ContentPage.ToolbarItems>
-    
-    <StackLayout Spacing="100" VerticalOptions="Center" HorizontalOptions="Center" >
-        <local:CustomerInfoView BindingContext="{Binding Customer}"/>
-        <local:PointForm CurrentPoints="{Binding CurrentPoints, Mode=TwoWay}" HorizontalOptions="Center"/>
+    </ContentPage.ToolbarItems>-->
+
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="100">
+        <!--<local:CustomerInfoView BindingContext="{Binding Customer}"/>
+        <loca-->l:ReviewView Review="{Binding CurrentPoints, Mode=OneWay}" HorizontalOptions="Center"/>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+<!--            <local:EntryNumberView Number="{Binding CurrentPoints, Mode=TwoWay}" HorizontalOptions="Center"/>-->
+            <localRenderer:CustomButton Text="Add Reward Point" Command="{Binding SaveCommand}"/>
+        </StackLayout>
     </StackLayout>
     
 </ContentPage>

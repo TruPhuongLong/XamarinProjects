@@ -25,16 +25,20 @@ namespace CustomerApp.src.ViewModels
 		{
 			return Task.Run(() => {
 				Customer = parameter;
-				CurrentPoints = Customer.CurrentPoints;	
+				CurrentPoints = Customer.CurrentPoints.ToString();	
 			});
 		}
 
         //PROP
-		private float currentPoints;
-		public float CurrentPoints
+		private string currentPoints;
+		public string CurrentPoints
         {
 			get => currentPoints;
-			set { SetProperty(ref currentPoints, value); }
+			set 
+			{ 
+				SetProperty(ref currentPoints, value); 
+				SaveCommand.ChangeCanExecute();
+			}
         }
 
         //PROP
@@ -42,23 +46,26 @@ namespace CustomerApp.src.ViewModels
 		public Customer Customer
 		{
 			get => customer;
-			set { SetProperty(ref customer, value); }
+			set 
+			{ 
+				SetProperty(ref customer, value);
+			}
 		}
 
 		//COMMAND
 		private Command saveCommand;
 		public Command SaveCommand
 		{
-			get => saveCommand ?? (saveCommand = new Command(ExecuteCommand));
+			get => saveCommand ?? (saveCommand = new Command(ExecuteCommand, ValidateCommand));
 		}
 		async void ExecuteCommand()
 		{
 			// trigger up indicator
 			((CustomerStore)CustomerStore).Dispath_Indicator(true);
 
-			Debug.WriteLine(CurrentPoints);
+			var _CurrentPoints = float.Parse(CurrentPoints);
 			var newCustomer = Customer;
-			newCustomer.CurrentPoints = CurrentPoints;
+			newCustomer.CurrentPoints = _CurrentPoints;
 			var CustomerEdited = await CustomerService.Put(newCustomer);
 
 			if(CustomerEdited != null)
@@ -70,10 +77,18 @@ namespace CustomerApp.src.ViewModels
 			else
 			{
 				// fail to save edit:
+				((CustomerStore)CustomerStore).Dispath_Notification("save fail");
 			}
 
 			// trigger off indicator
 			((CustomerStore)CustomerStore).Dispath_Indicator(false);
 		}
+		bool ValidateCommand()
+		{
+			//if (CurrentPoints == null) return false;
+			float n;
+			return float.TryParse(CurrentPoints, out n);
+		}
+
 	}
 }
