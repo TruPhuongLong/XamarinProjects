@@ -7,6 +7,7 @@ using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.Services.signalRService;
 using Xamarin.Forms;
 using CustomerApp.src.redux.actions;
+using CustomerApp.src.redux.store;
 
 namespace CustomerApp.src.ViewModels
 {
@@ -31,6 +32,7 @@ namespace CustomerApp.src.ViewModels
 			SignalRService.OnListCustomersChanged(action =>
 			{
 				CustomerStore.Dispath(action);
+				((CustomerStore)CustomerStore).Dispath_Notification("new Customer come in");
 			});
 
 			await SignalRService.PosJoinGroup();
@@ -56,6 +58,7 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteGiftCommand(Customer customer)
         {
 			await NavService.NavigateToViewModel<CustomerEditPageViewModel, Customer>(customer);
+			((CustomerStore)CustomerStore).Dispath_Notification("save success");
         }
 
 		//COMMAND /delete list

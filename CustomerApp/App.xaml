@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Application 
     xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
     x:Class="CustomerApp.App">
     
     <Application.Resources>
@@ -22,9 +23,10 @@
                     IsRunning="{TemplateBinding BindingContext.CustomerStore.State.IsRunningIndicator}"
                 />
 
-                <Frame x:Name="ViewNotification" Padding="20" BackgroundColor="Silver" AbsoluteLayout.LayoutBounds="2.0,80,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="XProportional" >
-                    <Label Text="im notification" />
-                </Frame>
+                <local:NotificationView AbsoluteLayout.LayoutBounds="2.0,80,200,AutoSize" AbsoluteLayout.LayoutFlags="XProportional" 
+                                        Trigger="{TemplateBinding BindingContext.CustomerStore.State.Notification.Trigger}"
+                                        Message="{TemplateBinding BindingContext.CustomerStore.State.Notification.Message}"
+                                        />
                 
             </AbsoluteLayout>
           </ControlTemplate>

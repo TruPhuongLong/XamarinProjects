@@ -7,6 +7,7 @@ using CustomerApp.src.Services.ApiServices;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.Services.signalRService;
 using CustomerApp.src.redux.actions;
+using CustomerApp.src.redux.store;
 
 namespace CustomerApp.src.ViewModels
 {
@@ -35,7 +36,7 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteCommand(User user)
 		{
 			// trigger up indicator
-			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, true)));
+			((CustomerStore)CustomerStore).Dispath_Indicator(true);
             
 			var result = await AuthService.Login(user);
             if (result)
@@ -46,10 +47,11 @@ namespace CustomerApp.src.ViewModels
             else
             {
 				//login fail:
+				((CustomerStore)CustomerStore).Dispath_Notification("authenticate fail");
 			}
 
 			// trigger off indicator
-            CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, false)));
+			((CustomerStore)CustomerStore).Dispath_Indicator(false);
 		}
     }
 }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CustomerApp.src.libs;
 using CustomerApp.src.Models;
 using CustomerApp.src.redux.actions;
+using CustomerApp.src.redux.store;
 using CustomerApp.src.Services.ApiServices;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.Services.signalRService;
@@ -47,7 +48,7 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteCommand_CustomerLoginCommand()
 		{
 			// trigger up indicator
-            CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, true)));
+			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(isRunningIndicator: true)));
 
 			var response = await DataService.Get(Constants.URL_LOGIN_CUSTOMER + PhoneNumer);
 
@@ -71,7 +72,9 @@ namespace CustomerApp.src.ViewModels
 			PhoneNumer = "";
 
 			// trigger off indicator
-			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, false)));
+			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState()));
+
+
 		}
 	}
 }

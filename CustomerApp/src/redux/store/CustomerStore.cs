@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using CustomerApp.src.Models;
 using CustomerApp.src.redux.actions;
 using CustomerApp.src.redux.reducers;
@@ -47,6 +48,18 @@ namespace CustomerApp.src.redux.store
 		public void Dispath(IAction action)
 		{
 			State = Reducer.Exec(State, action);
+		}
+
+		public async void Dispath_Notification(string mes)
+		{
+			Dispath(new NotificationAction(new CustomerState(notification: new Notification(trigger: false, message: mes))));
+			await Task.Delay(300);
+			Dispath(new NotificationAction(new CustomerState(notification: new Notification( trigger: true, message: mes))));
+		}
+
+		public void Dispath_Indicator(bool isRunningIndicator)
+		{
+			Dispath(new IndicatorAction(new CustomerState(isRunningIndicator: isRunningIndicator)));
 		}
 	}
 }

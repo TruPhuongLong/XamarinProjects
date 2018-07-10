@@ -16,5 +16,6 @@ namespace CustomerApp.src.redux.actions
         UpdateCustomer,
         ListCustomerChanged,
         Indicator,
+        Notification
 	}
 }

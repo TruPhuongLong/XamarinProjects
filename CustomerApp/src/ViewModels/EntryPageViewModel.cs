@@ -5,6 +5,7 @@ using CustomerApp.src.Services.NavigationService;
 using Xamarin.Forms;
 using CustomerApp.src.libs;
 using CustomerApp.src.redux.actions;
+using CustomerApp.src.redux.store;
 
 namespace CustomerApp.src.ViewModels
 {
@@ -29,7 +30,7 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteCommand_PushCustomerListPage()
 		{
 			// trigger up indicator
-            CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, true)));
+			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(isRunningIndicator: true)));
 
 			await NavService.NavigateToViewModel<CustomerListPageViewModel>();
 
@@ -37,7 +38,7 @@ namespace CustomerApp.src.ViewModels
             await LocalStorage.SetEnviroment(Constants.POS_ENV);
 
 			// trigger off indicator
-            CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, false)));
+            CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState()));
 		}
         
         //COMMAND /push CustomerLoginPage
@@ -49,7 +50,7 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteCommand_PushCustomerLoginPage()
         {
 			// trigger up indicator
-            CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, true)));
+			((CustomerStore)CustomerStore).Dispath_Indicator(true);
 
             await NavService.NavigateToViewModel<CustomerLoginPageViewModel>();
 
@@ -57,7 +58,7 @@ namespace CustomerApp.src.ViewModels
 			await LocalStorage.SetEnviroment(Constants.CUSTOMER_ENV);
 
 			// trigger off indicator
-			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, false)));
+			((CustomerStore)CustomerStore).Dispath_Indicator(false);
         }
 
 	}

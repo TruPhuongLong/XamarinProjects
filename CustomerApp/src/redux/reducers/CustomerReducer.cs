@@ -23,6 +23,9 @@ namespace CustomerApp.src.redux.reducers
 				case _Type.Indicator:
 					var newState_Indicator = Indicator(state, action);
 					return newState_Indicator;
+				case _Type.Notification:
+					var newState_Notification = Notification(state, action);
+					return newState_Notification;
                 default:
                     return state;
             }
@@ -45,7 +48,12 @@ namespace CustomerApp.src.redux.reducers
             return state;
         }
       
-
+		//FUNC /Notification
+		private CustomerState Notification(CustomerState state, IAction action)
+        {
+			state.Notification = action.Payload.Notification;
+            return state;
+        }
 
 
 		// Only good but not need for now:

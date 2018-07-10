@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using CustomerApp.src.libs;
 using CustomerApp.src.Services.ApiServices;
 using CustomerApp.src.redux.actions;
+using CustomerApp.src.redux.store;
 
 namespace CustomerApp.src.ViewModels
 {
@@ -44,13 +45,14 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteCommand(Customer customer)
 		{
 			// trigger up indicator
-            CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, true)));
+			((CustomerStore)CustomerStore).Dispath_Indicator(true);
 
 			var isSuccess = await CustomerService.Post(customer);
 			if(isSuccess)
 			{
 				// pop customerLoginPage
 				await NavService.PreviousPage();
+				((CustomerStore)CustomerStore).Dispath_Notification("save success");
 			}
 			else
 			{
@@ -58,7 +60,7 @@ namespace CustomerApp.src.ViewModels
 			}
 
 			// trigger off indicator
-			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, false)));
+			((CustomerStore)CustomerStore).Dispath_Indicator(false);
 		}
         
 	}

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using CustomerApp.src.Models;
 using CustomerApp.src.redux.actions;
+using CustomerApp.src.redux.store;
 using CustomerApp.src.Services.ApiServices;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.Services.signalRService;
@@ -53,7 +54,7 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteCommand()
 		{
 			// trigger up indicator
-            CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, true)));
+			((CustomerStore)CustomerStore).Dispath_Indicator(true);
 
 			Debug.WriteLine(CurrentPoints);
 			var newCustomer = Customer;
@@ -64,6 +65,7 @@ namespace CustomerApp.src.ViewModels
 			{
 				await NavService.PreviousPage();
 				await SignalRService.CustomerLeaveGroup(newCustomer.ID.ToString());
+				((CustomerStore)CustomerStore).Dispath_Notification("save success");
 			}
 			else
 			{
@@ -71,7 +73,7 @@ namespace CustomerApp.src.ViewModels
 			}
 
 			// trigger off indicator
-			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(new Customer[] { }, false)));
+			((CustomerStore)CustomerStore).Dispath_Indicator(false);
 		}
 	}
 }

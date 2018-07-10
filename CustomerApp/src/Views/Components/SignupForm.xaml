@@ -5,10 +5,10 @@
     xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
     xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
     x:Class="CustomerApp.src.Views.Components.SignupForm"
-    x:Name="SignupForm"
+    x:Name="this"
     >
     
-    <Grid ColumnSpacing="50" Padding="20" BindingContext="{Binding Source={x:Reference SignupForm}}">
+    <Grid ColumnSpacing="50" Padding="20" BindingContext="{Binding Source={x:Reference this}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
