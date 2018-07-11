@@ -76,5 +76,13 @@ namespace CustomerApp.src.Views.Components
 				command.Execute(customer);
             }
         }
+        
+		//BINDABLE /IsEnabled
+		public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(SignupForm), default(bool), BindingMode.OneWay);
+        public bool IsEnabled
+        {
+			get => (bool)GetValue(IsEnabledProperty);
+			set { SetValue(IsEnabledProperty, value); }
+        }
     }
 }

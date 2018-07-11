@@ -7,6 +7,6 @@
     ControlTemplate="{StaticResource MainPageTemplate}"
     >
 
-    <local:SignupForm x:Name="signupform" Command="{Binding SignupCommand}" MainPhone="{Binding PhoneNumber}"/>
+    <local:SignupForm x:Name="signupform" Command="{Binding SignupCommand}" IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}" MainPhone="{Binding PhoneNumber}"/>
     
 </ContentPage>

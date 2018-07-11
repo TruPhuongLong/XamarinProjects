@@ -74,6 +74,8 @@
                     
                     <MultiTrigger.Conditions>
                         <BindingCondition Binding="{Binding Source={x:Reference mainphone}, Path=ErrorDic.Keys.Count}" Value="0"/>
+
+                        <BindingCondition Binding="{Binding IsEnabled}" Value="true"/>
                     </MultiTrigger.Conditions>
 
                     <Setter Property="IsEnabled" Value="true"/>

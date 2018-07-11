@@ -22,7 +22,7 @@ namespace CustomerApp.src.ViewModels
 
 		public override Task Init()
 		{
- 			throw new NotImplementedException();
+			throw new NotImplementedException(); 
 		}
                     
 

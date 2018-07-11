@@ -51,6 +51,12 @@ namespace CustomerApp.src.Views.Components
 			get { return (string)GetValue(PhoneNumberProperty); }
 		}
 
-
+		//BINDABLE /IsEnabled
+		public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(ReviewPhoneNumber), default(bool), BindingMode.OneWay);
+        public bool IsEnabled
+        {
+            get => (bool)GetValue(IsEnabledProperty);
+            set { SetValue(IsEnabledProperty, value); }
+        }
 	}
 }

@@ -7,6 +7,6 @@
     ControlTemplate="{StaticResource MainPageTemplate}"
     >
     
-    <local:LoginView Command="{Binding LoginCommand}" HorizontalOptions="Center" VerticalOptions="Center"/>
+    <local:LoginView Command="{Binding LoginCommand}" IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}" HorizontalOptions="Center" VerticalOptions="Center"/>
 
 </ContentPage>

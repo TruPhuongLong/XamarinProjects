@@ -21,6 +21,7 @@
             Text="Done" 
             VerticalOptions="Center" 
             HorizontalOptions="Center"
+            IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}"
         />
     </Grid>
     

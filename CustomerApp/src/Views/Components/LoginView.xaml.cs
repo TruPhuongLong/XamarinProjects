@@ -43,5 +43,13 @@ namespace CustomerApp.src.Views.Components
                 command.Execute(user);
             }
         }
+
+		//BINDABLE /IsEnabled
+		public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(LoginView), default(bool), BindingMode.OneWay);
+		public bool IsEnabled
+		{
+			get => (bool)GetValue(IsEnabledProperty);
+			set { SetValue(IsEnabledProperty, value); }
+		}
     }
 }

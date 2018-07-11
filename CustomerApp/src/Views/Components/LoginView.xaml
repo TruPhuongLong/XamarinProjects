@@ -7,20 +7,26 @@
     x:Class="CustomerApp.src.Views.Components.LoginView"
     Padding="40, 60"
     WidthRequest="280"
-    HeightRequest="250"
     x:Name="LoginView"
     >
 
     <StackLayout Spacing="20" BindingContext="{Binding Source={x:Reference LoginView}}">
+        
         <local:Field x:Name="username" Placeholder="@username" Require="true" Text="{Binding UserName}"></local:Field>
+        
         <local:Field x:Name="password" Placeholder="@password" Require="true" Text="{Binding Password}"></local:Field>
+        
         <localRenderer:CustomButton Clicked="OnLoginClicked" Margin="0, 40, 0, 0" Text="Login" IsEnabled="false" >
             <localRenderer:CustomButton.Triggers>
                 <MultiTrigger TargetType="localRenderer:CustomButton">
                     
                     <MultiTrigger.Conditions>
+                        
                         <BindingCondition Binding="{Binding Source={x:Reference username}, Path=ErrorDic.Keys.Count}" Value="0"/>
                         <BindingCondition Binding="{Binding Source={x:Reference password}, Path=ErrorDic.Keys.Count}" Value="0"/>
+
+                        <BindingCondition Binding="{Binding IsEnabled}" Value="true"/>
+                        
                     </MultiTrigger.Conditions>
 
                     <Setter Property="IsEnabled" Value="true"/>

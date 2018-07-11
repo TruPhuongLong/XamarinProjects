@@ -3,12 +3,13 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="CustomerApp.src.Views.SharePages.EntryPage"
+    xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
     ControlTemplate="{StaticResource MainPageTemplate}"
     >
     
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" WidthRequest="280" HeightRequest="280" Spacing="100">
-        <Button Command="{Binding PushCustomerListPage}" Text="Business Reward"></Button>
-        <Button Command="{Binding PushCustomerLoginPage}" Text="Customer Reward"></Button>
+        <localRenderer:CustomButton Command="{Binding PushCustomerListPage}" Text="Business Reward" IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}"/>
+        <localRenderer:CustomButton Command="{Binding PushCustomerLoginPage}" Text="Customer Reward" IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}"/>
     </StackLayout>
     
 </ContentPage>

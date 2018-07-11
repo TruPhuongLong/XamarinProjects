@@ -17,7 +17,7 @@
         <local:ReviewView Review="{Binding Tuple.Item1.CurrentPoints, Mode=OneWay}" HorizontalOptions="Center"/>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
             <local:EntryNumberView Number="{Binding CurrentPointsDelta, Mode=TwoWay}" HorizontalOptions="Center"/>
-            <localRenderer:CustomButton Text="Add Reward Point" Command="{Binding SaveCommand}">
+            <localRenderer:CustomButton Text="Add Reward Point" Command="{Binding SaveCommand}" IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}">
                 <localRenderer:CustomButton.Triggers>
                     <DataTrigger TargetType="localRenderer:CustomButton" Binding="{Binding Tuple.Item2}" Value="-">
                         <Setter Property="Text" Value="Redeem Reward Point" />

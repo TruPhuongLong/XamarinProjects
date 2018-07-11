@@ -19,7 +19,7 @@
 
 <!--        <Label Grid.Row="0" Grid.Column="0" x:Name="labelPhoneNumber" FontSize="Large" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>-->
         <local:ReviewView Grid.Row="0" Grid.Column="0" Review="{Binding PhoneNumber}"/>
-        <localRenderer:CustomButton Grid.Row="0" Grid.Column="1" Text="Next" Clicked="OnNextClicked"/>
+        <localRenderer:CustomButton Grid.Row="0" Grid.Column="1" Text="Next" Clicked="OnNextClicked" IsEnabled="{Binding IsEnabled}"/>
     </Grid>
     
 </ContentView>
