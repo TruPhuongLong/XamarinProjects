@@ -40,7 +40,7 @@ namespace CustomerApp.src.ViewModels
         }
 
         //PROP
-		private string currentPointsDelta;
+		private string currentPointsDelta = "3";
 		public string CurrentPointsDelta
         {
 			get => currentPointsDelta;

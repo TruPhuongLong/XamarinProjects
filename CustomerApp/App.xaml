@@ -32,9 +32,16 @@
             </AbsoluteLayout>
           </ControlTemplate>
 
+          <Style x:Key="btn" TargetType="Button">
+            <Setter Property="HeightRequest" Value="60" />
+          </Style>
+
+            
 
           <converter:DateToDeltaMinuteTime x:Key="DateToDeltaMinuteTime" />
           <converter:Not x:Key="Not" />
+
+
             
         </ResourceDictionary>
     </Application.Resources>

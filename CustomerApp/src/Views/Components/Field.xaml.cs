@@ -54,6 +54,12 @@ namespace CustomerApp.src.Views.Components
 			}
         }
 
+		//PROP /IsPassword
+		public bool IsPassword
+		{
+			set { entry.IsPassword = value; }
+		}
+
         //BINDABLE /Text
 		public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(Field), default(string), BindingMode.TwoWay);
         public string Text
@@ -65,6 +71,7 @@ namespace CustomerApp.src.Views.Components
         {
             Text = e.NewTextValue;
         }
+        
 
 		//ERRORS /private /dictionary
 		//public Dictionary<string, string> ErrorDic = new Dictionary<string, string>();

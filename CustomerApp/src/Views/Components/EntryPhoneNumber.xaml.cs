@@ -70,6 +70,8 @@ namespace CustomerApp.src.Views.Components
 		//FUNC /Add /private 
 		private void Add(string styleId)
 		{
+			//only add when phoneNumber is <= 10 length:
+			if (PhoneNumber.Length > 10) return;
 			PhoneNumber = PhoneNumber + styleId;
 		}
 

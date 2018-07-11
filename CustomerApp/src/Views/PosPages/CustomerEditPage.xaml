@@ -14,7 +14,7 @@
 
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="100">
         <local:CustomerInfoView BindingContext="{Binding Tuple.Item1}"/>
-        <local:ReviewView Review="{Binding Tuple.Item1.CurrentPoints, Mode=OneWay}" HorizontalOptions="Center"/>
+        <local:ReviewView Review="{Binding CurrentPointsDelta, Mode=OneWay}" HorizontalOptions="Center"/>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
             <local:EntryNumberView Number="{Binding CurrentPointsDelta, Mode=TwoWay}" HorizontalOptions="Center"/>
             <localRenderer:CustomButton Text="Add Reward Point" Command="{Binding SaveCommand}" IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}">
