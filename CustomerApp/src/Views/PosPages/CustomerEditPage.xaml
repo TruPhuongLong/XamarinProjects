@@ -13,11 +13,17 @@
     </ContentPage.ToolbarItems>-->
 
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="100">
-        <!--<local:CustomerInfoView BindingContext="{Binding Customer}"/>
-        <loca-->l:ReviewView Review="{Binding CurrentPoints, Mode=OneWay}" HorizontalOptions="Center"/>
+        <local:CustomerInfoView BindingContext="{Binding Tuple.Item1}"/>
+        <local:ReviewView Review="{Binding Tuple.Item1.CurrentPoints, Mode=OneWay}" HorizontalOptions="Center"/>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-<!--            <local:EntryNumberView Number="{Binding CurrentPoints, Mode=TwoWay}" HorizontalOptions="Center"/>-->
-            <localRenderer:CustomButton Text="Add Reward Point" Command="{Binding SaveCommand}"/>
+            <local:EntryNumberView Number="{Binding CurrentPointsDelta, Mode=TwoWay}" HorizontalOptions="Center"/>
+            <localRenderer:CustomButton Text="Add Reward Point" Command="{Binding SaveCommand}">
+                <localRenderer:CustomButton.Triggers>
+                    <DataTrigger TargetType="localRenderer:CustomButton" Binding="{Binding Tuple.Item2}" Value="-">
+                        <Setter Property="Text" Value="Redeem Reward Point" />
+                    </DataTrigger>
+                </localRenderer:CustomButton.Triggers>
+            </localRenderer:CustomButton>
         </StackLayout>
     </StackLayout>
     

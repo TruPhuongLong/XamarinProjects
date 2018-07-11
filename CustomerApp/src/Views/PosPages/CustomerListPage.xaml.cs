@@ -31,9 +31,9 @@ namespace CustomerApp.src.Views.PosPages
 
         }
 
-		void Handle_GiftEventHandler(object sender, Customer customer)
+		void Handle_GiftEventHandler(object sender, Tuple<Customer, string> tuple)
         {
-			ViewModel.GiftCommand.Execute(customer);
+			ViewModel.GiftCommand.Execute(tuple);
 
         }
 

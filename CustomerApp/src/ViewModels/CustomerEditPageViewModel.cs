@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace CustomerApp.src.ViewModels
 {
-	public class CustomerEditPageViewModel: BaseViewModel<Customer>
+	public class CustomerEditPageViewModel: BaseViewModel<Tuple<Customer, string>>
     {
 		private CustomerService CustomerService;
 		private SignalRService SignalRService;
@@ -21,51 +21,57 @@ namespace CustomerApp.src.ViewModels
 			SignalRService = signalRService;
         }
 
-		public override Task Init(Customer parameter)
+		public override Task Init(Tuple<Customer , string> _tuple)
 		{
 			return Task.Run(() => {
-				Customer = parameter;
-				CurrentPoints = Customer.CurrentPoints.ToString();	
+				Tuple = _tuple;
 			});
 		}
-
-        //PROP
-		private string currentPoints;
-		public string CurrentPoints
+        
+		//PROP
+		private Tuple<Customer, string> tuple;
+		public Tuple<Customer, string> Tuple
         {
-			get => currentPoints;
-			set 
-			{ 
-				SetProperty(ref currentPoints, value); 
-				SaveCommand.ChangeCanExecute();
-			}
+			get => tuple;
+            set
+            {
+				SetProperty(ref tuple, value);
+            }
         }
 
         //PROP
-		private Customer customer;
-		public Customer Customer
-		{
-			get => customer;
+		private string currentPointsDelta;
+		public string CurrentPointsDelta
+        {
+			get => currentPointsDelta;
 			set 
 			{ 
-				SetProperty(ref customer, value);
+				SetProperty(ref currentPointsDelta, value); 
 			}
-		}
+        }
 
 		//COMMAND
 		private Command saveCommand;
 		public Command SaveCommand
 		{
-			get => saveCommand ?? (saveCommand = new Command(ExecuteCommand, ValidateCommand));
+			get => saveCommand ?? (saveCommand = new Command(ExecuteCommand));
 		}
 		async void ExecuteCommand()
 		{
+			//validate CurrentPoints
+			if(!ValidateCurrentPointsDelta())
+			{
+				// message currentPoint not float number:
+                ((CustomerStore)CustomerStore).Dispath_Notification("wrong format");
+				return;
+			}
+
 			// trigger up indicator
 			((CustomerStore)CustomerStore).Dispath_Indicator(true);
 
-			var _CurrentPoints = float.Parse(CurrentPoints);
-			var newCustomer = Customer;
-			newCustomer.CurrentPoints = _CurrentPoints;
+			var _CurrentPointsDelta = float.Parse(CurrentPointsDelta);
+			var newCustomer = Tuple.Item1;
+			newCustomer.CurrentPoints = Tuple.Item2 == "+" ? Tuple.Item1.CurrentPoints + _CurrentPointsDelta : Tuple.Item1.CurrentPoints - _CurrentPointsDelta;
 			var CustomerEdited = await CustomerService.Put(newCustomer);
 
 			if(CustomerEdited != null)
@@ -83,11 +89,11 @@ namespace CustomerApp.src.ViewModels
 			// trigger off indicator
 			((CustomerStore)CustomerStore).Dispath_Indicator(false);
 		}
-		bool ValidateCommand()
+		bool ValidateCurrentPointsDelta()
 		{
 			//if (CurrentPoints == null) return false;
 			float n;
-			return float.TryParse(CurrentPoints, out n);
+			return float.TryParse(CurrentPointsDelta, out n);
 		}
 
 	}

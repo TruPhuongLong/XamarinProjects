@@ -14,6 +14,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <StackLayout Grid.Column="0" Spacing="10">
@@ -26,7 +27,10 @@
             <Label Text="20 mins ago"/>
         </StackLayout>
         
-        <localRenderer:CustomButton Grid.Column="2" Image="gift.png" HorizontalOptions="End" BackgroundColor="Transparent" Clicked="OnGiftClicked"/>
+        <localRenderer:CustomButton Grid.Column="2" Text="Add Reward Point" StyleId="+" BackgroundColor="Transparent" Clicked="OnGiftClicked"/>
+
+        <localRenderer:CustomButton Grid.Column="3" Text="Redeem Reward Point" StyleId="-" BackgroundColor="Transparent" Clicked="OnGiftClicked"/>
+
     </Grid>
     
 </d:ViewCell>

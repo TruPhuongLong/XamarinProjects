@@ -19,12 +19,18 @@ namespace CustomerApp.src.Views.Components
 
 		void OnGiftClicked(object sender, EventArgs args)
 		{
-			if (GiftEventHandler != null) 
-				GiftEventHandler(this, (Customer)ViewModel);
+			Button btn = (Button)sender;
+
+			if (GiftEventHandler != null)
+            {
+				GiftEventHandler(this, new Tuple<Customer, string>((Customer)ViewModel, btn.StyleId));
+            }
+
 		}
 
 		//EVENT
-		public event EventHandler<Customer> GiftEventHandler;
+		public event EventHandler<Tuple<Customer, string>> GiftEventHandler;
+        
 
     }
 }

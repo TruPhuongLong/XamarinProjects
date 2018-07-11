@@ -48,16 +48,16 @@ namespace CustomerApp.src.ViewModels
         {
 			await NavService.NavigateToViewModel<CustomerInfoPageViewModel, Customer>(customer);
         }
-
+        
 		//COMMAND /Gift command:
-		Command<Customer> giftCommand;
-		public Command<Customer> GiftCommand
+		Command<Tuple<Customer, string>> giftCommand;
+		public Command<Tuple<Customer, string>> GiftCommand
         {
-			get => giftCommand ?? (giftCommand = new Command<Customer>(ExecuteGiftCommand));
+			get => giftCommand ?? (giftCommand = new Command<Tuple<Customer, string>>(ExecuteGiftCommand));
         }
-		async void ExecuteGiftCommand(Customer customer)
+		async void ExecuteGiftCommand(Tuple<Customer, string> tuple)
         {
-			await NavService.NavigateToViewModel<CustomerEditPageViewModel, Customer>(customer);
+			await NavService.NavigateToViewModel<CustomerEditPageViewModel, Tuple<Customer, string>>(tuple);
         }
 
 		//COMMAND /delete list
