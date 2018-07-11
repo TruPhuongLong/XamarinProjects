@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
@@ -52,5 +53,20 @@ namespace CustomerApp.src.libs
 			var Nav = Application.Current.MainPage as NavigationPage;
 			return Nav.CurrentPage;
 		}
-    }   
+    }
+
+
+	public class DateToDeltaMinuteTime : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			var delta = DateTime.Now - (DateTime)value;
+			return delta.Minutes;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
+    xmlns:converter="clr-namespace:CustomerApp.src.libs"
     x:Class="CustomerApp.App">
     
     <Application.Resources>
@@ -30,6 +31,9 @@
                 
             </AbsoluteLayout>
           </ControlTemplate>
+
+
+          <converter:DateToDeltaMinuteTime x:Key="DateToDeltaMinuteTime" />
             
         </ResourceDictionary>
     </Application.Resources>

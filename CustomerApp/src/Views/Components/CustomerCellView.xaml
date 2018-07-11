@@ -24,7 +24,7 @@
 
         <StackLayout Grid.Column="1" Spacing="10">
             <Label Text="{Binding CurrentPoints, StringFormat='{0} points'}" TextColor="Maroon" FontSize="Large"/>
-            <Label Text="20 mins ago"/>
+            <Label Text="{Binding LastVisited}"/>
         </StackLayout>
         
         <localRenderer:CustomButton Grid.Column="2" Text="Add Reward Point" StyleId="+" BackgroundColor="Transparent" Clicked="OnGiftClicked"/>
