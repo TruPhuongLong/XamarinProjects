@@ -19,7 +19,7 @@ namespace CustomerApp.src.Views.PosPages
         public CustomerListPage()
         {
             InitializeComponent();
-			BindingContext = new CustomerListPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<SignalRService>());
+			//BindingContext = new CustomerListPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<SignalRService>());
 			Title = "Check In List";
         }
 
@@ -37,5 +37,14 @@ namespace CustomerApp.src.Views.PosPages
 
         }
 
-    }
+
+        // don't know why it need some second delay.
+		//if i put this statement on public CustomerListPage(). then it can not run signalR join to server.
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+			BindingContext = new CustomerListPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<SignalRService>());
+		}
+
+	}
 }

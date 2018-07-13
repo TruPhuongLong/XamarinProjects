@@ -8,6 +8,7 @@ using CustomerApp.src.Services.signalRService;
 using Xamarin.Forms;
 using CustomerApp.src.redux.actions;
 using CustomerApp.src.redux.store;
+using CustomerApp.src.libs;
 
 namespace CustomerApp.src.ViewModels
 {
@@ -36,6 +37,8 @@ namespace CustomerApp.src.ViewModels
 			});
 
 			await SignalRService.PosJoinGroup();
+			//await FuncHelp.CurrentPage().DisplayAlert("", "connect pos join group", "ok");
+			Debug.WriteLine("=== pos jon group");
 		}
         
 		//COMMAND /Detail Command:
