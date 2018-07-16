@@ -15,6 +15,7 @@ namespace CustomerApp.src.Views.PosPages
         {
             InitializeComponent();
 			BindingContext = new PosLoginPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<AuthService>());
+			Title = "Reward";
         }
 
     }

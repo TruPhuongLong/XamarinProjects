@@ -61,5 +61,17 @@ namespace CustomerApp.src.ViewModels
 			((CustomerStore)CustomerStore).Dispath_Indicator(false);
         }
 
+		//COMMAND /sign out
+		Command signout;
+		public Command Signout
+		{
+			get => signout ?? (signout = new Command(ExecuteCommand_Signout));	
+		}
+		async void ExecuteCommand_Signout()
+		{
+			await LocalStorage.Reset();
+			await NavService.PreviousPage();
+		}
+
 	}
 }

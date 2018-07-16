@@ -7,19 +7,28 @@
     ControlTemplate="{StaticResource MainPageTemplate}"
     >
     
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" WidthRequest="280" HeightRequest="280" Spacing="100">
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="280" Spacing="100">
+        
         <localRenderer:CustomButton 
             Command="{Binding PushCustomerListPage}" 
-            Text="Business Reward" 
+            Text="Reward Manager" 
             IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}"
             Style="{StaticResource btn}"
         />
+        
         <localRenderer:CustomButton 
             Command="{Binding PushCustomerLoginPage}" 
             Text="Customer Reward" 
             IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}"
             Style="{StaticResource btn}"
         />
+
+        <localRenderer:CustomButton 
+            Text="sign out" 
+            BackgroundColor="Transparent"
+            Command="{Binding Signout}"
+        />
+        
     </StackLayout>
     
 </ContentPage>

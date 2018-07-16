@@ -8,7 +8,7 @@
     x:Name="LoginView"
     >
 
-    <Grid RowSpacing="60" ColumnSpacing="20" BindingContext="{Binding Source={x:Reference LoginView}}" Padding="40, 60" BackgroundColor="Gray">
+    <Grid RowSpacing="60" ColumnSpacing="20" BindingContext="{Binding Source={x:Reference LoginView}}" Padding="40, 60">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
