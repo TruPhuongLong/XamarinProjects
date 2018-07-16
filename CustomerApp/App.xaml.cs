@@ -48,7 +48,7 @@ namespace CustomerApp
 		{
 			//var rootPage = GetRootPage();  
 
-			var rootPage = new NavigationPage(new EntryPage());
+			var rootPage = new NavigationPage(new CustomerListPage());
             var navService = DependencyService.Get<ICustomerNavService>() as CustomerNavService;
 
             // this point reference navService.navigation to Navigtion -> it importance.

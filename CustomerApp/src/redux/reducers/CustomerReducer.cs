@@ -37,6 +37,13 @@ namespace CustomerApp.src.redux.reducers
 		{
 			//var newState = new CustomerState();
 			// because state is not reference, it is copy, so not need copy again.
+			var CustomerHistory = action.Payload.CustomerHistory;
+			state.Customer = null;
+			if(CustomerHistory != null && CustomerHistory.Length > 0)
+			{
+				state.Customer = CustomerHistory[CustomerHistory.Length - 1];
+			}
+
 			state.CustomerHistory = action.Payload.CustomerHistory;
 			return state;
 		}

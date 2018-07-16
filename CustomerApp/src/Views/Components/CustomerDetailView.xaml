@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="CustomerApp.src.Views.Components.CustomerDetailView">
+    
+    <StackLayout>
+        <Label Text="{Binding MainPhone}" FontSize="Large" FontAttributes="Bold"/>
+        <Label Text="{Binding Name}"/>
+        <Label Text="{Binding Address}" />
+        <Label Text="{Binding DateOfBirth, StringFormat='DOB: {0}'}"/>
+<!--        <Label Text="{Binding LastVisited, StringFormat='Last visit: {0}'}"/>-->
+    </StackLayout>
+    
+</ContentView>

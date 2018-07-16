@@ -6,6 +6,14 @@ namespace CustomerApp.src.libs
 {
 	public class LocalStorage
     {
+        //SET /reset
+		public static async Task Reset()
+		{
+			await SetAccessToken(null);
+			await SetUserId(null);
+			await SetEnviroment(null);
+		}
+
 		//GET /access_token
 		public static string GetAccessToken()
 		{

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="CustomerApp.src.Views.Components.CustomerRewardView">
+    
+    <StackLayout Spacing="20">
+        <Label Text="Reward Point" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+        <Label Text="{Binding CurrentPoints}" TextColor="Maroon" FontSize="55" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+    </StackLayout>
+    
+</ContentView>

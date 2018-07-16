@@ -8,7 +8,7 @@ namespace CustomerApp.src.redux.store
 {
 	public struct CustomerState
 	{
-		//public Customer? Customer { get; set; }
+		public Customer? Customer { get; set; }
 		public Customer[] CustomerHistory { get; set; }
 		public bool IsRunningIndicator { get; set; }
 		public Notification? Notification { get; set; }
@@ -20,6 +20,7 @@ namespace CustomerApp.src.redux.store
 			CustomerHistory = customerHistory;
 			IsRunningIndicator = isRunningIndicator;
 			Notification = notification;
+			Customer = null;
 		}
 	}
 

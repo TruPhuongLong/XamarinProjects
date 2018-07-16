@@ -6,6 +6,7 @@ using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.Services.signalRService;
 using CustomerApp.src.ViewModels;
 using Xamarin.Forms;
+using CustomerApp.src.Views.Components;
 
 namespace CustomerApp.src.Views.PosPages
 {
@@ -19,22 +20,13 @@ namespace CustomerApp.src.Views.PosPages
         public CustomerListPage()
         {
             InitializeComponent();
-			//BindingContext = new CustomerListPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<SignalRService>());
 			Title = "Check In List";
         }
-
-		void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+              
+		void OnChangeRewardPoint(object sender, EventArgs args)
         {
-            Customer? customer = (Customer)e.Item;
-            if (customer == null) return;
-            ViewModel.DetailCommand.Execute(customer);
-
-        }
-
-		void Handle_GiftEventHandler(object sender, Tuple<Customer, string> tuple)
-        {
-			ViewModel.GiftCommand.Execute(tuple);
-
+			Button btn = (Button)sender;
+			ViewModel.ChangePointCommand(btn.StyleId);
         }
 
 
@@ -46,5 +38,32 @@ namespace CustomerApp.src.Views.PosPages
 			BindingContext = new CustomerListPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<SignalRService>());
 		}
 
+        //FUNC /remove view if Delta birthday < 10
+		private void OnBirthdayBCTC(object sender, EventArgs args)
+		{
+			CustomerBirthdayMessageView cbmv = (CustomerBirthdayMessageView)sender;
+			var customer = cbmv.BindingContext as Customer?;
+			if (customer == null) return;
+
+			//good to go
+			//check delta birthday
+			var customerDayOfBirth = ((Customer)customer).DateOfBirth;
+			var timeForCal = new DateTime(customerDayOfBirth.Year, DateTime.Now.Month, DateTime.Now.Day);
+
+			var delta = (timeForCal - customerDayOfBirth).Days;
+
+			//check delta in range 0-10:
+			if(delta > 10 || delta < 0)
+			{            
+                //remove CustomerBirthdayMessageView
+                var parent = cbmv.Parent as Grid;
+                parent.Children.Remove(cbmv);
+
+                
+			}else{
+				cbmv.IsVisible = true;
+			}
+
+		}
 	}
 }

@@ -56,12 +56,12 @@ namespace CustomerApp.src.libs
     }
 
 
-	public class DateToDeltaMinuteTime : IValueConverter
+	public class DateToDeltaDays : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			var delta = DateTime.Now - (DateTime)value;
-			return delta.Minutes;
+			return delta.Days;
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

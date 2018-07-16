@@ -33,57 +33,22 @@ namespace CustomerApp.src.ViewModels
 			SignalRService.OnListCustomersChanged(action =>
 			{
 				CustomerStore.Dispath(action);
-				//((CustomerStore)CustomerStore).Dispath_Notification("new Customer come in");
 			});
-
+            
 			await SignalRService.PosJoinGroup();
-			//await FuncHelp.CurrentPage().DisplayAlert("", "connect pos join group", "ok");
-			Debug.WriteLine("=== pos jon group");
 		}
         
-		//COMMAND /Detail Command:
-		Command<Customer> detailCommand;
-		public Command<Customer> DetailCommand
-		{
-			get => detailCommand ?? (detailCommand = new Command<Customer>( customer => ExecuteCommand(customer) ));
-		}
-		async void ExecuteCommand(Customer customer)
+		//COMMAND /change point command:
+		Command<Tuple<Customer, string>> changePointCommand;
+		public Command<Tuple<Customer, string>> ChangePointCommand
         {
-			await NavService.NavigateToViewModel<CustomerInfoPageViewModel, Customer>(customer);
+			get => changePointCommand ?? (changePointCommand = new Command<Tuple<Customer, string>>(Execute_ChangePointCommand));
         }
-        
-		//COMMAND /Gift command:
-		Command<Tuple<Customer, string>> giftCommand;
-		public Command<Tuple<Customer, string>> GiftCommand
-        {
-			get => giftCommand ?? (giftCommand = new Command<Tuple<Customer, string>>(ExecuteGiftCommand));
-        }
-		async void ExecuteGiftCommand(Tuple<Customer, string> tuple)
+		async void Execute_ChangePointCommand(Tuple<Customer, string> tuple)
         {
 			await NavService.NavigateToViewModel<CustomerEditPageViewModel, Tuple<Customer, string>>(tuple);
         }
 
-		//COMMAND /delete list
-		Command clearCommand;
-		public Command ClearCommand
-		{
-			get => clearCommand ?? (clearCommand = new Command(ExecuteClearCommand));
-		}
-		async void ExecuteClearCommand()
-		{
-			await SignalRService.ClearCustomers();
-		}
-
-		//COMMAND /SettingCommand
-		Command settingCommand;
-		public Command SettingCommand
-        {
-			get => settingCommand ?? (settingCommand = new Command(ExecuteSettingCommand));
-        }
-		void ExecuteSettingCommand()
-        {
-
-        }
 
 	}
 }

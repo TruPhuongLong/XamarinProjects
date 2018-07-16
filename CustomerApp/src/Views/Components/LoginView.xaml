@@ -18,7 +18,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <local:Field Grid.Row="0" Grid.Column="0" x:Name="email" Placeholder="@email" Require="true" IsEmail="true" Text="{Binding Email}" ></local:Field>
+        <local:Field Grid.Row="0" Grid.Column="0" x:Name="username" Placeholder="@username" Require="true" Text="{Binding UserName}" ></local:Field>
 
         <local:Field Grid.Row="1" Grid.Column="0" VerticalOptions="Start" x:Name="password" Placeholder="@password" Require="true" Text="{Binding Password}" IsPassword="true" _HeightRequest="60"></local:Field>
 
@@ -28,7 +28,7 @@
                     
                     <MultiTrigger.Conditions>
                         
-                        <BindingCondition Binding="{Binding Source={x:Reference email}, Path=ErrorDic.Keys.Count}" Value="0"/>
+                        <BindingCondition Binding="{Binding Source={x:Reference username}, Path=ErrorDic.Keys.Count}" Value="0"/>
                         <BindingCondition Binding="{Binding Source={x:Reference password}, Path=ErrorDic.Keys.Count}" Value="0"/>
 
                         <BindingCondition Binding="{Binding IsEnabled}" Value="true"/>

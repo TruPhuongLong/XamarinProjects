@@ -2,12 +2,13 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:local="clr-namespace:CustomerApp.src.Views.Components" 
+    xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
+    xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
     x:Class="CustomerApp.src.Views.PosPages.CustomerListPage"
     ControlTemplate="{StaticResource MainPageTemplate}"
     >
     
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Icon="setting.png"  Command="{Binding SettingCommand}"/>
         <ToolbarItem Icon="delete.png" Command="{Binding ClearCommand}"/>
     </ContentPage.ToolbarItems>
@@ -18,6 +19,57 @@
                 <local:CustomerCellView GiftEventHandler="Handle_GiftEventHandler"/>
             </DataTemplate>
         </ListView.ItemTemplate>
-    </ListView>
+    </ListView>-->
+
+    <Grid Padding="20, 10" RowSpacing="70">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <local:CustomerDetailView Grid.Row="0" Grid.Column="0" BindingContext="{Binding CustomerStore.State.Customer}"/>
+
+        <local:CustomerRewardView Grid.Row="0" Grid.Column="1" BindingContext="{Binding CustomerStore.State.Customer}"/>
+
+        <local:CustomerBirthdayMessageView 
+            Grid.Row="1" 
+            Grid.ColumnSpan="2" 
+            BindingContext="{Binding CustomerStore.State.Customer}" 
+            BindingContextChanged="OnBirthdayBCTC" 
+            IsVisible="false"
+       />
+
+        <Label 
+           Grid.Row="2" 
+           Grid.ColumnSpan="2" 
+           Text="{Binding CustomerStore.State.Customer.LastVisited, StringFormat='Last visit: {0}'}" 
+           VerticalTextAlignment="Center" 
+           HorizontalTextAlignment="Center"
+           />
+
+        <localRenderer:CustomButton 
+            Grid.Row="3" 
+            Grid.Column="0" 
+            Text="Redeem" 
+            Style="{StaticResource btn-tranparent-border}" 
+            BorderColor="Red" 
+            HorizontalOptions="Center"
+        />
+
+        <localRenderer:CustomButton 
+            Grid.Row="3" 
+            Grid.Column="1" 
+            Text="Add points" 
+            Style="{StaticResource btn-tranparent-border}" 
+            HorizontalOptions="Center"
+        />
+        
+    </Grid>
 
 </ContentPage>
