@@ -5,24 +5,30 @@
     xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
     xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
     x:Class="CustomerApp.src.Views.Components.LoginView"
-    Padding="40, 60"
-    WidthRequest="280"
     x:Name="LoginView"
     >
 
-    <StackLayout Spacing="20" BindingContext="{Binding Source={x:Reference LoginView}}">
-        
-        <local:Field x:Name="username" Placeholder="@username" Require="true" Text="{Binding UserName}"></local:Field>
-        
-        <local:Field x:Name="password" Placeholder="@password" Require="true" Text="{Binding Password}" IsPassword="true"></local:Field>
+    <Grid RowSpacing="60" ColumnSpacing="20" BindingContext="{Binding Source={x:Reference LoginView}}" Padding="40, 60" BackgroundColor="Gray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
-        <localRenderer:CustomButton Clicked="OnLoginClicked" Margin="0, 40, 0, 0" Text="Login" IsEnabled="false" Style="{StaticResource btn}">
+        <local:Field Grid.Row="0" Grid.Column="0" x:Name="email" Placeholder="@email" Require="true" IsEmail="true" Text="{Binding Email}" ></local:Field>
+
+        <local:Field Grid.Row="1" Grid.Column="0" VerticalOptions="Start" x:Name="password" Placeholder="@password" Require="true" Text="{Binding Password}" IsPassword="true" _HeightRequest="60"></local:Field>
+
+        <localRenderer:CustomButton Grid.Row="1" Grid.Column="1" VerticalOptions="Start" Clicked="OnLoginClicked" Text="Login" IsEnabled="false" Style="{StaticResource btn}" >
             <localRenderer:CustomButton.Triggers>
                 <MultiTrigger TargetType="localRenderer:CustomButton">
                     
                     <MultiTrigger.Conditions>
                         
-                        <BindingCondition Binding="{Binding Source={x:Reference username}, Path=ErrorDic.Keys.Count}" Value="0"/>
+                        <BindingCondition Binding="{Binding Source={x:Reference email}, Path=ErrorDic.Keys.Count}" Value="0"/>
                         <BindingCondition Binding="{Binding Source={x:Reference password}, Path=ErrorDic.Keys.Count}" Value="0"/>
 
                         <BindingCondition Binding="{Binding IsEnabled}" Value="true"/>
@@ -30,11 +36,18 @@
                     </MultiTrigger.Conditions>
 
                     <Setter Property="IsEnabled" Value="true"/>
+
+                    <Setter Property="BackgroundColor" Value="Blue"/>
+
+                    <Setter Property="TextColor" Value="White"/>
                     
                 </MultiTrigger>
             </localRenderer:CustomButton.Triggers>
         </localRenderer:CustomButton>
-    </StackLayout>
+        
+    </Grid>
+
+
         
 </ContentView>
 

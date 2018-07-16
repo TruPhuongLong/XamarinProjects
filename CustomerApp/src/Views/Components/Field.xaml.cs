@@ -41,6 +41,15 @@ namespace CustomerApp.src.Views.Components
 				SetErrors();
             }
         }
+
+        //PROP /HeightRequest
+		public double _HeightRequest
+		{
+			set
+			{
+				entry.HeightRequest = value;
+			}
+		}
               
 		//PROP /Placeholder
 		private string placeholder;

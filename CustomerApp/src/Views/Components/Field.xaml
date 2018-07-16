@@ -5,7 +5,7 @@
     x:Class="CustomerApp.src.Views.Components.Field">
 
     <StackLayout>
-        <Entry x:Name="entry" />
+        <Entry x:Name="entry"/>
         <Label x:Name="lableErrors" TextColor="Maroon"/>
     </StackLayout>
 

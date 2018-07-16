@@ -11,7 +11,7 @@ namespace CustomerApp.src.Views.Components
 	public partial class LoginView : ContentView
     {
 		//PROPS:
-        public string UserName { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
 
         public LoginView()
@@ -22,7 +22,7 @@ namespace CustomerApp.src.Views.Components
         //EVENT
 		void OnLoginClicked(object sender, EventArgs args)
 		{
-			Execute(Command, new User{UserName = UserName, Password = Password});
+			Execute(Command, new User{Email = Email, Password = Password});
 		}
 
         //BINDABLE /command

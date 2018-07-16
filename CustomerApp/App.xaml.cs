@@ -46,7 +46,9 @@ namespace CustomerApp
 
 		private void InitNav()
 		{
-			var rootPage = GetRootPage();         
+			//var rootPage = GetRootPage();  
+
+			var rootPage = new NavigationPage(new PosLoginPage());
             var navService = DependencyService.Get<ICustomerNavService>() as CustomerNavService;
 
             // this point reference navService.navigation to Navigtion -> it importance.
