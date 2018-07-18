@@ -12,11 +12,14 @@
         <ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
     </ContentPage.ToolbarItems>-->
 
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="100">
-        <local:CustomerInfoView BindingContext="{Binding Tuple.Item1}"/>
+    <!--<StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="100">
+        
         <local:ReviewView Review="{Binding CurrentPointsDelta, Mode=OneWay}" HorizontalOptions="Center"/>
+        
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+            
             <local:EntryNumberView Number="{Binding CurrentPointsDelta, Mode=TwoWay}" HorizontalOptions="Center"/>
+            
             <localRenderer:CustomButton Text="Add Reward Point" Command="{Binding SaveCommand}" IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}">
                 <localRenderer:CustomButton.Triggers>
                     <DataTrigger TargetType="localRenderer:CustomButton" Binding="{Binding Tuple.Item2}" Value="-">
@@ -24,7 +27,45 @@
                     </DataTrigger>
                 </localRenderer:CustomButton.Triggers>
             </localRenderer:CustomButton>
+            
         </StackLayout>
-    </StackLayout>
+        
+    </StackLayout>-->
+
+    <Grid HorizontalOptions="Center">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <StackLayout Grid.Row="0" Grid.Column="1">
+            <Label Text="{Binding CustomerStore.State.Customer.Name}" HorizontalOptions="Center"/>
+            <local:ReviewView Review="{Binding CurrentPointsDelta, Mode=OneWay}" HorizontalOptions="Center"/>
+        </StackLayout>
+
+        <local:CustomerRewardView Grid.Row="1" Grid.Column="0" LabelText="Current Reward Point" RewardPoint="{Binding CustomerStore.State.Customer.CurrentPoints}" RewardPointColor="Gray"/>
+
+        <local:CustomerRewardView Grid.Row="2" Grid.Column="0" LabelText="New Reward Point" FontAttributes="Bold" RewardPoint="{Binding CurrentPointsDelta}"/>
+
+        <local:EntryNumberView Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Number="{Binding CurrentPointsDelta, Mode=TwoWay}"/>
+
+        <localRenderer:CustomButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Text="Add" Command="{Binding SaveCommand}" IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}" BackgroundColor="Blue" TextColor="White">
+            <localRenderer:CustomButton.Triggers>
+                <DataTrigger TargetType="localRenderer:CustomButton" Binding="{Binding Styleid}" Value="-">
+                    <Setter Property="Text" Value="Redeem" />
+                    <Setter Property="BackgroundColor" Value="Red" />
+                </DataTrigger>
+            </localRenderer:CustomButton.Triggers>
+        </localRenderer:CustomButton>
+        
+    </Grid>
     
 </ContentPage>

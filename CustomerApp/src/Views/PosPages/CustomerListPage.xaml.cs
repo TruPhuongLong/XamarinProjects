@@ -26,7 +26,14 @@ namespace CustomerApp.src.Views.PosPages
 		void OnChangeRewardPoint(object sender, EventArgs args)
         {
 			Button btn = (Button)sender;
-			ViewModel.ChangePointCommand(btn.StyleId);
+			if(btn.StyleId == "0")
+			{
+				
+			}
+			else
+			{
+				ViewModel.ChangePointCommand.Execute(btn.StyleId);
+			}
         }
 
 
@@ -42,6 +49,8 @@ namespace CustomerApp.src.Views.PosPages
 		private void OnBirthdayBCTC(object sender, EventArgs args)
 		{
 			CustomerBirthdayMessageView cbmv = (CustomerBirthdayMessageView)sender;
+			if (cbmv == null) return;
+
 			var customer = cbmv.BindingContext as Customer?;
 			if (customer == null) return;
 
@@ -57,6 +66,7 @@ namespace CustomerApp.src.Views.PosPages
 			{            
                 //remove CustomerBirthdayMessageView
                 var parent = cbmv.Parent as Grid;
+				if (parent == null) return;
                 parent.Children.Remove(cbmv);
 
                 

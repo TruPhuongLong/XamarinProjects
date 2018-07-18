@@ -2,11 +2,13 @@
 <ContentView 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="CustomerApp.src.Views.Components.CustomerRewardView">
+    x:Class="CustomerApp.src.Views.Components.CustomerRewardView"
+    x:Name="this"
+    >
     
-    <StackLayout Spacing="20">
-        <Label Text="Reward Point" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-        <Label Text="{Binding CurrentPoints}" TextColor="Maroon" FontSize="55" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+    <StackLayout Spacing="20" BindingContext="{Binding Source={x:Reference this}}">
+        <Label x:Name="label_name" Text="Reward Point" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+        <Label x:Name="label_currenpoints" Text="{Binding RewardPoint}" FontSize="35" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
     </StackLayout>
     
 </ContentView>

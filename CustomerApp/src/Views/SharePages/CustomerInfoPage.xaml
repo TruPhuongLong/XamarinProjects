@@ -8,7 +8,7 @@
     ControlTemplate="{StaticResource MainPageTemplate}"
     >
 
-    <Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -23,6 +23,18 @@
             HorizontalOptions="Center"
             IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}"
         />
+    </Grid>-->
+
+    <Grid Padding="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <local:CustomerDetailView Grid.Column="0" BindingContext="{Binding Customer}"/>
+
+        <local:CustomerRewardView Grid.Column="1" RewardPoint="{Binding Customer.CurrentPoints}" RewardPointFontSize="55" RewardPointColor="Maroon"/>
+
     </Grid>
     
 </ContentPage>

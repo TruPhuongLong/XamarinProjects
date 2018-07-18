@@ -39,16 +39,24 @@ namespace CustomerApp.src.ViewModels
 		}
         
 		//COMMAND /change point command:
-		Command<Tuple<Customer, string>> changePointCommand;
-		public Command<Tuple<Customer, string>> ChangePointCommand
+		Command<string> changePointCommand;
+		public Command<string> ChangePointCommand
         {
-			get => changePointCommand ?? (changePointCommand = new Command<Tuple<Customer, string>>(Execute_ChangePointCommand));
+			get => changePointCommand ?? (changePointCommand = new Command<string>(Execute_ChangePointCommand));
         }
-		async void Execute_ChangePointCommand(Tuple<Customer, string> tuple)
+		async void Execute_ChangePointCommand(string styleid)
         {
-			await NavService.NavigateToViewModel<CustomerEditPageViewModel, Tuple<Customer, string>>(tuple);
+			await NavService.NavigateToViewModel<CustomerEditPageViewModel, string>(styleid);
         }
-
-
+        
+		//COMMAND /no point command:
+        Command noChangePointCommand;
+        public Command NoChangePointCommand
+        {
+			get => noChangePointCommand ?? (noChangePointCommand = new Command(Execute_NoChangePointCommand));
+        }
+		async void Execute_NoChangePointCommand()
+        {
+        }
 	}
 }

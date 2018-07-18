@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace CustomerApp.src.ViewModels
 {
-	public class CustomerEditPageViewModel: BaseViewModel<Tuple<Customer, string>>
+	public class CustomerEditPageViewModel: BaseViewModel<string>
     {
 		private CustomerService CustomerService;
 		private SignalRService SignalRService;
@@ -21,23 +21,23 @@ namespace CustomerApp.src.ViewModels
 			SignalRService = signalRService;
         }
 
-		public override Task Init(Tuple<Customer , string> _tuple)
+		public override Task Init(string styleid)
 		{
 			return Task.Run(() => {
-				Tuple = _tuple;
+				Styleid = styleid;
 			});
 		}
-        
-		//PROP
-		private Tuple<Customer, string> tuple;
-		public Tuple<Customer, string> Tuple
-        {
-			get => tuple;
-            set
-            {
-				SetProperty(ref tuple, value);
-            }
-        }
+
+		//PROP /need for binding
+		private string styleid;
+		public string Styleid 
+		{
+			get => styleid;
+			set
+			{
+				SetProperty(ref styleid, value);	
+			}
+		}
 
         //PROP
 		private string currentPointsDelta = "3";
@@ -65,13 +65,13 @@ namespace CustomerApp.src.ViewModels
                 ((CustomerStore)CustomerStore).Dispath_Notification("wrong format");
 				return;
 			}
-
+            
 			// trigger up indicator
 			((CustomerStore)CustomerStore).Dispath_Indicator(true);
 
 			var _CurrentPointsDelta = float.Parse(CurrentPointsDelta);
-			var newCustomer = Tuple.Item1;
-			newCustomer.CurrentPoints = Tuple.Item2 == "+" ? Tuple.Item1.CurrentPoints + _CurrentPointsDelta : Tuple.Item1.CurrentPoints - _CurrentPointsDelta;
+			var newCustomer = (Customer)CustomerStore.State.Customer;
+			newCustomer.CurrentPoints = Styleid == "+" ? newCustomer.CurrentPoints + _CurrentPointsDelta : newCustomer.CurrentPoints - _CurrentPointsDelta;
 			var CustomerEdited = await CustomerService.Put(newCustomer);
 
 			if(CustomerEdited != null)

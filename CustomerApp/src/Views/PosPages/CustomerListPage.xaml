@@ -27,6 +27,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -35,7 +36,7 @@
 
         <local:CustomerDetailView Grid.Row="0" Grid.Column="0" BindingContext="{Binding CustomerStore.State.Customer}"/>
 
-        <local:CustomerRewardView Grid.Row="0" Grid.Column="1" BindingContext="{Binding CustomerStore.State.Customer}"/>
+        <local:CustomerRewardView Grid.Row="0" Grid.Column="1" RewardPoint="{Binding CustomerStore.State.Customer.CurrentPoints}" RewardPointFontSize="55" RewardPointColor="Maroon"/>
 
         <local:CustomerBirthdayMessageView 
             Grid.Row="1" 
@@ -60,6 +61,8 @@
             Style="{StaticResource btn-tranparent-border}" 
             BorderColor="Red" 
             HorizontalOptions="Center"
+            StyleId="-"
+            Clicked="OnChangeRewardPoint"
         />
 
         <localRenderer:CustomButton 
@@ -68,6 +71,18 @@
             Text="Add points" 
             Style="{StaticResource btn-tranparent-border}" 
             HorizontalOptions="Center"
+            StyleId="+"
+            Clicked="OnChangeRewardPoint"
+        />
+
+        <localRenderer:CustomButton 
+            Grid.Row="4"
+            Grid.ColumnSpan="2"
+            Text="Done"
+            Style="{StaticResource btn-lg}"
+            HorizontalOptions="Center"
+            StyleId="0"
+            Clicked="OnChangeRewardPoint"
         />
         
     </Grid>

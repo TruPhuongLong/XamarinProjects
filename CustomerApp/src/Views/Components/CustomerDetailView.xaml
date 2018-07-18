@@ -9,7 +9,7 @@
         <Label Text="{Binding Name}"/>
         <Label Text="{Binding Address}" />
         <Label Text="{Binding DateOfBirth, StringFormat='DOB: {0}'}"/>
-<!--        <Label Text="{Binding LastVisited, StringFormat='Last visit: {0}'}"/>-->
+        <Label Text="{Binding LastVisited, StringFormat='Last visit: {0}'}"/>
     </StackLayout>
     
 </ContentView>
