@@ -6,6 +6,6 @@
     x:Name="this"
     >
 
-    <Label Text="{Binding Source={x:Reference this}, Path=Review}" FontSize="Large" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+    <Label x:Name="lable" Text="{Binding Source={x:Reference this}, Path=Review}" FontSize="Large" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
     
 </ContentView>

@@ -16,19 +16,21 @@ namespace CustomerApp.src.Views.PosPages
         {
             get => BindingContext as CustomerListPageViewModel;
         }
-
+        
         public CustomerListPage()
         {
             InitializeComponent();
 			Title = "Check In List";
         }
+
+      
               
 		void OnChangeRewardPoint(object sender, EventArgs args)
         {
 			Button btn = (Button)sender;
 			if(btn.StyleId == "0")
 			{
-				
+				ViewModel.NoChangePointCommand.Execute(null);
 			}
 			else
 			{
@@ -42,10 +44,10 @@ namespace CustomerApp.src.Views.PosPages
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			BindingContext = new CustomerListPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<SignalRService>());
+			BindingContext = new CustomerListPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<SignalRService2>());
 		}
 
-        //FUNC /remove view if Delta birthday < 10
+		//FUNC /remove view if Delta birthday < 10
 		private void OnBirthdayBCTC(object sender, EventArgs args)
 		{
 			CustomerBirthdayMessageView cbmv = (CustomerBirthdayMessageView)sender;

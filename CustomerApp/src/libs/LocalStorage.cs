@@ -38,16 +38,28 @@ namespace CustomerApp.src.libs
 			return Get(Constants.WHO_AM_I_KEY);
         }
 
-		//SET /enviroment for app: Pos or Customer
+		//SET /userid
         public static async Task<bool> SetUserId(string userid)
         {
 			return await Set(Constants.USER_ID_KEY, userid);
         }
 
-        //GET /enviroment
+        //GET /userid
 		public static string GetUserId()
         {
 			return Get(Constants.USER_ID_KEY);
+        }
+
+		//SET /name childgroup
+        public static async Task<bool> SetChildGroup(string childgroup)
+        {
+			return await Set(Constants.ChildGroupKey, childgroup);
+        }
+
+        //GET /name childgroup
+		public static string GetChildGroup()
+        {
+			return Get(Constants.ChildGroupKey);
         }
 
         

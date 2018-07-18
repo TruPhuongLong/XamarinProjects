@@ -16,9 +16,9 @@ namespace CustomerApp.src.ViewModels
 	public class CustomerLoginPageViewModel: BaseViewModel
     {
 		private DataService DataService;
-		private SignalRService SignalRService;
+		private SignalRService2 SignalRService;
 
-		public CustomerLoginPageViewModel(ICustomerNavService navService, DataService dataService, SignalRService signalRService): base(navService)
+		public CustomerLoginPageViewModel(ICustomerNavService navService, DataService dataService, SignalRService2 signalRService): base(navService)
         {
 			DataService = dataService;
 			SignalRService = signalRService;
@@ -26,8 +26,30 @@ namespace CustomerApp.src.ViewModels
 
 		public override Task Init()
 		{
-			throw new NotImplementedException();
+			return InitSignalR();
 		}
+
+		//SIGNALR:
+        private async Task InitSignalR()
+        {
+            SignalRService.OnCustomerChanged(action =>
+            {
+                CustomerStore.Dispath(action);
+            });
+
+            await JoinGroup();
+        }
+
+		private async Task<bool> JoinGroup()
+        {
+            var isJoinSuccess = await SignalRService.JoinGroup();
+            if (!isJoinSuccess)
+            {
+                ((CustomerStore)CustomerStore).Dispath_Notification("not connection");
+                return true;
+            }
+            return false;
+        }
 
 		string phoneNumer;
 		public string PhoneNumer
@@ -56,14 +78,11 @@ namespace CustomerApp.src.ViewModels
             // from customer info, we send to signalR to Pos update his infomation.
 			if (response != null && response.IsSuccessStatusCode)
             {
-                var content = await response.Content.ReadAsStringAsync();
+				var content = await response.Content.ReadAsStringAsync();
 
-				//invoke SignalR
-				await SignalRService.CustomerJoinGroup(content);
-                
-				//Navigate to CustomerInfoPage:
-				var customer = JsonConvert.DeserializeObject<Customer>(content);
-				await NavService.NavigateToViewModel<CustomerInfoPageViewModel, Customer>(customer);
+				await SignalRService.CustomersChanged(content);
+
+				await NavService.NavigateToViewModel<CustomerInfoPageViewModel>();
 			}else{
 				await NavService.NavigateToViewModel<CustomerSignupPageViewModel, string>(PhoneNumer);
 			}
@@ -74,7 +93,9 @@ namespace CustomerApp.src.ViewModels
 			// trigger off indicator
 			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState()));
 
-
 		}
+
+
+
 	}
 }

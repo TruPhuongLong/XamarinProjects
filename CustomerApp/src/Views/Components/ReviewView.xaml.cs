@@ -17,5 +17,13 @@ namespace CustomerApp.src.Views.Components
 			get => (string)GetValue(ReviewProperty);
 			set { SetValue(ReviewProperty, value); }
 		}
+
+		public double FontSize
+		{
+			set 
+			{
+				lable.FontSize = value;
+			}
+		}
     }
 }

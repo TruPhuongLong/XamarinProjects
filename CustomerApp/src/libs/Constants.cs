@@ -28,7 +28,7 @@ namespace CustomerApp.src.libs
 
 
 
-        //======HUB=====
+        //======HUB =====
 
         //Hub name:
         public static string HUB_NAME = "ClientHub";
@@ -42,5 +42,21 @@ namespace CustomerApp.src.libs
 		public static string CustomerJoinGroup = "CustomerJoinGroup";
 		public static string CustomerLeaveGroup = "CustomerLeaveGroup";
 		public static string ClearCustomers = "ClearCustomers";
+
+
+		//=======HUB 2 ======
+		//Hub name:
+		public static string HUB_NAME_2 = "ClientHub2";
+
+		//Hub /func name in app for hub call:
+		public static string OnCustomersChanged = "OnCustomersChanged";
+
+		//Hub /func name in hub for app call:
+		public static string JoinGroup = "JoinGroup";
+		public static string LeaveGroup = "LeaveGroup";
+		public static string CustomersChanged = "CustomersChanged";
+
+		//key for Child group
+		public static string ChildGroupKey = "ChildGroupKey";
     }
 }

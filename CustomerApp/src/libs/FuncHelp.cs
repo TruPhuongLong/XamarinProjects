@@ -53,6 +53,12 @@ namespace CustomerApp.src.libs
 			var Nav = Application.Current.MainPage as NavigationPage;
 			return Nav.CurrentPage;
 		}
+
+		public static Page GetRootPage()
+        {
+            var Nav = Application.Current.MainPage as NavigationPage;
+			return Nav.RootPage;
+        }
     }
 
 

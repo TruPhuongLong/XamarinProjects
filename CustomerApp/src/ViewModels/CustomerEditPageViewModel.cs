@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using CustomerApp.src.libs;
 using CustomerApp.src.Models;
 using CustomerApp.src.redux.actions;
 using CustomerApp.src.redux.store;
@@ -14,8 +15,8 @@ namespace CustomerApp.src.ViewModels
 	public class CustomerEditPageViewModel: BaseViewModel<string>
     {
 		private CustomerService CustomerService;
-		private SignalRService SignalRService;
-		public CustomerEditPageViewModel(ICustomerNavService navService, CustomerService customerService, SignalRService signalRService): base(navService)
+		private SignalRService2 SignalRService;
+		public CustomerEditPageViewModel(ICustomerNavService navService, CustomerService customerService, SignalRService2 signalRService): base(navService)
         {
 			CustomerService = customerService;
 			SignalRService = signalRService;
@@ -76,9 +77,11 @@ namespace CustomerApp.src.ViewModels
 
 			if(CustomerEdited != null)
 			{
-				await NavService.PreviousPage();
-				await SignalRService.CustomerLeaveGroup(newCustomer.ID.ToString());
 				((CustomerStore)CustomerStore).Dispath_Notification("save success");
+				await SignalRService.CustomersChanged(CustomerEdited);
+
+                //back page
+				await NavService.PreviousPage();
 			}
 			else
 			{

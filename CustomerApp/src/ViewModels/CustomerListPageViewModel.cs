@@ -14,14 +14,14 @@ namespace CustomerApp.src.ViewModels
 {
 	public class CustomerListPageViewModel : BaseViewModel
 	{
-		private SignalRService SignalRService;
+		private SignalRService2 SignalRService;
 		//Implement abstrack class and  constructor:
         public override Task Init()
         {
             throw new NotImplementedException();
         }
 
-		public CustomerListPageViewModel(ICustomerNavService navService, SignalRService signalRService) : base(navService)
+		public CustomerListPageViewModel(ICustomerNavService navService, SignalRService2 signalRService) : base(navService)
         {
 			SignalRService = signalRService;
 			InitSignalR();
@@ -30,12 +30,12 @@ namespace CustomerApp.src.ViewModels
 		//SIGNALR:
 		private async void InitSignalR()
 		{
-			SignalRService.OnListCustomersChanged(action =>
+			SignalRService.OnCustomerChanged(action =>
 			{
 				CustomerStore.Dispath(action);
 			});
-            
-			await SignalRService.PosJoinGroup();
+
+			await JoinGroup();
 		}
         
 		//COMMAND /change point command:
@@ -57,6 +57,19 @@ namespace CustomerApp.src.ViewModels
         }
 		async void Execute_NoChangePointCommand()
         {
+			await NavService.PreviousPage();
+        }
+
+
+		private async Task<bool> JoinGroup()
+        {
+            var isJoinSuccess = await SignalRService.JoinGroup();
+            if (!isJoinSuccess)
+            {
+                ((CustomerStore)CustomerStore).Dispath_Notification("not connection");
+                return true;
+            }
+            return false;
         }
 	}
 }

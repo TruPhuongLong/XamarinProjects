@@ -5,14 +5,14 @@ using CustomerApp.src.Services.signalRService;
 using CustomerApp.src.ViewModels;
 using Xamarin.Forms;
 
-namespace CustomerApp.src.Views.SharePages
+namespace CustomerApp.src.Views.CustomerPages
 {
-	public partial class CustomerInfoPage : ContentPage
+    public partial class CustomerFinishPage : ContentPage
     {
-		public CustomerInfoPage()
+		public CustomerFinishPage()
         {
             InitializeComponent();
-			BindingContext = new CustomerInfoPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<SignalRService2>());
+			BindingContext = new CustomerFinishPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<SignalRService2>());
         }
     }
 }

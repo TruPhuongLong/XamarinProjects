@@ -14,6 +14,7 @@ namespace CustomerApp.src.redux.actions
 		AddCustomer,
         RemoveCustomer,
         UpdateCustomer,
+		CustomerChanged,
         ListCustomerChanged,
         Indicator,
         Notification

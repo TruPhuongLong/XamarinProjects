@@ -13,8 +13,7 @@ namespace CustomerApp.src.Views.PosPages
         public CustomerEditPage()
         {
             InitializeComponent();
-			BindingContext = new CustomerEditPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<CustomerService>(), DependencyService.Get<SignalRService>());
-			Title = "Add Reward";
+			BindingContext = new CustomerEditPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<CustomerService>(), DependencyService.Get<SignalRService2>());
 		}
     }
 }

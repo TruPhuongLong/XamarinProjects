@@ -6,13 +6,15 @@ using Xamarin.Forms;
 using CustomerApp.src.libs;
 using CustomerApp.src.redux.actions;
 using CustomerApp.src.redux.store;
+using CustomerApp.src.Services.signalRService;
 
 namespace CustomerApp.src.ViewModels
 {
 	public class EntryPageViewModel : BaseViewModel
 	{
+		private SignalRService2 SignalRService;
 		// Implement BaseViewModel:
-		public EntryPageViewModel(ICustomerNavService navService) : base(navService)
+		public EntryPageViewModel(ICustomerNavService navService, SignalRService2 signalRService) : base(navService)
 		{
 		}
 
@@ -30,15 +32,16 @@ namespace CustomerApp.src.ViewModels
 		async void ExecuteCommand_PushCustomerListPage()
 		{
 			// trigger up indicator
-			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState(isRunningIndicator: true)));
+			((CustomerStore)CustomerStore).Dispath_Indicator(true);
+
 
 			await NavService.NavigateToViewModel<CustomerListPageViewModel>();
 
-			// set Enviroment:
+            // set Enviroment:
             await LocalStorage.SetEnviroment(Constants.POS_ENV);
-
+         
 			// trigger off indicator
-            CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState()));
+			((CustomerStore)CustomerStore).Dispath_Indicator(false);
 		}
         
         //COMMAND /push CustomerLoginPage
@@ -51,11 +54,12 @@ namespace CustomerApp.src.ViewModels
         {
 			// trigger up indicator
 			((CustomerStore)CustomerStore).Dispath_Indicator(true);
+            
+			await NavService.NavigateToViewModel<CustomerLoginPageViewModel>();
 
-            await NavService.NavigateToViewModel<CustomerLoginPageViewModel>();
-
-			// set Enviroment:
-			await LocalStorage.SetEnviroment(Constants.CUSTOMER_ENV);
+            // set Enviroment:
+            await LocalStorage.SetEnviroment(Constants.CUSTOMER_ENV);
+            
 
 			// trigger off indicator
 			((CustomerStore)CustomerStore).Dispath_Indicator(false);
@@ -72,6 +76,8 @@ namespace CustomerApp.src.ViewModels
 			await LocalStorage.Reset();
 			await NavService.PreviousPage();
 		}
+
+
 
 	}
 }

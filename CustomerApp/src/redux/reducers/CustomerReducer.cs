@@ -17,6 +17,9 @@ namespace CustomerApp.src.redux.reducers
         {
             switch (action._Type)
             {
+				case _Type.CustomerChanged:
+					var newState_CustomerChanged = CustomerChanged(state, action);
+					return newState_CustomerChanged;
 				case _Type.ListCustomerChanged:
 					var newState_ListCustomerChanged = ListCustomerChanged(state, action);
 					return newState_ListCustomerChanged;
@@ -31,6 +34,11 @@ namespace CustomerApp.src.redux.reducers
             }
         }
         
+		public CustomerState CustomerChanged(CustomerState state, IAction action)
+		{
+			state.Customer = action.Payload.Customer;
+			return state;
+		}
 
 		//FUNC /ListCustomerChanged
 		private CustomerState ListCustomerChanged(CustomerState state, IAction action)

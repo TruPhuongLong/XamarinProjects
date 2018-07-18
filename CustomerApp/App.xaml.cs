@@ -64,6 +64,7 @@ namespace CustomerApp
 			navService.RegisterViewMapping(typeof(CustomerLoginPageViewModel), typeof(CustomerLoginPage));
             navService.RegisterViewMapping(typeof(CustomerInfoPageViewModel), typeof(CustomerInfoPage));
 			navService.RegisterViewMapping(typeof(CustomerSignupPageViewModel), typeof(CustomerSignupPage));
+			navService.RegisterViewMapping(typeof(CustomerFinishPageViewModel), typeof(CustomerFinishPage));
 
             //set mainPage:
             MainPage = rootPage;
@@ -98,7 +99,7 @@ namespace CustomerApp
         // init Signalr
 		private void InitSignalR()
         {
-            DependencyService.Get<SignalRService>();
+            DependencyService.Get<SignalRService2>();
         }
 
 

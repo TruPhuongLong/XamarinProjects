@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
+    xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
+    x:Class="CustomerApp.src.Views.CustomerPages.CustomerFinishPage"
+    ControlTemplate="{StaticResource MainPageTemplate}"
+    x:Name="this"
+    >
+    
+    <Grid BindingContext="{Binding CustomerStore.State.Customer}">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <local:ReviewView Grid.Row="0" Grid.Column="0" Review="{Binding Name, Mode=OneWay}" HorizontalOptions="Center"/>
+
+        <local:ReviewView Grid.Row="0" Grid.Column="1" Review="{Binding MainPhone, Mode=OneWay}" HorizontalOptions="Center"/>
+
+        <local:CustomerRewardView Grid.Row="0" Grid.Column="2" RewardPoint="{Binding CurrentPoints}" RewardPointFontSize="55"/>
+
+        <local:ReviewView Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Review="Thank you" FontSize="100" HorizontalOptions="Center"/>
+
+        <localRenderer:CustomButton Grid.Row="2" Grid.Column="0" Grid.RowSpan="3"  Text="Done" BindingContext="{Binding Source={x:Reference this.BindingContext}}" Command="{Binding ExitCommand}"/>
+        
+    </Grid>
+    
+</ContentPage>

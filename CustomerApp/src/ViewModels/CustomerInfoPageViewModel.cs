@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CustomerApp.src.libs;
 using CustomerApp.src.Models;
+using CustomerApp.src.redux.store;
 using CustomerApp.src.Services.NavigationService;
 using CustomerApp.src.Services.signalRService;
 using CustomerApp.src.Views.SharePages;
@@ -9,60 +10,36 @@ using Xamarin.Forms;
 
 namespace CustomerApp.src.ViewModels
 {
-	public class CustomerInfoPageViewModel : BaseViewModel<Customer>
+	public class CustomerInfoPageViewModel : BaseViewModel
 	{
-		SignalRService SignalRService;
+		SignalRService2 SignalRService;
 
-		// Implement BaseViewModel<Customer>
-		public CustomerInfoPageViewModel(ICustomerNavService navService, SignalRService signalRService) : base(navService)
+		// Implement BaseViewModel
+		public CustomerInfoPageViewModel(ICustomerNavService navService, SignalRService2 signalRService) : base(navService)
 		{
 			SignalRService = signalRService;
 		}
 
-		public override async Task Init(Customer customerInput)
-		{
-			await Task.Run(() =>
-               Customer = customerInput
-		    );
 
-			Device.StartTimer(TimeSpan.FromSeconds(5), () =>
-            {
-				if (FuncHelp.CurrentPage() is CustomerInfoPage)
-				{
-					ExitCommand.Execute(null);
-				}
-                return false; // not repeat
-            });
-		}
-
-
-		// Business for CustomerDetailPage:
-		Customer customer;
-		public Customer Customer
-		{
-			get => customer;
-			set
-			{
-				SetProperty(ref customer, value);
-			}
-		}
-
-		Command exitCommand;
-		public Command ExitCommand
-		{
-			get => exitCommand ?? (exitCommand = new Command(ExecuteCommand));
-		}
-		async void ExecuteCommand()
+        public override Task Init()
         {
-			// disconnect to signalR:
-			//await SignalRService.CustomerLeaveGroup(Customer.ID.ToString());
-            
-			// pop to login customer page:
-			if(FuncHelp.CurrentPage() is CustomerInfoPage)
-			{
-				await NavService.PreviousPage();
-			}
+            throw new NotImplementedException();
         }
+
+
+        
+
+		Command pushToFinishPageCommand;
+		public Command PushToFinishPageCommand
+        {
+			get => pushToFinishPageCommand ?? (pushToFinishPageCommand = new Command(Execute_PushToFinishPageCommand));
+        }
+		async void Execute_PushToFinishPageCommand()
+        {
+			await NavService.NavigateToViewModel<CustomerFinishPageViewModel>();
+        }
+
+
 
 	}
 }

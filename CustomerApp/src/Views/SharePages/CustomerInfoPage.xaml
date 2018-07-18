@@ -25,15 +25,15 @@
         />
     </Grid>-->
 
-    <Grid Padding="20">
+    <Grid Padding="20" BindingContext="{Binding CustomerStore.State.Customer}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <local:CustomerDetailView Grid.Column="0" BindingContext="{Binding Customer}"/>
+        <local:CustomerDetailView Grid.Column="0" />
 
-        <local:CustomerRewardView Grid.Column="1" RewardPoint="{Binding Customer.CurrentPoints}" RewardPointFontSize="55" RewardPointColor="Maroon"/>
+        <local:CustomerRewardView Grid.Column="1" RewardPoint="{Binding CurrentPoints}" RewardPointFontSize="55" RewardPointColor="Maroon"/>
 
     </Grid>
     
