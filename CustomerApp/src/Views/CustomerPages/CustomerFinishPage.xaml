@@ -9,7 +9,7 @@
     x:Name="this"
     >
     
-    <Grid BindingContext="{Binding CustomerStore.State.Customer}">
+    <Grid BindingContext="{Binding CustomerStore.State.Customer}" RowSpacing="50" Padding="20">
         
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -18,9 +18,9 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <local:ReviewView Grid.Row="0" Grid.Column="0" Review="{Binding Name, Mode=OneWay}" HorizontalOptions="Center"/>
@@ -29,9 +29,9 @@
 
         <local:CustomerRewardView Grid.Row="0" Grid.Column="2" RewardPoint="{Binding CurrentPoints}" RewardPointFontSize="55"/>
 
-        <local:ReviewView Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Review="Thank you" FontSize="100" HorizontalOptions="Center"/>
+        <local:ReviewView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Review="Thank you" FontSize="100" HorizontalOptions="Center"/>
 
-        <localRenderer:CustomButton Grid.Row="2" Grid.Column="0" Grid.RowSpan="3"  Text="Done" BindingContext="{Binding Source={x:Reference this.BindingContext}}" Command="{Binding ExitCommand}"/>
+        <localRenderer:CustomButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"  Text="Done" BindingContext="{Binding Source={x:Reference this}}" Command="{Binding BindingContext.ExitCommand}"/>
         
     </Grid>
     

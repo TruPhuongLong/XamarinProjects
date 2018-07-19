@@ -22,7 +22,7 @@ namespace CustomerApp.src.ViewModels
 		{
 			await Task.Delay(1);
             //auto back page 
-			Device.StartTimer(TimeSpan.FromSeconds(5), () =>
+			Device.StartTimer(TimeSpan.FromSeconds(15), () =>
             {
                 if (FuncHelp.CurrentPage() is CustomerFinishPage)
                 {

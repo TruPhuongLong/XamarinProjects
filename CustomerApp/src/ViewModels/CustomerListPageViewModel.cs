@@ -57,7 +57,11 @@ namespace CustomerApp.src.ViewModels
         }
 		async void Execute_NoChangePointCommand()
         {
-			await NavService.PreviousPage();
+			var isSuccess = await SignalRService.NextStep();
+			if(!isSuccess)
+			{
+				((CustomerStore)CustomerStore).Dispath_Notification("not connection");
+			}
         }
 
 

@@ -50,11 +50,14 @@ namespace CustomerApp.src.libs
 
 		//Hub /func name in app for hub call:
 		public static string OnCustomersChanged = "OnCustomersChanged";
+		public static string OnNextStep = "OnNextStep";
+
 
 		//Hub /func name in hub for app call:
 		public static string JoinGroup = "JoinGroup";
 		public static string LeaveGroup = "LeaveGroup";
 		public static string CustomersChanged = "CustomersChanged";
+		public static string NextStep = "NextStep";
 
 		//key for Child group
 		public static string ChildGroupKey = "ChildGroupKey";

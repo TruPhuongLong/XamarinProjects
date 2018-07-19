@@ -22,11 +22,12 @@ namespace CustomerApp.src.ViewModels
         {
 			DataService = dataService;
 			SignalRService = signalRService;
+			Init();
         }
 
-		public override Task Init()
+		public override async Task Init()
 		{
-			return InitSignalR();
+			await InitSignalR();
 		}
 
 		//SIGNALR:

@@ -18,6 +18,7 @@ namespace CustomerApp.src.ViewModels
 		public CustomerInfoPageViewModel(ICustomerNavService navService, SignalRService2 signalRService) : base(navService)
 		{
 			SignalRService = signalRService;
+			InitSignalR();
 		}
 
 
@@ -26,7 +27,17 @@ namespace CustomerApp.src.ViewModels
             throw new NotImplementedException();
         }
 
-
+		//Init SignalR:
+		private void InitSignalR()
+		{
+			SignalRService.OnNextStep(() =>
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					PushToFinishPageCommand.Execute(null);
+				});
+			});
+		}
         
 
 		Command pushToFinishPageCommand;
@@ -36,7 +47,10 @@ namespace CustomerApp.src.ViewModels
         }
 		async void Execute_PushToFinishPageCommand()
         {
-			await NavService.NavigateToViewModel<CustomerFinishPageViewModel>();
+			if(FuncHelp.CurrentPage() is CustomerInfoPage)
+			{
+				await NavService.NavigateToViewModel<CustomerFinishPageViewModel>();
+			}
         }
 
 

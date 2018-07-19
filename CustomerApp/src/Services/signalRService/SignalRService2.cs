@@ -26,7 +26,7 @@ namespace CustomerApp.src.Services.signalRService
         public async void Connection()
         {
             HubConnection hubConnection = new HubConnection(Constants.BASE_URL);
-			hubProxy = hubConnection.CreateHubProxy("ClientHub2");
+			hubProxy = hubConnection.CreateHubProxy(Constants.HUB_NAME_2);
             try
             {
                 await hubConnection.Start();
@@ -43,9 +43,11 @@ namespace CustomerApp.src.Services.signalRService
 			hubProxy.On(Constants.OnCustomersChanged, _Customer => {
                 try
                 {
-					Customer Customer = JsonConvert.DeserializeObject<Customer>(_Customer);
-
-					Debug.Write(Customer);
+					Customer? Customer = null;
+					if(_Customer != "")
+					{
+						Customer = JsonConvert.DeserializeObject<Customer>(_Customer);
+					}
 
                     var newState = new CustomerState();
 					newState.Customer = Customer;
@@ -60,12 +62,27 @@ namespace CustomerApp.src.Services.signalRService
             });
         }
 
+		//LISTEN
+		public void OnNextStep(Action cb)
+        {
+			hubProxy.On(Constants.OnNextStep, () => {
+				cb();            
+            });
+        }
+
+
+
+
+
+
+
+
 		//INVOKE /join group:
         public async Task<bool> JoinGroup()
         {
             try
             {
-				var childgroup = LocalStorage.GetChildGroup() ?? "1";
+				var childgroup = LocalStorage.GetChildGroup();
 				await hubProxy.Invoke(Constants.JoinGroup, LocalStorage.GetUserId() + childgroup);
                 return true;
             }
@@ -80,7 +97,7 @@ namespace CustomerApp.src.Services.signalRService
         {
             try
             {
-				var childgroup = LocalStorage.GetChildGroup() ?? "1";
+				var childgroup = LocalStorage.GetChildGroup();
 				await hubProxy.Invoke(Constants.LeaveGroup, LocalStorage.GetUserId() + childgroup);
                 return true;
             }
@@ -95,7 +112,7 @@ namespace CustomerApp.src.Services.signalRService
         {
             try
             {
-                var childgroup = LocalStorage.GetChildGroup() ?? "1";
+                var childgroup = LocalStorage.GetChildGroup();
 
 				if (customer is string)
                 {
@@ -112,6 +129,24 @@ namespace CustomerApp.src.Services.signalRService
                 return false;
             }
         }
+
+		//INVOKE /Next step:
+		public async Task<bool> NextStep()
+        {
+            try
+            {
+                var childgroup = LocalStorage.GetChildGroup();
+				await hubProxy.Invoke(Constants.NextStep, LocalStorage.GetUserId() + childgroup);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+
     }
 }
 
@@ -153,6 +188,20 @@ namespace CustomerApp.src.Services.signalRService
 
                 //broadcard to both Pos and Customer.
                 Clients.Group(group).OnCustomersChanged(JsonConvert.SerializeObject(_customer));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+//next step
+        public async Task<bool> NextStep(string group)
+        {
+            try
+            {
+                Clients.Group(group).OnNextStep();
                 return true;
             }
             catch (Exception)
