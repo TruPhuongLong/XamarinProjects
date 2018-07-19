@@ -25,7 +25,7 @@ namespace CustomerApp.src.ViewModels
 			return Task.Run(() => PhoneNumber = parameter);
 		}
 
-		private string phoneNumber;
+		private string phoneNumber = "099999";
 		public string PhoneNumber
 		{
 			get => phoneNumber;
@@ -62,6 +62,48 @@ namespace CustomerApp.src.ViewModels
 			// trigger off indicator
 			((CustomerStore)CustomerStore).Dispath_Indicator(false);
 		}
+
+
+
+
+
+
+
+
+		//COMMAND
+        private Command backCommand;
+        public Command BackCommand
+        {
+			get => backCommand ?? (backCommand = new Command(Execute_BackCommand));
+        }
+        void Execute_BackCommand()
+		{
+			
+		}
+
+
+		//COMMAND
+        private Command skipCommand;
+        public Command SkipCommand
+        {
+			get => skipCommand ?? (skipCommand = new Command(Execute_SkipCommand));
+        }
+		void Execute_SkipCommand()
+        {
+
+        }
+
+        
+		//COMMAND
+        private Command continueCommand;
+		public Command ContinueCommand
+        {
+			get => continueCommand ?? (continueCommand = new Command(Execute_ContinueCommand));
+        }
+		void Execute_ContinueCommand()
+        {
+
+        }
         
 	}
 }

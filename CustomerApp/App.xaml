@@ -36,12 +36,18 @@
             <Setter Property="HeightRequest" Value="60" />
           </Style>
 
+          <Style x:Key="btn-radious" TargetType="Button" BasedOn="{StaticResource btn}">
+                <Setter Property="BackgroundColor" Value="#4166a3" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BorderRadius" Value="10" />
+          </Style> 
+
           <Style x:Key="btn-lg" TargetType="Button">
             <Setter Property="HeightRequest" Value="90" />
             <Setter Property="WidthRequest" Value="160" />
           </Style>
 
-          <Style x:Key="btn-tranparent-border" TargetType="Button" BasedOn="{StaticResource btn-lg}">
+          <Style x:Key="btn-tranparent-border-lg" TargetType="Button" BasedOn="{StaticResource btn-lg}">
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="BorderWidth" Value="2" />
                 <Setter Property="BorderColor" Value="Blue" />

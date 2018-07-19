@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
+    xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
+    x:Class="CustomerApp.src.Views.Components.CustomerEntryEmailForm">
+
+    <Grid RowSpacing="20" ColumnSpacing="5">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+
+        <local:HeaderForm 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="3" 
+            Header="Please enter your email address" 
+            HeaderFontSize="25" 
+            Back="{Binding BackCommand}" 
+            Skip="{Binding SkipCommand}"
+        />
+
+        <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal" >
+            <local:Field Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60" HorizontalOptions="FillAndExpand"/>
+            <Label Text="@"/>
+            <local:Field Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+
+        <localRenderer:CustomButton Grid.Row="1" Grid.Column="2" Text="Continue" VerticalOptions="Start" Style="{StaticResource btn-radious}" Command="{Binding ContinueCommand}" />
+
+    </Grid>
+    
+</ContentView>

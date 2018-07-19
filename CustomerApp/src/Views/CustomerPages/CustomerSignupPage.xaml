@@ -7,6 +7,15 @@
     ControlTemplate="{StaticResource MainPageTemplate}"
     >
 
-    <local:SignupForm x:Name="signupform" Command="{Binding SignupCommand}" IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}" MainPhone="{Binding PhoneNumber}"/>
+    <!--<local:SignupForm 
+        x:Name="signupform" 
+        Command="{Binding SignupCommand}" 
+        IsEnabled="{Binding CustomerStore.State.IsRunningIndicator, Converter={StaticResource Not}}" 
+        MainPhone="{Binding PhoneNumber}"
+    />-->
+
+<!--    <local:CustomerEntryNameForm  Padding="20"/>-->
+<!--    <local:CustomerEntryEmailForm Padding="20"/>-->
+    <local:CustomerEntryDOBForm Padding="20"/>
     
 </ContentPage>
