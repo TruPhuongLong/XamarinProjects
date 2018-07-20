@@ -16,6 +16,19 @@ static class ViewExtension
         await Task.Delay(1600);
         await view.TranslateTo(0, 0, 250, Easing.SinInOut);
     }
+
+	public static void _Add(this RelativeLayout layout, View child)
+	{
+		layout.Children.Add(child, Constraint.RelativeToParent((parent) => {
+            return 0;
+        }), Constraint.RelativeToParent((parent) => {
+            return 0;
+        }), Constraint.RelativeToParent((parent) => {
+            return parent.Width;
+        }), Constraint.RelativeToParent((parent) => {
+            return parent.Height;
+        }));
+	}
 }
 
 

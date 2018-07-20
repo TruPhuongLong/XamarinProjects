@@ -29,6 +29,8 @@ namespace CustomerApp.src.Views.Components
 			set { SetValue(BackProperty, value); }
 		}
 
+
+
 		//COMMAND /skip
 		public static readonly BindableProperty SkipProperty = BindableProperty.Create(nameof(Skip), typeof(Command), typeof(HeaderForm), default(Command), BindingMode.TwoWay);
         public Command Skip
@@ -37,7 +39,13 @@ namespace CustomerApp.src.Views.Components
 			set { SetValue(SkipProperty, value); }
         }
 
-        //PROP /show or hide skip button
+        //PROP
+		public string BackParameter { get; set; }
+
+        //PROP
+		public string SkipParameter { get; set; }
+        
+		//PROP /show or hide skip button
 		public bool IsShowSkip
 		{
 			set
@@ -46,5 +54,21 @@ namespace CustomerApp.src.Views.Components
 				btnskip.IsEnabled = value;
 			}
 		}
+        
+        //EVENT
+		public event EventHandler BackEventHandler;
+		void Handle_Clicked_Back(object sender, System.EventArgs e)
+		{
+			if (BackEventHandler != null) BackEventHandler(this, e);
+
+		}
+
+		//EVENT
+        public event EventHandler SkipEventHandler;
+        void Handle_Clicked_Skip(object sender, System.EventArgs e)
+        {
+			if (SkipEventHandler != null) SkipEventHandler(this, null);
+        }
+
     }
 }

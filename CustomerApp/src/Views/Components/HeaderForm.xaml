@@ -16,11 +16,27 @@
             <ColumnDefinition Width="100" />
         </Grid.ColumnDefinitions>
 
-        <localRenderer:CustomButton Grid.Column="0" Image="back.png" Command="{Binding Back}" BackgroundColor="Transparent"/>
+        <localRenderer:CustomButton 
+            Grid.Column="0" 
+            Image="back.png" 
+            Command="{Binding Back}" 
+            CommandParameter="{Binding BackParameter}" 
+            BackgroundColor="Transparent"
+            Clicked="Handle_Clicked_Back"
+        />
 
         <local:ReviewView x:Name="header"  Grid.Column="1"/>
 
-        <localRenderer:CustomButton x:Name="btnskip" Grid.Column="2" Text="Skip" TextColor="#4166a3" Command="{Binding Skip}" BackgroundColor="Transparent"/>
+        <localRenderer:CustomButton 
+            x:Name="btnskip" 
+            Grid.Column="2" 
+            Text="Skip" 
+            TextColor="#4166a3" 
+            Command="{Binding Skip}" 
+            CommandParameter="{Binding SkipParameter}" 
+            BackgroundColor="Transparent"
+            Clicked="Handle_Clicked_Skip"
+        />
         
     </Grid>
 

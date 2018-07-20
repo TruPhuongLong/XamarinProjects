@@ -15,7 +15,6 @@
     <Folder Include="src\ViewModels\" />
     <Folder Include="src\Views\Components\" />
     <Folder Include="src\Services\" />
-    <Folder Include="src\assets\" />
     <Folder Include="src\Services\NavigationService\" />
     <Folder Include="src\Services\signalRService\" />
     <Folder Include="src\Views\CustomerPages\" />

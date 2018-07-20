@@ -6,7 +6,7 @@
     xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
     x:Class="CustomerApp.src.Views.Components.CustomerEntryNameForm">
     
-    <Grid RowSpacing="20" ColumnSpacing="5">
+    <Grid RowSpacing="20" ColumnSpacing="5" Padding="20">
         
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -28,20 +28,31 @@
             Header="Please enter your first name and last name" 
             HeaderFontSize="25" 
             Back="{Binding BackCommand}" 
+            BackParameter="CustomerEntryNameForm"
+            BackEventHandler="Handle_BackEventHandler"
             IsShowSkip="false"
         />
 
         <Label Grid.Row="1" Grid.Column="0" Text="First Name" TextColor="Silver"/>
 
-        <local:Field Grid.Row="1" Grid.Column="1" Require="true" Minlength="1" _HeightRequest="60"/>
+        <local:Field Grid.Row="1" Grid.Column="1" Require="true" Minlength="1" _HeightRequest="60" Text="{Binding FirstName}" />
 
         <Label Grid.Row="2" Grid.Column="0" Text="Last Name" TextColor="Silver"/>
 
-        <local:Field Grid.Row="2" Grid.Column="1" Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60"/>
+        <local:Field Grid.Row="2" Grid.Column="1" Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60" Text="{Binding LastName}"/>
 
-        <localRenderer:CustomButton Grid.Row="2" Grid.Column="2" Text="Continue" VerticalOptions="Start" Style="{StaticResource btn-radious}" Command="{Binding ContinueCommand}" />
+        <localRenderer:CustomButton 
+            Grid.Row="2" 
+            Grid.Column="2" 
+            Text="Continue" 
+            VerticalOptions="Start" 
+            Style="{StaticResource btn-radious}" 
+            Command="{Binding ContinueCommand}" 
+            CommandParameter="CustomerEntryNameForm"
+            Clicked="Handle_Clicked"
+        />
 
-        <local:ReviewView Grid.Row="3" Grid.Column="1" Review="{Binding PhoneNumber}" HorizontalOptions="Start"/>
+        <local:ReviewView Grid.Row="3" Grid.Column="1" Review="{Binding MainPhone}" HorizontalOptions="Start"/>
     </Grid>
     
 </ContentView>

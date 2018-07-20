@@ -22,88 +22,93 @@ namespace CustomerApp.src.ViewModels
 
 		public override Task Init(string parameter)
 		{
-			return Task.Run(() => PhoneNumber = parameter);
+			return Task.Run(() => { MainPhone = parameter; });
 		}
 
-		private string phoneNumber = "099999";
-		public string PhoneNumber
+		public string EmailPart1 { get; set; }
+		public string EmailPart2 { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Month { get; set; }
+        public string Day { get; set; }
+        public string Year { get; set; }
+		public string MainPhone { get; set; }
+
+
+		//COMMAND
+		private Command backCustomerLoginPageCommand;
+		public Command BackCustomerLoginPageCommand
 		{
-			get => phoneNumber;
-			set
-			{
-				SetProperty(ref phoneNumber, value);
-			}
+			get => backCustomerLoginPageCommand ?? (backCustomerLoginPageCommand = new Command(Execute_BackCustomerLoginPageCommand));
+		}
+		async void Execute_BackCustomerLoginPageCommand()
+		{
+			await NavService.PreviousPage();
 		}
 
+        
         //COMMAND
-		private Command<Customer> signupCommand;
-		public Command<Customer> SignupCommand
+		private Command signupCommand;
+		public Command SignupCommand
 		{
-			get => signupCommand ?? (signupCommand = new Command<Customer>(ExecuteCommand));	
+			get => signupCommand ?? (signupCommand = new Command(ExecuteCommand));	
 		}
 
-		async void ExecuteCommand(Customer customer)
+		async void ExecuteCommand()
 		{
 			// trigger up indicator
 			((CustomerStore)CustomerStore).Dispath_Indicator(true);
 
-			var isSuccess = await CustomerService.Post(customer);
-			if(isSuccess)
-			{
-				// pop customerLoginPage
-				await NavService.PreviousPage();
-				((CustomerStore)CustomerStore).Dispath_Notification("save success");
-			}
-			else
-			{
-				//notification signup fail
-			}
+			var newCustomer = GetCustomerValidate();
 
+			if (newCustomer != null)
+			{
+				var isSuccess = await CustomerService.Post((Customer)newCustomer);
+                if (isSuccess)
+                {
+                    // pop customerLoginPage
+                    await NavService.PreviousPage();
+                    ((CustomerStore)CustomerStore).Dispath_Notification("save success");
+                }
+                else
+                {
+                    //notification signup fail
+					((CustomerStore)CustomerStore).Dispath_Notification("signup fail");
+                }
+			}
+                     
 			// trigger off indicator
 			((CustomerStore)CustomerStore).Dispath_Indicator(false);
 		}
 
 
-
-
-
-
-
-
-		//COMMAND
-        private Command backCommand;
-        public Command BackCommand
+		//EVENT
+		Customer? GetCustomerValidate()
         {
-			get => backCommand ?? (backCommand = new Command(Execute_BackCommand));
-        }
-        void Execute_BackCommand()
-		{
-			
-		}
+			var customer = new Customer
+			{
+				MainPhone = MainPhone,
+				Email = EmailPart1 + EmailPart2,
+                Name = FirstName + " " + LastName
+            };
+            if (!string.IsNullOrEmpty(Day) || !string.IsNullOrEmpty(Month) || !string.IsNullOrEmpty(Year))
+            {
+                var (isValidateSuccess, dayOfBirth) = FuncHelp.ValidateDateTime(Year, Month, Day);
+                if (isValidateSuccess)
+                {
+                    customer.DateOfBirth = (DateTime)dayOfBirth;
+                }
+                else
+                {
+                    //notification error:
+					((CustomerStore)CustomerStore).Dispath_Notification("date time wrong format");
 
-
-		//COMMAND
-        private Command skipCommand;
-        public Command SkipCommand
-        {
-			get => skipCommand ?? (skipCommand = new Command(Execute_SkipCommand));
+					//then return
+					return null;
+                }
+            }
+			return customer;
         }
-		void Execute_SkipCommand()
-        {
-
-        }
-
-        
-		//COMMAND
-        private Command continueCommand;
-		public Command ContinueCommand
-        {
-			get => continueCommand ?? (continueCommand = new Command(Execute_ContinueCommand));
-        }
-		void Execute_ContinueCommand()
-        {
-
-        }
-        
+   
 	}
 }

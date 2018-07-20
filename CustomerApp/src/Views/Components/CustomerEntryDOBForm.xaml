@@ -6,7 +6,7 @@
     xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
     x:Class="CustomerApp.src.Views.Components.CustomerEntryDOBForm">
 
-    <Grid RowSpacing="20" ColumnSpacing="5">
+    <Grid RowSpacing="20" ColumnSpacing="5" Padding="20" >
         
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -25,34 +25,47 @@
             Grid.ColumnSpan="3" 
             Header="Please enter your day of birth" 
             HeaderFontSize="25" 
-            Back="{Binding BackCommand}" 
+            Back="{Binding BackCommand}"
+            BackParameter="CustomerEntryDOBForm"
+            BackEventHandler="Handle_BackEventHandler"
             Skip="{Binding SkipCommand}"
+            SkipParameter="CustomerEntryDOBForm"
+            SkipEventHandler="Handle_SkipEventHandler"
         />
 
         <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal" >
             
             <StackLayout HorizontalOptions="FillAndExpand">
-                <local:Field Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60"/>
+                <local:Field Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60" Text="{Binding Month}"/>
                 <Label Text="Month"/>
             </StackLayout>
 
             <Label Text="-"/>
 
             <StackLayout HorizontalOptions="FillAndExpand">
-                <local:Field Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60"/>
+                <local:Field Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60" Text="{Binding Day}"/>
                 <Label Text="Day"/>
             </StackLayout>
-            
+
             <Label Text="-"/>
 
             <StackLayout HorizontalOptions="FillAndExpand">
-                <local:Field Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60"/>
+                <local:Field Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60" Text="{Binding Year}"/>
                 <Label Text="Year"/>
             </StackLayout>
             
         </StackLayout>
 
-        <localRenderer:CustomButton Grid.Row="1" Grid.Column="2" Text="Continue" VerticalOptions="Start" Style="{StaticResource btn-radious}" Command="{Binding ContinueCommand}" />
+        <localRenderer:CustomButton 
+            Grid.Row="1" 
+            Grid.Column="2" 
+            Text="Continue" 
+            VerticalOptions="Start" 
+            Style="{StaticResource btn-radious}" 
+            Command="{Binding ContinueCommand}"
+            CommandParameter="CustomerEntryDOBForm"
+            Clicked="Handle_Clicked"
+        />
 
     </Grid>
     

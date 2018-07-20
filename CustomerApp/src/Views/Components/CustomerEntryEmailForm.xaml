@@ -6,7 +6,7 @@
     xmlns:localRenderer="clr-namespace:CustomerApp.src.Views.CustomRenderer"
     x:Class="CustomerApp.src.Views.Components.CustomerEntryEmailForm">
 
-    <Grid RowSpacing="20" ColumnSpacing="5">
+    <Grid RowSpacing="20" ColumnSpacing="5" Padding="20">
         
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -25,17 +25,30 @@
             Grid.ColumnSpan="3" 
             Header="Please enter your email address" 
             HeaderFontSize="25" 
-            Back="{Binding BackCommand}" 
+            Back="{Binding BackCommand}"
+            BackParameter="CustomerEntryEmailForm"
+            BackEventHandler="Handle_BackEventHandler"
             Skip="{Binding SkipCommand}"
+            SkipParameter="CustomerEntryEmailForm"
+            SkipEventHandler="Handle_SkipEventHandler"
         />
 
         <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal" >
-            <local:Field Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60" HorizontalOptions="FillAndExpand"/>
+            <local:Field Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60" HorizontalOptions="FillAndExpand" Text="{Binding EmailPart1}"/>
             <Label Text="@"/>
-            <local:Field Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60" HorizontalOptions="FillAndExpand"/>
+            <local:Field Require="true" Minlength="1" VerticalOptions="Start" _HeightRequest="60" HorizontalOptions="FillAndExpand" Text="{Binding EmailPart2}"/>
         </StackLayout>
 
-        <localRenderer:CustomButton Grid.Row="1" Grid.Column="2" Text="Continue" VerticalOptions="Start" Style="{StaticResource btn-radious}" Command="{Binding ContinueCommand}" />
+        <localRenderer:CustomButton 
+            Grid.Row="1" 
+            Grid.Column="2" 
+            Text="Continue" 
+            VerticalOptions="Start" 
+            Style="{StaticResource btn-radious}" 
+            Command="{Binding ContinueCommand}" 
+            CommandParameter="CustomerEntryEmailForm"
+            Clicked="Handle_Clicked"
+        />
 
     </Grid>
     

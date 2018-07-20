@@ -5,6 +5,7 @@
     xmlns:local="clr-namespace:CustomerApp.src.Views.Components"
     x:Class="CustomerApp.src.Views.CustomerPages.CustomerSignupPage"
     ControlTemplate="{StaticResource MainPageTemplate}"
+    SizeChanged="OnPageSizeChanged"
     >
 
     <!--<local:SignupForm 
@@ -16,6 +17,7 @@
 
 <!--    <local:CustomerEntryNameForm  Padding="20"/>-->
 <!--    <local:CustomerEntryEmailForm Padding="20"/>-->
-    <local:CustomerEntryDOBForm Padding="20"/>
-    
+<!--    <local:CustomerEntryDOBForm Padding="20"/>-->
+
+
 </ContentPage>
