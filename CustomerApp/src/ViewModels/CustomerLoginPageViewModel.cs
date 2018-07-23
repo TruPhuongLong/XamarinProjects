@@ -37,7 +37,7 @@ namespace CustomerApp.src.ViewModels
             {
                 CustomerStore.Dispath(action);
             });
-
+            
             await JoinGroup();
         }
 
@@ -47,9 +47,9 @@ namespace CustomerApp.src.ViewModels
             if (!isJoinSuccess)
             {
                 ((CustomerStore)CustomerStore).Dispath_Notification("not connection");
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
 
 		string phoneNumer;

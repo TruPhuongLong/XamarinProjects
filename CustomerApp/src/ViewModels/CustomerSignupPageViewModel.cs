@@ -88,7 +88,7 @@ namespace CustomerApp.src.ViewModels
 			var customer = new Customer
 			{
 				MainPhone = MainPhone,
-				Email = EmailPart1 + EmailPart2,
+				Email = EmailPart1 + "@" + EmailPart2,
                 Name = FirstName + " " + LastName
             };
             if (!string.IsNullOrEmpty(Day) || !string.IsNullOrEmpty(Month) || !string.IsNullOrEmpty(Year))

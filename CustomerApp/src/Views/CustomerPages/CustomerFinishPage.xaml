@@ -23,15 +23,25 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <local:ReviewView Grid.Row="0" Grid.Column="0" Review="{Binding Name, Mode=OneWay}" HorizontalOptions="Center"/>
+        <local:ReviewView Grid.Row="0" Grid.Column="0" Review="{Binding Name, Mode=OneWay}" HorizontalOptions="Center" VerticalOptions="Start"/>
 
-        <local:ReviewView Grid.Row="0" Grid.Column="1" Review="{Binding MainPhone, Mode=OneWay}" HorizontalOptions="Center"/>
+        <local:ReviewView Grid.Row="0" Grid.Column="1" Review="{Binding MainPhone, Mode=OneWay}" HorizontalOptions="Center" VerticalOptions="Start"/>
 
-        <local:CustomerRewardView Grid.Row="0" Grid.Column="2" RewardPoint="{Binding CurrentPoints}" RewardPointFontSize="55"/>
+        <local:CustomerRewardView Grid.Row="0" Grid.Column="2" RewardPoint="{Binding CurrentPoints}" RewardPointFontSize="55" VerticalOptions="Start"/>
 
         <local:ReviewView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Review="Thank you" FontSize="100" HorizontalOptions="Center"/>
 
-        <localRenderer:CustomButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"  Text="Done" BindingContext="{Binding Source={x:Reference this}}" Command="{Binding BindingContext.ExitCommand}"/>
+        <localRenderer:CustomButton 
+            Grid.Row="2" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="3"  
+            Text="Done" 
+            BindingContext="{Binding Source={x:Reference this}}" 
+            Command="{Binding BindingContext.ExitCommand}"
+            Margin="0, 50, 0, 0"
+            Style="{StaticResource btn-tranparent-border-lg}"
+            BorderColor="Gray"
+        />
         
     </Grid>
     

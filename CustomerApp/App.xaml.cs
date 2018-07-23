@@ -18,8 +18,8 @@ namespace CustomerApp
         {
             InitializeComponent();
 
-			//Init();
-			MainPage = new NavigationPage(new CustomerSignupPage());
+			Init();
+			//MainPage = new NavigationPage(new CustomerFinishPage());
         }
 
         protected override void OnStart()

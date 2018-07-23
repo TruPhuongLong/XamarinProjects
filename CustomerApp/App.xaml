@@ -54,8 +54,11 @@
                 <Setter Property="BorderRadius" Value="10" />
           </Style> 
 
+
+            
           <converter:DateToDeltaDays x:Key="DateToDeltaDays" />
           <converter:Not x:Key="Not" />
+          <converter:ObjToBool x:Key="ObjToBool" />
 
 
             
