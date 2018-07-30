@@ -61,7 +61,7 @@ namespace CustomerApp.src.Views.PosPages
 			var customerDayOfBirth = ((Customer)customer).DateOfBirth;
 			var timeForCal = new DateTime(customerDayOfBirth.Year, DateTime.Now.Month, DateTime.Now.Day);
 
-			var delta = (timeForCal - customerDayOfBirth).Days;
+			var delta = (customerDayOfBirth - timeForCal).Days;
 
 			//check delta in range 0-10:
 			if(delta > 10 || delta < 0)

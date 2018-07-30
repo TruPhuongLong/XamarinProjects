@@ -32,7 +32,13 @@ namespace CustomerApp.src.ViewModels
         public string Month { get; set; }
         public string Day { get; set; }
         public string Year { get; set; }
-		public string MainPhone { get; set; }
+
+		private string mainPhone;
+		public string MainPhone 
+		{
+			get => mainPhone;
+			set { SetProperty(ref mainPhone, value); }
+		}
 
 
 		//COMMAND

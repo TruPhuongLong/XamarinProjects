@@ -66,7 +66,9 @@ namespace CustomerApp.src.libs
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			var delta = DateTime.Now - (DateTime)value;
+			var dateOfBirth = (DateTime)value;
+			var timeForCal = new DateTime(DateTime.Now.Year, dateOfBirth.Month, dateOfBirth.Day);
+			var delta = timeForCal - DateTime.Now;
 			return delta.Days;
 		}
 
