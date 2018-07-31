@@ -20,6 +20,7 @@ namespace CustomerApp.src.Views.PosPages
         public CustomerListPage()
         {
             InitializeComponent();
+			MainGrid.RowDefinitions[1].Height = new GridLength(0, GridUnitType.Absolute);
 			Title = "Check In List";
         }
 
@@ -59,21 +60,21 @@ namespace CustomerApp.src.Views.PosPages
 			//good to go
 			//check delta birthday
 			var customerDayOfBirth = ((Customer)customer).DateOfBirth;
-			var timeForCal = new DateTime(customerDayOfBirth.Year, DateTime.Now.Month, DateTime.Now.Day);
-
-			var delta = (customerDayOfBirth - timeForCal).Days;
-
+			var timeForCal = new DateTime(DateTime.Now.Year, customerDayOfBirth.Month, customerDayOfBirth.Day);
+            var delta = timeForCal - DateTime.Now;
+         
 			//check delta in range 0-10:
-			if(delta > 10 || delta < 0)
+			if(delta.Days > 10 || delta.Days < 0)
 			{            
                 //remove CustomerBirthdayMessageView
-                var parent = cbmv.Parent as Grid;
-				if (parent == null) return;
-                parent.Children.Remove(cbmv);
+                //parent.Children.Remove(cbmv);
+				cbmv.IsVisible = false;
+				MainGrid.RowDefinitions[1].Height = new GridLength(0, GridUnitType.Absolute);
 
                 
 			}else{
 				cbmv.IsVisible = true;
+				MainGrid.RowDefinitions[1].Height = GridLength.Auto;
 			}
 
 		}

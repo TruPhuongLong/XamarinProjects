@@ -78,6 +78,20 @@ namespace CustomerApp.src.libs
 		}
 	}
 
+	public class DeltaDayFormat : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			var deltaDays = (int)(new DateToDeltaDays().Convert(value, targetType, parameter, culture));
+			return deltaDays > 0 ? deltaDays.ToString() + " days" : "today";
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+	}
+
 	public class Not : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

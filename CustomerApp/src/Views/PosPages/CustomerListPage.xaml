@@ -26,7 +26,7 @@
         IsEnabled="{Binding CustomerStore.State.Customer, Converter={StaticResource ObjToBool}, Converter={StaticResource Not}}" 
     />
 
-    <Grid Padding="20, 10" RowSpacing="70" 
+    <Grid x:Name="MainGrid" Padding="20, 10" RowSpacing="70" 
           IsVisible="{Binding CustomerStore.State.Customer, Converter={StaticResource ObjToBool}}"
           IsEnabled="{Binding CustomerStore.State.Customer, Converter={StaticResource ObjToBool}}"
           >

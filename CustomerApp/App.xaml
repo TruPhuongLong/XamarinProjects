@@ -59,7 +59,7 @@
           <converter:DateToDeltaDays x:Key="DateToDeltaDays" />
           <converter:Not x:Key="Not" />
           <converter:ObjToBool x:Key="ObjToBool" />
-
+          <converter:DeltaDayFormat x:Key="DeltaDayFormat" />
 
             
         </ResourceDictionary>

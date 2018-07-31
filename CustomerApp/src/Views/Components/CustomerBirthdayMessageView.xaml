@@ -7,7 +7,7 @@
     
     <Frame Padding="20" BackgroundColor="Red" >
         <Label 
-            Text="{Binding DateOfBirth, Converter={StaticResource DateToDeltaDays}, StringFormat='Birthday is comming in {0} days'}" 
+            Text="{Binding DateOfBirth, Converter={StaticResource DeltaDayFormat}, StringFormat='Birthday is comming in {0}'}" 
             TextColor="White" 
             VerticalTextAlignment="Center"
             HorizontalTextAlignment="Center"
