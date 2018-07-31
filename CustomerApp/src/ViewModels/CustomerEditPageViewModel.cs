@@ -73,6 +73,11 @@ namespace CustomerApp.src.ViewModels
 			var _CurrentPointsDelta = float.Parse(CurrentPointsDelta);
 			var newCustomer = (Customer)CustomerStore.State.Customer;
 			newCustomer.CurrentPoints = Styleid == "+" ? newCustomer.CurrentPoints + _CurrentPointsDelta : newCustomer.CurrentPoints - _CurrentPointsDelta;
+
+			//filter currentpoint:
+			if (newCustomer.CurrentPoints < 0) newCustomer.CurrentPoints = 0;
+
+            //update customer
 			var CustomerEdited = await CustomerService.Put(newCustomer);
 
 			if(CustomerEdited != null)
