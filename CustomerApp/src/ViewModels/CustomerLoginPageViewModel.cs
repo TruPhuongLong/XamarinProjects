@@ -93,9 +93,19 @@ namespace CustomerApp.src.ViewModels
 
 			// trigger off indicator
 			CustomerStore.Dispath(new IndicatorAction(new redux.store.CustomerState()));
-
+            
 		}
 
+		Command resetCustomerCommand;
+		public Command ResetCustomerCommand
+		{
+			get => resetCustomerCommand ?? (resetCustomerCommand = new Command(Execute_resetCustomerCommand));
+		}
+		async void Execute_resetCustomerCommand()
+		{
+			//leave SignalR
+            await SignalRService.CustomersChanged("");
+		}
 
 
 	}

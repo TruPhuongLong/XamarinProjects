@@ -66,33 +66,48 @@ namespace CustomerApp.src.ViewModels
                 ((CustomerStore)CustomerStore).Dispath_Notification("wrong format");
 				return;
 			}
-            
-			// trigger up indicator
-			((CustomerStore)CustomerStore).Dispath_Indicator(true);
 
 			var _CurrentPointsDelta = float.Parse(CurrentPointsDelta);
 			var newCustomer = (Customer)CustomerStore.State.Customer;
-			newCustomer.CurrentPoints = Styleid == "+" ? newCustomer.CurrentPoints + _CurrentPointsDelta : newCustomer.CurrentPoints - _CurrentPointsDelta;
 
-			//filter currentpoint:
-			if (newCustomer.CurrentPoints < 0) newCustomer.CurrentPoints = 0;
+
+			//filter redeem and delta > current point:
+			if(Styleid == "-" && _CurrentPointsDelta > newCustomer.CurrentPoints)
+			{
+				// Not enough reward points!
+				((CustomerStore)CustomerStore).Dispath_Notification("Not enough reward points!");
+				return;
+			}
+
+			// trigger up indicator
+			((CustomerStore)CustomerStore).Dispath_Indicator(true);
+            
+
+
+            newCustomer.CurrentPoints = Styleid == "+" ? newCustomer.CurrentPoints + _CurrentPointsDelta : newCustomer.CurrentPoints - _CurrentPointsDelta;
+
+            //filter currentpoint:
+            if (newCustomer.CurrentPoints < 0) newCustomer.CurrentPoints = 0;
 
             //update customer
-			var CustomerEdited = await CustomerService.Put(newCustomer);
+            var CustomerEdited = await CustomerService.Put(newCustomer);
 
-			if(CustomerEdited != null)
-			{
-				((CustomerStore)CustomerStore).Dispath_Notification("save success");
-				await SignalRService.CustomersChanged(CustomerEdited);
+            if (CustomerEdited != null)
+            {
+                ((CustomerStore)CustomerStore).Dispath_Notification("save success");
+                await SignalRService.CustomersChanged(CustomerEdited);
 
                 //back page
-				await NavService.PreviousPage();
-			}
-			else
-			{
-				// fail to save edit:
-				((CustomerStore)CustomerStore).Dispath_Notification("save fail");
-			}
+                await NavService.PreviousPage();
+            }
+            else
+            {
+                // fail to save edit:
+                ((CustomerStore)CustomerStore).Dispath_Notification("save fail");
+            }
+
+
+
 
 			// trigger off indicator
 			((CustomerStore)CustomerStore).Dispath_Indicator(false);

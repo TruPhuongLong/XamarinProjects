@@ -15,6 +15,18 @@ namespace CustomerApp.src.Views.CustomerPages
 			BindingContext = new CustomerLoginPageViewModel(DependencyService.Get<ICustomerNavService>(), DependencyService.Get<DataService>(), DependencyService.Get<SignalRService2>());
 			Title = "Customer Entry";
 		}
-        
-    }
+
+		CustomerLoginPageViewModel ViewModel
+		{
+			get => BindingContext as CustomerLoginPageViewModel;
+		}
+
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+			ViewModel.ResetCustomerCommand.Execute(null);
+
+		}
+
+	}
 }

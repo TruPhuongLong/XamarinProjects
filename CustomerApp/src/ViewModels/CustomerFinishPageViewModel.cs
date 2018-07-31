@@ -42,7 +42,7 @@ namespace CustomerApp.src.ViewModels
         async void ExecuteCommand()
         {
             //leave SignalR
-			await SignalRService.CustomersChanged("");
+			//await SignalRService.CustomersChanged("");
 
             //back page
 			if (FuncHelp.GetRootPage() is PosLoginPage)
