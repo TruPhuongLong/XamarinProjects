@@ -16,6 +16,7 @@ namespace CustomerApp.src.ViewModels
 		public CustomerFinishPageViewModel(ICustomerNavService navService, SignalRService2 signalRService): base(navService)
         {
 			SignalRService = signalRService;
+			Init();
         }
 
 		public override async Task Init()

@@ -94,9 +94,16 @@ namespace CustomerApp.src.ViewModels
 			var customer = new Customer
 			{
 				MainPhone = MainPhone,
-				Email = EmailPart1 + "@" + EmailPart2,
                 Name = FirstName + " " + LastName
             };
+
+			//set email:
+			if(!string.IsNullOrEmpty(EmailPart1) && !string.IsNullOrWhiteSpace(EmailPart1) && !string.IsNullOrEmpty(EmailPart1) && !string.IsNullOrWhiteSpace(EmailPart1))
+			{
+				customer.Email = EmailPart1 + "@" + EmailPart2;
+			}
+
+
             if (!string.IsNullOrEmpty(Day) || !string.IsNullOrEmpty(Month) || !string.IsNullOrEmpty(Year))
             {
                 var (isValidateSuccess, dayOfBirth) = FuncHelp.ValidateDateTime(Year, Month, Day);
@@ -113,6 +120,10 @@ namespace CustomerApp.src.ViewModels
 					return null;
                 }
             }
+			else
+			{
+				customer.DateOfBirth = DateTime.Now;
+			}
 			return customer;
         }
    
